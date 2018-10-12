@@ -19,7 +19,12 @@
             <div class="logo"><img src="images/logo.png"></div>
             <div class="quicklink">
                 <span><a href="">How to play？</a></span>
-                <button>Login</button>
+                <button class="loginHeadButton">Login</button>
+                <img src="images/loginhead.png" class="loginImg">
+            </div>
+            <div class="personalInformation">
+                <span><img src="images/loginhead.png" width="40" height="40"> 00000000000000000000000</span>
+                <input type="button" value="Logout" class="logout" />
             </div>
         </div>
         <div class="playMain">
@@ -46,7 +51,7 @@
                 </dl>
                 <dl>
                     <dt>PAYOUT</dt>
-                    <dd><span class="getOdds">1.023</span>X</dd>
+                    <dd><span class="getOdds">0</span>X</dd>
                 </dl>
                 <dl>
                     <dt>WIN CHANCE</dt>
@@ -71,6 +76,9 @@
             </div>
             <div class="loginButton">
                 <button>Login</button>
+            </div>
+            <div class="rollButton">
+                <button>Roll</button>
             </div>
         </div>
         <div class="gameList">
@@ -170,18 +178,69 @@
             <div id="tabs_container" class="loginTab_container">
                 <div id="loginTab-1">
                     <ul>
-                        <li><input type="text" placeholder="Please select keyfile"><input type="file"></li>
+                        <li><input type="text" placeholder="Please select keyfile"><input type="button" value="Click Upload"><input type="file"></li>
                         <li><input type="password" placeholder="Password"></li>
                     </ul>
                     <button>Login</button>
                     <p>Please follow this <a href="#">tutorial</a> to create an account if you don't have</p>
                 </div>
-                <div id="loginTab-2">None</div>
+                <div id="loginTab-2">
+                    <ul>
+                        <li><input type="text" placeholder="Please select keyfile"></li>
+                        <li><input type="password" placeholder="Password"></li>
+                    </ul>
+                    <button>Login</button>
+                    <p>Please follow this <a href="#">tutorial</a> to create an account if you don't have</p>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="transaction">
+        <span class="close"><img src="images/close.png"></span>
+        <h1>Signature Request</h1>
+        <div class="transactionMain">
+            <h3>Transaction</h3>
+            <table>
+                <tr>
+                    <td>From</td>
+                    <td>0xa61e5b0b30e91c4ae10dda3a6ddeb9d9d35ebfe1</td>
+                </tr>
+                <tr>
+                    <td>To</td>
+                    <td>0xa61e5b0b30e91c4ae10dda3a6ddeb9d9d35ebfe1</td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>AccountNonce</td>
+                    <td>221</td>
+                </tr>
+                <tr>
+                    <td>Quantity</td>
+                    <td>200  seele</td>
+                </tr>
+                <tr>
+                    <td>GasPrice</td>
+                    <td><input type="text" placeholder="0.01"><span>fan</span></td>
+                </tr>
+                <tr>
+                    <td>GasLimit</td>
+                    <td><input type="text" placeholder="Maximum value (estimate: 30) "></td>
+                </tr>
+                <tr>
+                    <td>Payload</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <ul>
+            <li><button>Deny</button></li>
+            <li><button>Accept</button></li>
+        </ul>
     </div>
 </body>
 <script src="js/tab.js"></script>
 <script src="js/seele-dice.js"></script>
-
 </html>
