@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="./" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>seele-dice</title>
+    <meta name="description" content="">
+    <meta name="google" value="notranslate">
+    <link rel="stylesheet" type="text/css" href="css/seele-dice.css">
+    <script src="js/jQuery.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo"><img src="images/logo.png"></div>
+            <div class="quicklink">
+                <span><a href="">How to play？</a></span>
+                <button>Login</button>
+            </div>
+        </div>
+        <div class="playMain">
+            <div class="bets">
+                <h3>BET AMOUNT</h3>
+                <ul>
+                    <li><input class="getVal" type="text" placeholder="Enter the stakes"><span>seele</span></li>
+                    <li class="halve">1/2</li>
+                    <li class="multiple">2X</li>
+                    <li class="all">MAX</li>
+                </ul>
+            </div>
+            <div class="payout">
+                <h3>PAYOUT ON WIN</h3>
+                <ul>
+                    <li class="winSeele">0</li>
+                    <li>seele</li>
+                </dl>
+            </div>
+            <div class="odds">
+                <dl>
+                    <dt>ROLL UNDER TO WIN</dt>
+                    <dd><span>68</span><span><img src="images/down.png" width="14" height="22"></span></dd>
+                </dl>
+                <dl>
+                    <dt>PAYOUT</dt>
+                    <dd><span class="getOdds">1.023</span>X</dd>
+                </dl>
+                <dl>
+                    <dt>WIN CHANCE</dt>
+                    <dd>68%</dd>
+                </dl>
+            </div>
+            <div class="progress">
+                <div class="scroll" id="scroll">
+                    <div class="bar" id="bar">
+                
+                    </div>
+                    <div class="mask" id="mask"></div>
+                    <p></p>
+                </div>
+                <ul>
+                    <li>0</li>
+                    <li>25</li>
+                    <li>50</li>
+                    <li>75</li>
+                    <li>100</li>
+                </ul>
+            </div>
+            <div class="loginButton">
+                <button>Login</button>
+            </div>
+        </div>
+        <div class="gameList">
+            <div id="tab">
+                <ul>
+                    <li><a href="#tabs-1" title="ALL BETS">ALL BETS</a></li>
+                    <li><a href="#tabs-2" title="MY BETS">MY BETS</a></li>
+                </ul>
+                <div id="tabs_container">
+                    <div id="tabs-1">
+                        <table>
+                            <thead>
+                                <th>Time</th>
+                                <th>Bettor</th>
+                                <th>Roll Under</th>
+                                <th>Bet</th>
+                                <th>Roll</th>
+                                <th>Payout</th>
+                            </thead>
+                            <tr>
+                                <td>15:47:36</td>
+                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
+                                <td>93</td>
+                                <td>500.0000 seele</td>
+                                <td>90</td>
+                                <td>500.324 seele</td>
+                            </tr>
+                            <tr>
+                                <td>15:47:36</td>
+                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
+                                <td>93</td>
+                                <td>500.0000 seele</td>
+                                <td>90</td>
+                                <td>500.324 seele</td>
+                            </tr>
+                            <tr>
+                                <td>15:47:36</td>
+                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
+                                <td>93</td>
+                                <td>500.0000 seele</td>
+                                <td>90</td>
+                                <td>500.324 seele</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="tabs-2">
+                        <table>
+                            <thead>
+                                <th>Time</th>
+                                <th>Bettor</th>
+                                <th>Roll Under</th>
+                                <th>Bet</th>
+                                <th>Roll</th>
+                                <th>Payout</th>
+                            </thead>
+                            <tr>
+                                <td>15:47:36</td>
+                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
+                                <td>93</td>
+                                <td>500.0000 seele</td>
+                                <td>90</td>
+                                <td>500.324 seele</td>
+                            </tr>
+                            <tr>
+                                <td>15:47:36</td>
+                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
+                                <td>93</td>
+                                <td>500.0000 seele</td>
+                                <td>90</td>
+                                <td>500.324 seele</td>
+                            </tr>
+                            <tr>
+                                <td>15:47:36</td>
+                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
+                                <td>93</td>
+                                <td>500.0000 seele</td>
+                                <td>90</td>
+                                <td>500.324 seele</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!--End tabs container-->
+            </div>
+            <!--End tabs-->
+        </div>
+    </div>
+    <div class="login">
+        <div class="close"><img src="images/close.png"></div>
+        <div class="loginLogo"><img src="images/loginLogo.png" width="90" height="90"></div>
+        <h1>&nbsp;&nbsp;Welcome Back！</h1>
+        <div id="loginTab">
+            <ul>
+                <li><a href="#loginTab-1" title="Key Flie">Key Flie</a></li>
+                <li><a href="#loginTab-2" title="Private Key">Private Key</a></li>
+            </ul>
+            <div id="tabs_container" class="loginTab_container">
+                <div id="loginTab-1">
+                    <ul>
+                        <li><input type="text" placeholder="Please select keyfile"><input type="file"></li>
+                        <li><input type="password" placeholder="Password"></li>
+                    </ul>
+                    <button>Login</button>
+                    <p>Please follow this <a href="#">tutorial</a> to create an account if you don't have</p>
+                </div>
+                <div id="loginTab-2">None</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/tab.js"></script>
+<script src="js/seele-dice.js"></script>
+
+</html>
