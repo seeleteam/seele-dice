@@ -1,0 +1,689 @@
+/* 
+author: Miya_yang
+time:2018.10.11
+*/
+
+/* 公共样式 */
+input,select,button {
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+ul,li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+a{
+    outline: none;
+}
+html,body {
+    min-height: 100%;
+    padding: 0px;
+    margin: 0px;
+	background: #091538 url(../images/bg.png) center 80px no-repeat;
+	background-size: 100% auto;
+    position: relative;
+    font-family: Helvetica;
+    font-size: 14px;
+    color: #fff;
+}
+
+/* container */
+.container{
+    width: 1180px;
+    margin: 0 auto;
+    display: table;
+}
+/* header */
+.header{
+    width: 100%;
+	float: left;
+	height: 80px;
+}
+.logo,.logo img{
+	width: 212px;
+	float: left;
+	height: 50px;
+}
+.logo img{
+	padding: 15px 0;
+}
+.quicklink{
+	float: right;
+    font-size: 16px;
+    padding: 21px 0;
+}
+.quicklink span{
+    float: left;
+    line-height: 36px;
+    margin-right: 16px;
+}
+.quicklink span a{
+    color: #c4d0f4;
+    text-decoration: unset;
+}
+.quicklink button{
+    width: 72px;
+    height: 36px;
+    background: #153ba4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+/* playMain */
+.playMain{
+    width: 660px;
+    padding: 73px 260px 26px 260px;
+}
+.bets{
+    width: 390px;
+    float: left;
+    margin:0 30px 27px 0;
+}
+.bets h3,.payout h3{
+    font-size: 14px;
+    color: #5efaf8;
+	font-weight: bold;
+	line-height: 24px;
+	padding-left: 34px;
+	margin:49px 0 0 0; 
+}
+.bets h3{
+	background: url(../images/betamounticon.png) left center no-repeat;
+}
+.payout h3{
+	background: url(../images/payoutonwinicon.png) left center no-repeat;
+}
+.bets ul{
+    width: 390px;
+    float: left;
+    background: #1c294f;
+	border-radius: 4px;
+	margin-top: 5px;
+}
+.bets ul li{
+    width: 36px;
+    float: left;
+    height: 32px;
+    margin-left: 10px;
+    text-align: center;
+    margin: 4px;
+	line-height: 32px;
+	color: #4ba3de;
+}
+.bets ul li:nth-child(3){
+	height: 18px;
+	margin-top: 10px;
+	line-height: 20px;
+	border-right: 1px solid #0f1b3e;
+	border-left: 1px solid #0f1b3e;
+}
+.bets ul li:first-child{
+    width: 205px;
+    background: rgb(62, 79, 127,.6) url(../images/logo-input.png) 10px center no-repeat;
+    border-radius: 4px;
+    border: none;
+    color: #fff;
+    padding-left: 40px;
+    font-size: 16px;
+}
+.bets ul li input{
+    width: 150px;
+	height: 32px;
+	float: left;
+	border: none;
+	text-align: left;
+	background: none;
+	color:#fff;
+}
+.bets ul li input::placeholder{
+    color:#fff;
+}
+.bets ul li span{
+	color:#a3cae5;
+	float: left;
+    font-size: 14px;
+}
+.bets ul li:nth-child(3).current{
+	border-right: 1px solid #1c294f;
+	border-left: 1px solid #1c294f;
+	height: 32px;
+	margin-top: 0;
+	margin: 4px;
+	line-height: 32px;
+}
+.current{
+    background: rgb(62, 79, 127,.6);
+	border-radius: 4px;
+}
+.payout{
+    width: 240px;
+	float: left;
+}
+.payout ul{
+	width: 240px;
+    float: left;
+    padding: 0;
+    background: #1c294f;
+	border-radius: 4px;
+	margin-top: 5px;
+}
+.payout ul li{
+	float: left;
+	line-height: 40px;
+	padding-left: 10px;
+}
+.payout ul li:first-child{
+	width: 140px;
+	background: url(../images/logo-input.png) 10px center no-repeat;
+	padding-left: 40px;
+}
+.payout ul li:nth-child(2){
+	padding: 0;
+	width: 60px;
+}
+.odds{
+	width: 100%;
+	height: 140px;
+	float: left;
+	display: flex;
+	text-align: center;
+	background: #1c294f;
+	border-radius: 4px;
+}
+.odds dl{
+	flex: 3;
+	margin: 18px 0;
+}
+.odds dl:nth-child(1) dd span:last-child{
+	padding-left: 10px;
+}
+.odds dl dt{
+	color: #5efaf8;
+}
+.odds dl dd{
+	font-family: 'Helvetica-Bold';
+	color: #5efaf8;
+	font-size: 36px;
+	color: #fff;
+	margin: 10px 0 0 0;
+	line-height: 80px;
+	border-right: 1px solid #0f1b3e; 
+}
+.loginButton{
+	float: left;
+	width: 180px;
+	height: 56px;
+	padding: 80px 0 70px 240px;
+}
+.loginButton button{
+	width: 180px;
+	height: 56px;
+	border: none;
+	border-radius: 28px;
+	background: #153ba4;
+	font-family: 'Helvetica-Bold';
+	font-size: 18px;
+	color: #fff;
+}
+
+/* gameList */
+.gameList{
+	width: 1000px;
+	float: left;
+	padding: 0 90px;
+}
+
+/* TAB */
+a,a:active,a:focus {
+	outline-color: -moz-use-text-color;
+	outline-style: none;
+	outline-width: 0;
+}
+
+a:active,a:focus {
+	outline: expression(hideFocus='true');
+}
+
+p {
+	margin-bottom: 20px;
+}
+
+#wrapper {
+	width: 1000px;
+}
+
+
+#tab{
+	background: #0a1535;
+}
+#tabs-1,#tabs-2{
+	width: calc(100% - 40px);
+	position: absolute;
+}
+#tab ul{
+	margin-left: 346px;
+}
+#tabs,#tab {
+	width: 100%;
+	margin: 0 auto;
+	margin-bottom: 40px;
+}
+
+#tabs li,#tab li {
+	float: left;
+	margin-right: 2px;
+	font-size: 18px;
+}
+
+#tabs li a,#tab li a {
+	display: block;
+	padding-bottom: 15px; 
+	margin: 30px 35px 12px 35px;
+	text-decoration: none;
+	color: #93a3d2;
+}
+
+#tabs_container {
+	padding: 20px;
+	overflow: hidden;
+	position: relative;
+	background: #15244e;
+}
+
+/* #tabs_container div {
+	margin-right: 40px;
+} */
+
+.transition {
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+
+	-webkit-transition-delay: .3s;
+	-moz-transition-delay: .3s;
+	-o-transition-delay: .3s;
+	-ms-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.make_transist {
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+.hidescale {
+	-webkit-transform: scale(0.9);
+	-moz-transform: scale(0.9);
+	-o-transform: scale(0.9);
+	-ms-transform: scale(0.9);
+	transform: scale(0.9);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+
+.showscale {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+
+	-webkit-transition-delay: .3s;
+	-moz-transition-delay: .3s;
+	-o-transition-delay: .3s;
+	-ms-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.hideleft {
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	-ms-transform: translateX(-100%);
+	transform: translateX(-100%);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+
+.showleft {
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	-o-transform: translateX(0px);
+	-ms-transform: translateX(0px);
+	transform: translateX(0px);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+
+	-webkit-transition-delay: .3s;
+	-moz-transition-delay: .3s;
+	-o-transition-delay: .3s;
+	-ms-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.hidescaleup {
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+
+.showscaleup {
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+
+	-webkit-transition-delay: .3s;
+	-moz-transition-delay: .3s;
+	-o-transition-delay: .3s;
+	-ms-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.hideflip {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+
+	-webkit-transform: rotatey(-90deg) scale(1.1);
+	-moz-transform: rotatey(-90deg) scale(1.1);
+	-o-transform: rotatey(-90deg) scale(1.1);
+	-ms-transform: rotatey(-90deg) scale(1.1);
+	transform: rotatey(-90deg) scale(1.1);
+
+	-webkit-transform-origin: 50% 50%;
+	-moz-transform-origin: 50% 50%;
+	-o-transform-origin: 50% 50%;
+	-ms-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+}
+
+.showflip {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+
+	-webkit-transition-delay: .3s;
+	-moz-transition-delay: .3s;
+	-o-transition-delay: .3s;
+	-ms-transition-delay: .3s;
+	transition-delay: .3s;
+
+	-webkit-transform: rotatey(0deg) scale(1);
+	-moz-transform: rotatey(0deg) scale(1);
+	-o-transform: rotatey(0deg) scale(1);
+	-ms-transform: rotatey(0deg) scale(1);
+	transform: rotatey(0deg) scale(1);
+
+	-webkit-transform-origin: 50% 50%;
+	-moz-transform-origin: 50% 50%;
+	-o-transform-origin: 50% 50%;
+	-ms-transform-origin: 50% 50%;
+	transform-origin: 50% 50%;
+}
+
+.tabulous_active {
+	background: #0a1535 !important;
+	color: #fff !important;
+	border-bottom: 2px solid #fff !important;
+}
+
+.tabulousclear {
+	display: block;
+	clear: both;
+}
+
+table {
+	width: 100%;
+	color: #fff;
+	margin-bottom: 20px;
+	border-collapse: collapse;
+}
+
+table thead tr th {
+	font-weight: bold;
+}
+
+table tr {
+	border-bottom: 1px solid #060a14;
+}
+
+table th,table td {
+	padding: 15px 10px;
+	text-align: center;
+}
+
+table tr:nth-child(even) {
+	background: #1c2e60;
+}
+
+/* table tr:hover {
+	background: #FFF6BF;
+} */
+
+table thead tr,table thead tr:hover {
+	background: none !important;
+}
+
+/* progress */
+.progress{
+	width: 100%;
+	float: left;
+	padding: 90px 0 0px 0;
+}
+.scroll{
+    width: 100%;
+    height: 16px;
+	background: #f20765;
+	border-radius: 8px;
+    position: relative;
+}
+.bar{
+    width: 32px;
+    height: 32px;
+    background: url(../images/moveicon.png) left center no-repeat;
+	position: absolute;
+	z-index: 2;
+    top: -7px;
+    left: -7px;
+    cursor: pointer;
+}
+.mask{
+	position: absolute;
+	z-index: 1;
+    left: 0;
+    top: 0;
+    background: #d3f709;
+    width: 0;
+	height: 16px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+.progress ul{
+	width: 100%;
+	display: flex;
+	position: relative;
+}
+.progress ul li{
+	float: left;
+	color: #fff;
+	flex: 5;
+	padding-top: 20px; 
+}
+.progress ul li:nth-child(2){
+	padding-left: 80px;
+}
+.progress ul li:nth-child(3){
+	padding-left: 70px;
+}
+.progress ul li:nth-child(4){
+	padding-left: 70px;
+}
+.progress ul li:last-child{
+	text-align: right;
+}
+.progress p{
+	width: 68px;
+	height: 40px;
+	position: absolute;
+	z-index: 2;
+	top: -75px;
+	left: -26px;
+	text-align: center;
+	line-height: 34px;
+	background: url(../images/frame.png) center top no-repeat;
+}
+/* login */
+.login{
+	width: 500px;
+	height: 680px;
+	position: absolute;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	background: #273458;
+	border-radius: 4px;
+}
+.close{
+	width: 16px;
+	height: 16px;
+	float: right;
+	margin: 20px 20px 0 0;
+}
+.loginLogo{
+	width: 90px;
+	height: 90px;
+	margin: 0 auto;
+	margin-top: 35px;
+}
+.loginLogo img{
+	width: 90px;
+	height: 90px;
+}
+.login h1{
+	font-family: 'Helvetica-Bold';
+	font-size: 24px;
+	width: 100%;
+	text-align: center;
+}
+#loginTab{
+	margin-top: 35px;
+}
+#loginTab ul {
+	border-bottom: #52659a 1px solid;
+	height: 42px;
+}
+#loginTab ul li {
+	line-height: 42px;
+	width: 50%;
+	float: left;
+	text-align: center;
+	font-size: 16px;
+}
+#loginTab ul li a{
+	display: block;
+	color: #fff;
+	text-decoration: none;
+}
+#loginTab ul li .tabulous_active{
+	text-decoration: none !important;
+	border-bottom: none !important;
+	background: #455583 !important;
+}
+#loginTab #tabs_container{
+	background: none;
+	padding: 25px 0 0px 90px;
+	overflow: unset;
+}
+.loginTab_container{
+	width: 320px;
+	padding: 0px 0 0px 90px;
+	background: none;
+}
+#loginTab-1{
+	width: 100%;
+}
+#loginTab-1 ul{
+	padding-bottom: 90px;
+	border-bottom: none;
+}
+#loginTab-1 ul li{
+	width: 100%;
+	margin-top: 15px;
+}
+#loginTab-1 ul li input{
+	height: 34px;
+	line-height: 34px;
+	width: calc(100% - 12px);
+	background: none;
+	border:1px solid #6c89d6;
+	border-radius: 4px;
+	padding-left: 10px;
+	color: #788fcc;
+}
+#loginTab-1 ul li input::placeholder {
+	color:#788fcc;
+}
+#loginTab-1 ul li:nth-child(1) input:nth-child(1){
+	width: 189px;
+	float: left;
+	border-right: none;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+#loginTab-1 ul li:nth-child(1) input:nth-child(2) {
+	width: 110px;
+	height: 36px;
+	float: left;
+	border:none;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	background: #455583;
+}
+#loginTab-1 button{
+	background: #153ba4;
+	border: 1px solid #153ba4;
+	width: 162px;
+	height: 42px;
+	color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+	margin: 35px 0 0 79px;
+}
+#loginTab-1 p{
+	width: 100%;
+	white-space: nowrap;
+	color: #788fcc;
+	margin-top: 30px;
+	text-align: center;
+	margin-left: -32px;
+}
+#loginTab-1 p a{
+	color: #d7dff4;
+}
