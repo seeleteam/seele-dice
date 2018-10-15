@@ -2,7 +2,7 @@
 author: Miya_yang
 time:2018.10.11
 */
-$(document).ready(function ($) {
+$(document).ready(function($) {
   // tab
   $('#tab').tabulous({
     effect: 'slideLeft'
@@ -18,11 +18,15 @@ $(document).ready(function ($) {
   var ptxt = document.getElementsByTagName('p')[0];
   var barleft = 0;
   ptxt.innerHTML = "0";
-  bar.onmousedown = function (event) {
+  // setWin
+  $('.setWin').text('0');
+  // setChance
+  $('.setChance').text('0');
+  bar.onmousedown = function(event) {
     var event = event || window.event;
     var leftVal = event.clientX - this.offsetLeft;
     var that = this;
-    document.onmousemove = function (event) {
+    document.onmousemove = function(event) {
       var event = event || window.event;
       var currentVal = $('#scroll p').text()
       barleft = event.clientX - leftVal;
@@ -40,6 +44,10 @@ $(document).ready(function ($) {
         ptxt.style.left = "-26px";
         that.style.left = "-7px";
         $('.getOdds').text('0')
+        // setWin
+        $('.setWin').text('0');
+        // setChance
+        $('.setChance').text('0');
       } else {
         mask.style.width = barleft + 10 + 'px';
         ptxt.style.left = barleft - 18 + 'px';
@@ -48,11 +56,15 @@ $(document).ready(function ($) {
         $('.getOdds').text((100).division(currentVal).toFixed(3))
       }
       ptxt.innerHTML = parseInt(barleft / (scroll.offsetWidth - bar.offsetWidth) * 100);
+      // setWin
+      $('.setWin').text(ptxt.innerHTML);
+      // setChance
+      $('.setChance').text(ptxt.innerHTML - 1);
       window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
     }
 
   }
-  document.onmouseup = function () {
+  document.onmouseup = function() {
     document.onmousemove = null;
   }
   // repair javascript Floating-point number bug
@@ -62,35 +74,33 @@ $(document).ready(function ($) {
       s2 = arg2.toString();
     try {
       m += s1.split(".")[1].length
-    } catch (e) { }
+    } catch (e) {}
     try {
       m += s2.split(".")[1].length
-    } catch (e) { }
+    } catch (e) {}
     return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
   }
-  Number.prototype.mul = function (arg) {
+  Number.prototype.mul = function(arg) {
     return accMul(arg, this);
   }
 
   function accDiv(arg1, arg2) {
-    var t1 = 0, t2 = 0, r1, r2;
+    var t1 = 0,
+      t2 = 0,
+      r1, r2;
     try {
       t1 = arg1.toString().split(".")[1].length;
-    }
-    catch (e) {
-    }
+    } catch (e) {}
     try {
       t2 = arg2.toString().split(".")[1].length;
-    }
-    catch (e) {
-    }
-    with (Math) {
+    } catch (e) {}
+    with(Math) {
       r1 = Number(arg1.toString().replace(".", ""));
       r2 = Number(arg2.toString().replace(".", ""));
       return (r1 / r2) * pow(10, t2 - t1);
     }
   }
-  Number.prototype.division = function (arg) {
+  Number.prototype.division = function(arg) {
     return accDiv(this, arg);
   }
 
@@ -107,14 +117,14 @@ $(document).ready(function ($) {
       if (indemnity > mostBets) {
         var indemnity = betsSeele * getOdds
         $('.winSeele').text(indemnity)
-        $('.bets ul li').click(function () {
+        $('.bets ul li').click(function() {
           $(this).siblings('li').removeClass('current')
           $(this).addClass('current')
         })
         $('.getVal').val(balance / 4)
         $('.winSeele').text(balance / 2)
       } else {
-        $('.halve').click(function () {
+        $('.halve').click(function() {
           var getOdds = $('.getOdds').text()
           var indemnity = betsSeele * getOdds
           $('.winSeele').text(indemnity)
@@ -124,7 +134,7 @@ $(document).ready(function ($) {
           $('.getVal').val($('.getVal').val() / 2)
           $('.winSeele').text((betsSeeleHalve).mul(getOdds))
         })
-        $('.multiple').click(function () {
+        $('.multiple').click(function() {
           var getOdds = $('.getOdds').text()
           var indemnity = betsSeele * getOdds
           $('.winSeele').text(indemnity)
@@ -134,7 +144,7 @@ $(document).ready(function ($) {
           $('.getVal').val($('.getVal').val() * 2)
           $('.winSeele').text((betsSeeleMul).mul(getOdds))
         })
-        $('.all').click(function () {
+        $('.all').click(function() {
           var getOdds = $('.getOdds').text()
           var indemnity = betsSeele * getOdds
           $('.winSeele').text(indemnity)
@@ -146,7 +156,7 @@ $(document).ready(function ($) {
         })
       }
     } else {
-      $('.halve').click(function () {
+      $('.halve').click(function() {
         var getOdds = $('.getOdds').text()
         var indemnity = betsSeele * getOdds
         $('.winSeele').text(indemnity)
@@ -155,7 +165,7 @@ $(document).ready(function ($) {
         $('.getVal').val($('.getVal').val() / 2)
         $('.winSeele').text(indemnity)
       })
-      $('.multiple').click(function () {
+      $('.multiple').click(function() {
         var getOdds = $('.getOdds').text()
         var indemnity = betsSeele * getOdds
         $('.winSeele').text(indemnity)
@@ -164,11 +174,11 @@ $(document).ready(function ($) {
         $('.getVal').val($('.getVal').val() * 2)
         $('.winSeele').text(indemnity)
       })
-      $('.all').click(function () {
+      $('.all').click(function() {
         $('.login').show()
       })
     }
-  } else { }
+  } else {}
 
   $('.loginImg').hide()
   $('.loginHeadButton').show()
@@ -179,7 +189,7 @@ $(document).ready(function ($) {
   $('.login').hide()
   $('.playPopup').hide()
   // login close
-  $('.login .close,.loginTab_container button').click(function () {
+  $('.login .close,.loginTab_container button').click(function() {
     $('.login').hide()
     $('.loginImg').show()
     $('.loginHeadButton').hide()
@@ -187,18 +197,18 @@ $(document).ready(function ($) {
     $('.loginButton').hide()
   })
   // show login
-  $('.loginButton button,.quicklink button').click(function () {
+  $('.loginButton button,.quicklink button').click(function() {
     $('.login').show()
   })
   // longinImg mouse
-  $('.loginImg').mouseover(function () {
+  $('.loginImg').mouseover(function() {
     $('.personalInformation').show()
   })
-  $(document).bind("click", function () {
+  $(document).bind("click", function() {
     $('.personalInformation').hide()
   })
   // logout
-  $('.logout').click(function () {
+  $('.logout').click(function() {
     $('.personalInformation').hide()
     $('.loginImg').hide()
     $('.loginHeadButton').show()
@@ -206,15 +216,15 @@ $(document).ready(function ($) {
     $('.rollButton').hide()
   })
   // transaction popup
-  $('.rollButton button').click(function () {
+  $('.rollButton button').click(function() {
     $('.transaction').show()
   })
   // close transction
-  $('.transaction ul li:nth-child(1) button,.transaction .close').click(function () {
+  $('.transaction ul li:nth-child(1) button,.transaction .close').click(function() {
     $('.transaction').hide()
   })
   // post transction data
-  $('.transaction ul li:nth-child(2) button').click(function () {
+  $('.transaction ul li:nth-child(2) button').click(function() {
     // post data
     // var from = $('.transactionMain table tr:nth-child(1) td:nth-child(2)').text()
     // var to = $('.transactionMain table tr:nth-child(2) td:nth-child(2)').text()
@@ -227,11 +237,29 @@ $(document).ready(function ($) {
     $('.transaction').hide()
   })
   // close playPopup
-  $('.playPopup .close').click(function () {
+  $('.playPopup .close').click(function() {
     $('.playPopup').hide()
   })
   // show how to play
-  $('.play').click(function () {
+  $('.play').click(function() {
     $('.playPopup').show()
   })
+  // file name
+  function getFileName(path) {
+    var pos1 = path.lastIndexOf('/');
+    var pos2 = path.lastIndexOf('\\');
+    var pos = Math.max(pos1, pos2);
+    if (pos < 0) {
+      return path;
+    } else {
+      return path.substring(pos + 1);
+    }
+  }
+    $('.getImageName').change(function() {
+      var str = $(this).val();
+      var fileName = getFileName(str);
+      var fileExt = str.substring(str.lastIndexOf('.') + 1);
+      $('.setImageName').val(fileName)
+      // console.log(fileName + "\r\n" + fileExt);
+  });
 });
