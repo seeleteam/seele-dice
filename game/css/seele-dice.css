@@ -54,14 +54,13 @@ html,body {
     font-size: 16px;
     padding: 21px 0;
 }
-.quicklink span{
+.quicklink span.play{
     float: left;
     line-height: 36px;
-    margin-right: 16px;
-}
-.quicklink span a{
-    color: #c4d0f4;
-    text-decoration: unset;
+	margin-right: 16px;
+	color: #c4d0f4;
+	text-decoration: unset;
+	cursor: pointer;
 }
 .quicklink button{
     width: 72px;
@@ -80,7 +79,7 @@ html,body {
 	height: 140px;
 	position: absolute;
 	z-index: 3;
-	background: #141a34;
+	background: rgb(20, 26, 52);
 	border-radius: 4px;
 	top: 65px;
 	margin-left: 840px;
@@ -125,17 +124,13 @@ html,body {
 	line-height: 24px;
 	padding-left: 34px;
 	margin:49px 0 0 0; 
-}
-.bets h3{
 	background: url(../images/betamounticon.png) left center no-repeat;
-}
-.payout h3{
-	background: url(../images/payoutonwinicon.png) left center no-repeat;
+	background-size: 24px auto;
 }
 .bets ul{
     width: 390px;
     float: left;
-    background: #1c294f;
+    background: rgb(28, 41, 79,.9);
 	border-radius: 4px;
 	margin-top: 5px;
 }
@@ -204,7 +199,7 @@ html,body {
 	width: 240px;
     float: left;
     padding: 0;
-    background: #1c294f;
+    background: rgb(28, 41, 79,.9);
 	border-radius: 4px;
 	margin-top: 5px;
 }
@@ -228,7 +223,7 @@ html,body {
 	float: left;
 	display: flex;
 	text-align: center;
-	background: #1c294f;
+	background: rgb(28, 41, 79,.9);
 	border-radius: 4px;
 }
 .odds dl{
@@ -250,6 +245,12 @@ html,body {
 	line-height: 80px;
 	border-right: 1px solid #0f1b3e; 
 }
+.odds dl:nth-child(2) dd:nth-child(2) span:nth-child(1){
+	font-size: 36px;
+}
+.odds dl:nth-child(2) dd:nth-child(2) span:nth-child(2){
+	font-size: 24px;
+}
 .loginButton,.rollButton{
 	float: left;
 	width: 180px;
@@ -265,6 +266,7 @@ html,body {
 	font-family: 'Helvetica-Bold';
 	font-size: 18px;
 	color: #fff;
+	box-shadow: 0px 0px 100px 20px rgb(20, 59, 166,.9);
 }
 
 /* gameList */
@@ -503,7 +505,8 @@ table {
 }
 
 table thead tr th {
-	font-weight: bold;
+	font-weight: unset;
+	font-size: 16px;
 }
 
 table tr {
@@ -555,7 +558,8 @@ table thead tr,table thead tr:hover {
 	z-index: 1;
     left: 0;
     top: 0;
-    background: #d3f709;
+	background: #d3f709;
+	box-shadow: 0px 0px 30px 3px rgb(211, 247, 9,.5);
     width: 0;
 	height: 16px;
 	border-top-left-radius: 8px;
@@ -849,4 +853,35 @@ table thead tr,table thead tr:hover {
 	font-size: 16px;
 	color: #fff;
 	margin-left: 80px;
+}
+
+/* playPopup */
+.playPopup{
+	width: 540px;
+	height: 640px;
+	background: #263457; 
+	border-radius: 4px;
+	position: absolute;
+	z-index: 5;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+.playPopup h1{
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	font-family: 'Helvetica-Bold';
+	font-weight: unset;
+	margin: 50px 0 40px 0;
+}
+.playPopup p{
+	width: 440px;
+	text-align: justify;
+	padding: 0 50px;
+	line-height: 25px;
+	font-size: 14px;
+	margin: 10px 0 0 0;
 }

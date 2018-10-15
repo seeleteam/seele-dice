@@ -177,8 +177,9 @@ $(document).ready(function ($) {
   $('.loginButton').show()
   $('.transaction').hide()
   $('.login').hide()
+  $('.playPopup').hide()
   // login close
-  $('.close,.loginTab_container button').click(function () {
+  $('.login .close,.loginTab_container button').click(function () {
     $('.login').hide()
     $('.loginImg').show()
     $('.loginHeadButton').hide()
@@ -209,7 +210,7 @@ $(document).ready(function ($) {
     $('.transaction').show()
   })
   // close transction
-  $('.transaction ul li:nth-child(1) button').click(function () {
+  $('.transaction ul li:nth-child(1) button,.transaction .close').click(function () {
     $('.transaction').hide()
   })
   // post transction data
@@ -224,5 +225,13 @@ $(document).ready(function ($) {
     // var gasLimit = $('.transactionMain table tr:nth-child(7) td:nth-child(2)').text()
     // var payload = $('.transactionMain table tr:nth-child(8) td:nth-child(2)').text()
     $('.transaction').hide()
+  })
+  // close playPopup
+  $('.playPopup .close').click(function () {
+    $('.playPopup').hide()
+  })
+  // show how to play
+  $('.play').click(function () {
+    $('.playPopup').show()
   })
 });
