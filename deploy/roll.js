@@ -5,7 +5,7 @@ const SeelediceABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"creator\",\"o
 // client = new seelejs('106.75.118.187')
 client = new seelejs()
 
-client.getReceiptByTxHash("0xe3a0769a33c5da47f5442e168986e88e06bee1954e661f19df937cb863201bcc", function(err, receipt){
+client.getReceiptByTxHash("0x1eebd761199ff605e63ab6bec63d2d7bd5a3a5b90c8a459c920753e558add27b", function(err, receipt){
 	if (err){
 		console.log(err)
 		return 
@@ -15,7 +15,7 @@ client.getReceiptByTxHash("0xe3a0769a33c5da47f5442e168986e88e06bee1954e661f19df9
 	// 0xedf195e667b32d036f2a73aa37153068fd090012
 	var contractAddress = receipt.contract
 	console.log(contractAddress)
-	
+
 	client.generatePayload(SeelediceABI, "dice", ["50", "100"], function(err, payload){
 		if (err){
 			console.log(err)
