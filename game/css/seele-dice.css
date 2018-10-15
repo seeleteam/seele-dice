@@ -4,88 +4,109 @@ time:2018.10.11
 */
 
 /* 公共样式 */
-input,select,button {
-    outline: none;
-    padding: 0;
-    margin: 0;
+input,
+select,
+button {
+	outline: none;
+	padding: 0;
+	margin: 0;
 }
-ul,li{
+
+ul,
+li {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
-a{
-    outline: none;
+
+a {
+	outline: none;
 }
-html,body {
-    min-height: 100%;
-    padding: 0px;
-    margin: 0px;
+
+html,
+body {
+	min-height: 100%;
+	padding: 0px;
+	margin: 0px;
 	background: #091538 url(../images/bg.png) center 80px no-repeat;
 	background-size: 100% auto;
-    position: relative;
-    font-family: Helvetica;
-    font-size: 14px;
-    color: #fff;
+	position: relative;
+	font-family: Helvetica;
+	font-size: 14px;
+	color: #fff;
 }
 
 /* container */
-.container{
-    width: 1180px;
-    margin: 0 auto;
-    display: table;
+.container {
+	width: 1180px;
+	margin: 0 auto;
+	display: table;
 }
+
 /* header */
-.header{
-    width: 100%;
+.header {
+	width: 100%;
 	float: left;
 	height: 80px;
 }
-.logo,.logo img{
+
+.logo,
+.logo img {
 	width: 212px;
 	float: left;
 	height: 50px;
 }
-.logo img{
+
+.logo img {
 	padding: 15px 0;
 }
-.quicklink{
+
+.quicklink {
 	float: right;
-    font-size: 16px;
-    padding: 21px 0;
+	font-size: 16px;
+	padding: 21px 0;
 }
-.quicklink span{
-    float: left;
-    line-height: 36px;
-    margin-right: 16px;
+
+.quicklink span.play {
+	float: left;
+	line-height: 36px;
+	margin-right: 16px;
+	color: #c4d0f4;
+	text-decoration: unset;
+	cursor: pointer;
 }
-.quicklink span a{
-    color: #c4d0f4;
-    text-decoration: unset;
+.quicklink span.play:hover{
+	color: #fff;
 }
-.quicklink button{
-    width: 72px;
-    height: 36px;
-    background: #153ba4;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+.quicklink button {
+	width: 72px;
+	height: 36px;
+	background: #153ba4;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
-.quicklink .loginImg{
+.quicklink button:hover {
+	color: #c4d0f4;
+}
+.quicklink .loginImg {
 	width: 40px;
 	height: 40px;
 }
-.personalInformation{
+
+.personalInformation {
 	width: 360px;
 	height: 140px;
 	position: absolute;
 	z-index: 3;
-	background: #141a34;
+	background: rgb(20, 26, 52);
 	border-radius: 4px;
 	top: 65px;
 	margin-left: 840px;
 }
-.personalInformation span{
+
+.personalInformation span {
 	width: calc(100% - 40px);
 	display: block;
 	line-height: 40px;
@@ -93,11 +114,13 @@ html,body {
 	margin: 0;
 	padding: 20px;
 }
-.personalInformation span img{
+
+.personalInformation span img {
 	float: left;
 	padding-right: 10px;
 }
-.personalInformation input{
+
+.personalInformation input {
 	width: 100%;
 	line-height: 40px;
 	color: #fff;
@@ -106,85 +129,98 @@ html,body {
 	background: #202643;
 	margin-bottom: 0;
 	font-size: 16px;
+	cursor: pointer;
+}
+.personalInformation input:hover{
+	color:#c4d0f4;
+	background: #3a4268;
+	cursor: pointer;
 }
 
 /* playMain */
-.playMain{
-    width: 660px;
-    padding: 73px 260px 26px 260px;
+.playMain {
+	width: 660px;
+	padding: 73px 260px 26px 260px;
 }
-.bets{
-    width: 390px;
-    float: left;
-    margin:0 30px 27px 0;
+
+.bets {
+	width: 390px;
+	float: left;
+	margin: 0 30px 27px 0;
 }
-.bets h3,.payout h3{
-    font-size: 14px;
-    color: #5efaf8;
+
+.bets h3,
+.payout h3 {
+	font-size: 14px;
+	color: #5efaf8;
 	font-weight: bold;
 	line-height: 24px;
 	padding-left: 34px;
-	margin:49px 0 0 0; 
-}
-.bets h3{
+	margin: 49px 0 0 0;
 	background: url(../images/betamounticon.png) left center no-repeat;
+	background-size: 24px auto;
 }
-.payout h3{
-	background: url(../images/payoutonwinicon.png) left center no-repeat;
-}
-.bets ul{
-    width: 390px;
-    float: left;
-    background: #1c294f;
+
+.bets ul {
+	width: 390px;
+	float: left;
+	background: rgb(28, 41, 79, .9);
 	border-radius: 4px;
 	margin-top: 5px;
 }
-.bets ul li{
-    width: 36px;
-    float: left;
-    height: 32px;
-    margin-left: 10px;
-    text-align: center;
-    margin: 4px;
+
+.bets ul li {
+	width: 36px;
+	float: left;
+	height: 32px;
+	margin-left: 10px;
+	text-align: center;
+	margin: 4px;
 	line-height: 32px;
 	color: #4ba3de;
 	cursor: pointer;
 }
-.bets ul li:nth-child(3){
+
+.bets ul li:nth-child(3) {
 	height: 18px;
 	margin-top: 10px;
 	line-height: 20px;
 	border-right: 1px solid #0f1b3e;
 	border-left: 1px solid #0f1b3e;
 }
-.bets ul li:first-child{
-    width: 205px;
-    background: rgb(62, 79, 127,.6) url(../images/logo-input.png) 10px center no-repeat;
-    border-radius: 4px;
-    border: none;
-    color: #fff;
-    padding-left: 40px;
+
+.bets ul li:first-child {
+	width: 205px;
+	background: rgb(62, 79, 127, .6) url(../images/logo-input.png) 10px center no-repeat;
+	border-radius: 4px;
+	border: none;
+	color: #fff;
+	padding-left: 40px;
 	font-size: 16px;
 	cursor: unset;
 }
-.bets ul li input{
-    width: 150px;
+
+.bets ul li input {
+	width: 150px;
 	height: 32px;
 	float: left;
 	border: none;
 	text-align: left;
 	background: none;
-	color:#fff;
+	color: #fff;
 }
-.bets ul li input::placeholder{
-    color:#fff;
+
+.bets ul li input::placeholder {
+	color: #fff;
 }
-.bets ul li span{
-	color:#a3cae5;
+
+.bets ul li span {
+	color: #a3cae5;
 	float: left;
-    font-size: 14px;
+	font-size: 14px;
 }
-.bets ul li:nth-child(3).current{
+
+.bets ul li:nth-child(3).current {
 	border-right: 1px solid #1c294f;
 	border-left: 1px solid #1c294f;
 	height: 32px;
@@ -192,71 +228,94 @@ html,body {
 	margin: 4px;
 	line-height: 32px;
 }
-.current{
-    background: rgb(62, 79, 127,.6);
+
+.current {
+	background: rgb(62, 79, 127, .6);
 	border-radius: 4px;
 }
-.payout{
-    width: 240px;
+
+.payout {
+	width: 240px;
 	float: left;
 }
-.payout ul{
+
+.payout ul {
 	width: 240px;
-    float: left;
-    padding: 0;
-    background: #1c294f;
+	float: left;
+	padding: 0;
+	background: rgb(28, 41, 79, .9);
 	border-radius: 4px;
 	margin-top: 5px;
 }
-.payout ul li{
+
+.payout ul li {
 	float: left;
 	line-height: 40px;
 	padding-left: 10px;
 }
-.payout ul li:first-child{
+
+.payout ul li:first-child {
 	width: 140px;
 	background: url(../images/logo-input.png) 10px center no-repeat;
 	padding-left: 40px;
 }
-.payout ul li:nth-child(2){
+
+.payout ul li:nth-child(2) {
 	padding: 0;
 	width: 60px;
 }
-.odds{
+
+.odds {
 	width: 100%;
 	height: 140px;
 	float: left;
 	display: flex;
 	text-align: center;
-	background: #1c294f;
+	background: rgb(28, 41, 79, .9);
 	border-radius: 4px;
 }
-.odds dl{
+
+.odds dl {
 	flex: 3;
 	margin: 18px 0;
 }
-.odds dl:nth-child(1) dd span:last-child{
+
+.odds dl:nth-child(1) dd span:last-child {
 	padding-left: 10px;
 }
-.odds dl dt{
+
+.odds dl dt {
 	color: #5efaf8;
 }
-.odds dl dd{
+
+.odds dl dd {
 	font-family: 'Helvetica-Bold';
 	color: #5efaf8;
 	font-size: 36px;
 	color: #fff;
 	margin: 10px 0 0 0;
 	line-height: 80px;
-	border-right: 1px solid #0f1b3e; 
+	border-right: 1px solid #0f1b3e;
 }
-.loginButton,.rollButton{
+
+.odds dl:nth-child(2) dd:nth-child(2) span:nth-child(1) {
+	font-size: 36px;
+}
+
+.odds dl:nth-child(2) dd:nth-child(2) span:nth-child(2) {
+	font-size: 24px;
+}
+
+.loginButton,
+.rollButton {
 	float: left;
 	width: 180px;
 	height: 56px;
 	padding: 80px 0 70px 240px;
 }
-.loginButton button,.rollButton button{
+
+.loginButton button,
+.rollButton button {
 	width: 180px;
 	height: 56px;
 	border: none;
@@ -265,23 +324,120 @@ html,body {
 	font-family: 'Helvetica-Bold';
 	font-size: 18px;
 	color: #fff;
+	/* box-shadow: 0px 0px 100px 20px rgb(20, 59, 166,.9); */
+}
+
+/* twinkle */
+@keyframes fade {
+	0% {
+		box-shadow: 0px 0px 0px 0px rgb(20, 59, 166, .5);
+	}
+
+	20% {
+		box-shadow: 0px 0px 20px 2px rgb(20, 59, 166, .9);
+	}
+
+	40% {
+		box-shadow: 0px 0px 40px 4px rgb(20, 59, 166, .9);
+	}
+
+	60% {
+		box-shadow: 0px 0px 60px 6px rgb(20, 59, 166, .9);
+	}
+
+	80% {
+		box-shadow: 0px 0px 80px 8px rgb(20, 59, 166, .9);
+	}
+
+	100% {
+		box-shadow: 0px 0px 100px 10px rgb(20, 59, 166, .9);
+	}
+}
+
+@-webkit-keyframes fade {
+	0% {
+		box-shadow: 0px 0px 0px 0px rgb(20, 59, 166, .5);
+	}
+
+	20% {
+		box-shadow: 0px 0px 20px 2px rgb(20, 59, 166, .9);
+	}
+
+	40% {
+		box-shadow: 0px 0px 40px 4px rgb(20, 59, 166, .9);
+	}
+
+	60% {
+		box-shadow: 0px 0px 60px 6px rgb(20, 59, 166, .9);
+	}
+
+	80% {
+		box-shadow: 0px 0px 80px 8px rgb(20, 59, 166, .9);
+	}
+
+	100% {
+		box-shadow: 0px 0px 100px 10px rgb(20, 59, 166, .9);
+	}
+}
+
+.loginButton button,
+.rollButton button {
+	transition: all 1s linear 0s;
+	animation: fade 3s infinite running;
+	-webkit-animation: fade 3s infinite running;
+}
+.rollButton{
+	width: 100%;
+}
+.rollButton button{
+	float: left;
+}
+/* Account Balance */
+.rollButton ul {
+	width: 220px;
+	height: 50px;
+	float: left;
+	padding: 0;
+	background: rgb(28, 41, 79, .9);
+	border-radius: 4px;
+	margin: 5px 0 0 70px;
+}
+
+.rollButton ul li {
+	float: left;
+	line-height: 50px;
+	padding-left: 10px;
+}
+
+.rollButton ul li:first-child {
+	width: 90px;
+	background: url(../images/balance-logo.png) 10px center no-repeat;
+	padding-left: 50px;
+}
+
+.rollButton ul li:nth-child(2) {
+	padding: 0;
+	width: 60px;
 }
 
 /* gameList */
-.gameList{
+.gameList {
 	width: 1000px;
 	float: left;
 	padding: 0 90px;
 }
 
 /* TAB */
-a,a:active,a:focus {
+a,
+a:active,
+a:focus {
 	outline-color: -moz-use-text-color;
 	outline-style: none;
 	outline-width: 0;
 }
 
-a:active,a:focus {
+a:active,
+a:focus {
 	outline: expression(hideFocus='true');
 }
 
@@ -294,31 +450,38 @@ p {
 }
 
 
-#tab{
+#tab {
 	background: #0a1535;
 }
-#tabs-1,#tabs-2{
+
+#tabs-1,
+#tabs-2 {
 	width: calc(100% - 40px);
 	position: absolute;
 }
-#tab ul{
+
+#tab ul {
 	margin-left: 346px;
 }
-#tabs,#tab {
+
+#tabs,
+#tab {
 	width: 100%;
 	margin: 0 auto;
 	margin-bottom: 40px;
 }
 
-#tabs li,#tab li {
+#tabs li,
+#tab li {
 	float: left;
 	margin-right: 2px;
 	font-size: 18px;
 }
 
-#tabs li a,#tab li a {
+#tabs li a,
+#tab li a {
 	display: block;
-	padding-bottom: 15px; 
+	padding-bottom: 15px;
 	margin: 30px 35px 12px 35px;
 	text-decoration: none;
 	color: #93a3d2;
@@ -503,14 +666,16 @@ table {
 }
 
 table thead tr th {
-	font-weight: bold;
+	font-weight: unset;
+	font-size: 16px;
 }
 
 table tr {
 	border-bottom: 1px solid #060a14;
 }
 
-table th,table td {
+table th,
+table td {
 	padding: 15px 10px;
 	text-align: center;
 }
@@ -523,68 +688,80 @@ table tr:nth-child(even) {
 	background: #FFF6BF;
 } */
 
-table thead tr,table thead tr:hover {
+table thead tr,
+table thead tr:hover {
 	background: none !important;
 }
 
 /* progress */
-.progress{
+.progress {
 	width: 100%;
 	float: left;
 	padding: 90px 0 0px 0;
 }
-.scroll{
-    width: 100%;
-    height: 16px;
+
+.scroll {
+	width: 100%;
+	height: 16px;
 	background: #f20765;
 	border-radius: 8px;
-    position: relative;
+	position: relative;
 }
-.bar{
-    width: 32px;
-    height: 32px;
-    background: url(../images/moveicon.png) left center no-repeat;
+
+.bar {
+	width: 32px;
+	height: 32px;
+	background: url(../images/moveicon.png) left center no-repeat;
 	position: absolute;
 	z-index: 2;
-    top: -7px;
-    left: -7px;
-    cursor: pointer;
+	top: -7px;
+	left: -7px;
+	cursor: pointer;
 }
-.mask{
+
+.mask {
 	position: absolute;
 	z-index: 1;
-    left: 0;
-    top: 0;
-    background: #d3f709;
-    width: 0;
+	left: 0;
+	top: 0;
+	background: #d3f709;
+	box-shadow: 0px 0px 15px 1px rgb(211, 247, 9, .5);
+	width: 0;
 	height: 16px;
 	border-top-left-radius: 8px;
 	border-bottom-left-radius: 8px;
 }
-.progress ul{
+
+.progress ul {
 	width: 100%;
 	display: flex;
 	position: relative;
 }
-.progress ul li{
+
+.progress ul li {
 	float: left;
 	color: #fff;
 	flex: 5;
-	padding-top: 20px; 
+	padding-top: 20px;
 }
-.progress ul li:nth-child(2){
+
+.progress ul li:nth-child(2) {
 	padding-left: 80px;
 }
-.progress ul li:nth-child(3){
+
+.progress ul li:nth-child(3) {
 	padding-left: 70px;
 }
-.progress ul li:nth-child(4){
+
+.progress ul li:nth-child(4) {
 	padding-left: 70px;
 }
-.progress ul li:last-child{
+
+.progress ul li:last-child {
 	text-align: right;
 }
-.progress p{
+
+.progress p {
 	width: 68px;
 	height: 40px;
 	position: absolute;
@@ -595,8 +772,9 @@ table thead tr,table thead tr:hover {
 	line-height: 34px;
 	background: url(../images/frame.png) center top no-repeat;
 }
+
 /* login */
-.login{
+.login {
 	width: 500px;
 	height: 680px;
 	position: absolute;
@@ -609,35 +787,42 @@ table thead tr,table thead tr:hover {
 	background: #273458;
 	border-radius: 4px;
 }
-.close{
+
+.close {
 	width: 16px;
 	height: 16px;
 	float: right;
 	margin: 20px 20px 0 0;
 }
-.loginLogo{
+
+.loginLogo {
 	width: 90px;
 	height: 90px;
 	margin: 0 auto;
 	margin-top: 50px;
 }
-.loginLogo img{
+
+.loginLogo img {
 	width: 90px;
 	height: 90px;
 }
-.login h1{
+
+.login h1 {
 	font-family: 'Helvetica-Bold';
 	font-size: 24px;
 	width: 100%;
 	text-align: center;
 }
-#loginTab{
+
+#loginTab {
 	margin-top: 55px;
 }
+
 #loginTab ul {
 	border-bottom: #52659a 1px solid;
 	height: 42px;
 }
+
 #loginTab ul li {
 	line-height: 42px;
 	width: 50%;
@@ -645,75 +830,94 @@ table thead tr,table thead tr:hover {
 	text-align: center;
 	font-size: 16px;
 }
-#loginTab ul li a{
+
+#loginTab ul li a {
 	display: block;
 	color: #fff;
 	text-decoration: none;
 }
-#loginTab ul li .tabulous_active{
+
+#loginTab ul li .tabulous_active {
 	text-decoration: none !important;
 	border-bottom: none !important;
 	background: #455583 !important;
 }
-#loginTab #tabs_container{
+
+#loginTab #tabs_container {
 	width: 320px;
 	background: none;
 	padding: 30px 0 0px 90px;
 	overflow: unset;
 }
-.loginTab_container{
+
+.loginTab_container {
 	width: 320px;
 	padding: 30px 0 0px 90px;
 	background: none;
 }
-#loginTab-1,#loginTab-2{
+
+#loginTab-1,
+#loginTab-2 {
 	width: 100%;
 	position: absolute;
 }
-#loginTab-1 ul,#loginTab-2 ul{
+
+#loginTab-1 ul,
+#loginTab-2 ul {
 	padding-bottom: 90px;
 	border-bottom: none;
 }
-#loginTab-1 ul li,#loginTab-2 ul li{
+
+#loginTab-1 ul li,
+#loginTab-2 ul li {
 	width: 320px;
 	margin-top: 30px;
 }
-#loginTab-1 ul li:nth-child(2),#loginTab-2 ul li:nth-child(2){
+
+#loginTab-1 ul li:nth-child(2),
+#loginTab-2 ul li:nth-child(2) {
 	margin-top: 25px;
 }
-#loginTab-1 ul li input,#loginTab-2 ul li input{
+
+#loginTab-1 ul li input,
+#loginTab-2 ul li input {
 	height: 34px;
 	line-height: 34px;
 	width: calc(100% - 12px);
 	background: none;
-	border:1px solid #6c89d6;
+	border: 1px solid #6c89d6;
 	border-radius: 4px;
 	padding-left: 10px;
 	color: #788fcc;
 }
-#loginTab-1 ul li input::placeholder,#loginTab-2 ul li input::placeholder {
-	color:#788fcc;
+
+#loginTab-1 ul li input::placeholder,
+#loginTab-2 ul li input::placeholder {
+	color: #788fcc;
 }
-#loginTab-1 ul li:nth-child(1) input:nth-child(1){
+
+#loginTab-1 ul li:nth-child(1) input:nth-child(1) {
 	width: 189px;
 	float: left;
 	border-right: none;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
 }
-#loginTab-1 ul li:nth-child(1) input:nth-child(2)  {
+
+#loginTab-1 ul li:nth-child(1) input:nth-child(2) {
 	width: 120px;
 	height: 36px;
 	position: absolute;
 	z-index: 1;
 	float: left;
-	border:none;
+	border: none;
 	left: 200px;
 	border-top-left-radius: 0px;
 	border-bottom-left-radius: 0px;
 	background: #455583;
 }
-#loginTab-1 ul li:nth-child(1) input:nth-child(3)  {
+
+#loginTab-1 ul li:nth-child(1) input:nth-child(3) {
 	width: 120px;
 	height: 36px;
 	position: absolute;
@@ -721,18 +925,21 @@ table thead tr,table thead tr:hover {
 	left: 200px;
 	opacity: 0;
 }
-#loginTab-2 ul li:nth-child(1) input:nth-child(1)  {
+
+#loginTab-2 ul li:nth-child(1) input:nth-child(1) {
 	width: 320px;
 	height: 34px;
 	line-height: 34px;
 	width: calc(100% - 12px);
 	background: none;
-	border:1px solid #6c89d6;
+	border: 1px solid #6c89d6;
 	border-radius: 4px;
 	padding-left: 10px;
 	color: #788fcc;
 }
-#loginTab-1 button,#loginTab-2 button{
+
+#loginTab-1 button,
+#loginTab-2 button {
 	background: #153ba4;
 	border: 1px solid #153ba4;
 	width: 162px;
@@ -742,7 +949,9 @@ table thead tr,table thead tr:hover {
 	border-radius: 4px;
 	margin: 88px 0 0 79px;
 }
-#loginTab-1 p,#loginTab-2 p{
+
+#loginTab-1 p,
+#loginTab-2 p {
 	width: 100%;
 	white-space: nowrap;
 	color: #788fcc;
@@ -750,12 +959,14 @@ table thead tr,table thead tr:hover {
 	text-align: center;
 	margin-left: -32px;
 }
-#loginTab-1 p a,#loginTab-2 p a{
+
+#loginTab-1 p a,
+#loginTab-2 p a {
 	color: #d7dff4;
 }
 
 /* transaction */
-.transaction{
+.transaction {
 	width: 700px;
 	height: 600px;
 	background: #273458;
@@ -768,46 +979,55 @@ table thead tr,table thead tr:hover {
 	left: 0;
 	margin: auto;
 }
-.transaction h1{
+
+.transaction h1 {
 	font-size: 18px;
 	margin: 30px 0 0 30px;
 	font-family: 'Helvetica-Bold';
 	font-weight: normal;
 }
-.transactionMain{
+
+.transactionMain {
 	width: 600px;
 	height: 400px;
 	background: #324065;
 	border-radius: 4px;
-	margin: 20px 50px; 
+	margin: 20px 50px;
 }
-.transactionMain h3{
+
+.transactionMain h3 {
 	width: 560px;
 	padding: 20px 20px 10px 20px;
 	font-size: 16px;
 	font-weight: normal;
 	border-bottom: 1px solid #2d3a5c;
 }
-.transactionMain table{
+
+.transactionMain table {
 	border-collapse: collapse;
 	width: 520px;
-	margin: 0 40px; 
+	margin: 0 40px;
 }
-.transactionMain table tr{
-	border:none;
+
+.transactionMain table tr {
+	border: none;
 	background: none;
 }
-.transactionMain table tr td{
+
+.transactionMain table tr td {
 	padding: 12px 0;
 	text-align: left;
 }
-.transactionMain table tr:first-child td{
+
+.transactionMain table tr:first-child td {
 	padding: 0px 0 12px 0;
 }
-.transactionMain table tr td:first-child{
+
+.transactionMain table tr td:first-child {
 	color: #9dacd2;
 }
-.transactionMain table tr td input{
+
+.transactionMain table tr td input {
 	background: #273458;
 	border: 1px solid #3b4d7b;
 	height: 24px;
@@ -815,21 +1035,25 @@ table thead tr,table thead tr:hover {
 	padding-left: 10px;
 	color: #fff;
 }
-.transactionMain table tr td input::placeholder{
+
+.transactionMain table tr td input::placeholder {
 	color: #505f88;
 }
-.transactionMain table tr td span{
+
+.transactionMain table tr td span {
 	position: absolute;
 	z-index: 2;
 	margin-left: -40px;
 	color: #9dacd3;
 	line-height: 26px;
 }
-.transaction ul{
+
+.transaction ul {
 	width: auto;
 	margin: 40px 0 0 130px;
 }
-.transaction ul li:nth-child(1) button{
+
+.transaction ul li:nth-child(1) button {
 	width: 180px;
 	height: 50px;
 	float: left;
@@ -839,7 +1063,8 @@ table thead tr,table thead tr:hover {
 	font-size: 16px;
 	color: #aebbdf;
 }
-.transaction ul li:nth-child(2) button{
+
+.transaction ul li:nth-child(2) button {
 	width: 180px;
 	height: 50px;
 	float: left;
@@ -849,4 +1074,37 @@ table thead tr,table thead tr:hover {
 	font-size: 16px;
 	color: #fff;
 	margin-left: 80px;
+}
+
+/* playPopup */
+.playPopup {
+	width: 540px;
+	height: 640px;
+	background: #263457;
+	border-radius: 4px;
+	position: absolute;
+	z-index: 5;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+
+.playPopup h1 {
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	font-family: 'Helvetica-Bold';
+	font-weight: unset;
+	margin: 50px 0 40px 0;
+}
+
+.playPopup p {
+	width: 440px;
+	text-align: justify;
+	padding: 0 50px;
+	line-height: 25px;
+	font-size: 14px;
+	margin: 10px 0 0 0;
 }
