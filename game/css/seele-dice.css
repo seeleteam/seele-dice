@@ -211,7 +211,7 @@ body {
 }
 
 .bets ul li input::placeholder {
-	color: #fff;
+	color: #ccc;
 }
 
 .bets ul li span {
