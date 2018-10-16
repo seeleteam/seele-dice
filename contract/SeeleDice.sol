@@ -15,8 +15,8 @@ contract SeeleDice{
     }
     
     function dice(uint256 diceNumber, uint256 winValue) public payable returns(bool){
-        require(100 / diceNumber * msg.value >= winValue, "winValue is to large");
-        require(winValue <= address(this).balance / 2, "I have no enough money to pay you");
+        require(100 * msg.value >= winValue * diceNumber, "winValue is to large");
+        require(winValue * 2 <= address(this).balance, "I have no enough money to pay you");
         
         if (seeders[msg.sender] == 0) {
             senders.push(msg.sender);
