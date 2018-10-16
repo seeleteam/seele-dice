@@ -1,7 +1,7 @@
 'use strict'
 const seelejs = require('seele.js')
-const SeelediceABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"creator\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"dice\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"senders\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"}]"
-const contractAddress = "0x3a9d33113491f164cd6f4be582529643127a0002"
+const SeelediceABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"senders\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"creator\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"dice\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"}]"
+const contractAddress = "0xf76a33fa14f7a7ef07598cde67246cbf26ca0012"
 
 // client = new seelejs('106.75.118.187')
 let client = new seelejs()
@@ -19,6 +19,27 @@ var getAccountNonceTask = function(data){
 var sendtxTask = function(data){
     errorTask(data)
     return client.sendSync("addTx", data)
+}
+
+var getReceiptTask = function(data){
+    console.log("getReceiptTask")
+    errorTask(data)
+    console.log(data)
+    return client.sendSync("getReceiptByTxHash", data.txhash, data.abi)
+}
+
+var getTxTask = function(data){
+    console.log("getTxTask")
+    errorTask(data)
+    console.log(data)
+    return client.sendSync("getTransactionByHash", data)
+}
+
+var getBlockTask = function(data){
+    console.log("getBlockTask")
+    errorTask(data)
+    console.log(data)
+    return client.sendSync("getBlock", data.blockHash || "", data.blockHeight || -1, false)
 }
 
 var errorTask = function(data){
@@ -80,6 +101,42 @@ class Dice{
 
     GetAccountNonce(account, callbackFunction) {
         client.getAccountNonce(account, callbackFunction)
+    }
+
+    GetReceipt(txHash, callbackFunction) {
+        let Time, Bettor, RollUnder, Bet, Roll, Payout, Event
+        
+        Promise.all([getReceiptTask({"txhash":txHash, "abi":SeelediceABI}), getTxTask(txHash)]).then(function(data){
+            data.forEach(r => {
+                errorTask(r)
+            })
+            console.log(data)
+            let log = JSON.parse(data[0].logs[0])
+            Event = log.Event
+            Bettor = log.Args[0]
+            RollUnder = log.Args[1]
+            Roll = log.Args[2]
+            if (Event === "winAction"){
+                Payout = log.Args[3]
+            }
+            Bet = data[1].transaction.amount
+            console.log(log.Event)
+            console.log(log.Args)
+            console.log(Bet)
+            return {"blockHash":data[1].blockHash}
+        }).then(getBlockTask).then(function(data){
+            errorTask(data)
+            console.log(data)
+            callbackFunction({
+                "Time":data.header.CreateTimestamp,
+                "Bettor":Bettor,
+                "RollUnder":RollUnder,
+                "Bet":Bet,
+                "Roll":Roll,
+                "Payout":Payout,
+                "Event":Event,
+            })
+        }).catch(callbackFunction)
     }
 }
 

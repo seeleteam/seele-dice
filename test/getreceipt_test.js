@@ -1,13 +1,12 @@
 const dice = require("../dice/dice")
 
-dice.GetAccountNonce("0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1", function(err, data){
+dice.GetReceipt("0x9aa41b4a70b553150368c6cbe7c007dfabc4b0ac942a848ffb42521fb0d13772", function(data){
     console.log("callback")
-    if (err){
-        console.log(err)
+    console.log(data)
+    if (data instanceof Error){
         console.log("callback Error")
         return
     }
     
-    console.log(data)
     console.log("callback Success")
 })
