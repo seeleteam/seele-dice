@@ -1,7 +1,7 @@
 'use strict'
 const seelejs = require('seele.js')
 const SeelediceABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"senders\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"creator\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"dice\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"}]"
-const contractAddress = "0xf76a33fa14f7a7ef07598cde67246cbf26ca0012"
+const ContractAddress = "0xf76a33fa14f7a7ef07598cde67246cbf26ca0012"
 
 // client = new seelejs('106.75.118.187')
 let client = new seelejs()
@@ -53,7 +53,7 @@ var errorTask = function(data){
 
 class Dice{
     constructor(){
-
+        this.ContractAddress = ContractAddress
     }
 
     Sendtx(keypair, args, callbackFunction) {
@@ -66,7 +66,7 @@ class Dice{
           
           var rawTx = {
               "From" : keypair.PublicKey,
-              "To" : contractAddress,
+              "To" : ContractAddress,
               "Amount" : args.Bet || 0,
               "AccountNonce" : nonce,
               "GasPrice":args.GasPrice || 1,
@@ -92,10 +92,6 @@ class Dice{
     }
 
     GetBalance(account, callbackFunction) {
-        if (!account){
-            client.getBalance(contractAddress, callbackFunction)
-            return 
-        }
         client.getBalance(account, callbackFunction)
     }
 
@@ -104,7 +100,7 @@ class Dice{
     }
 
     GetReceipt(txHash, callbackFunction) {
-        let Time, Bettor, RollUnder, Bet, Roll, Payout, Event
+        let Bettor, RollUnder, Bet, Roll, Payout, Event
         
         Promise.all([getReceiptTask({"txhash":txHash, "abi":SeelediceABI}), getTxTask(txHash)]).then(function(data){
             data.forEach(r => {
@@ -128,7 +124,7 @@ class Dice{
             errorTask(data)
             console.log(data)
             callbackFunction({
-                "Time":data.header.CreateTimestamp,
+                "Time":new Date(data.header.CreateTimestamp*1000),
                 "Bettor":Bettor,
                 "RollUnder":RollUnder,
                 "Bet":Bet,
@@ -137,6 +133,10 @@ class Dice{
                 "Event":Event,
             })
         }).catch(callbackFunction)
+    }
+
+    FilterBlockTx(height, callbackFunction){
+        client.filterBlockTx(height, ContractAddress, "2", callbackFunction)
     }
 }
 
