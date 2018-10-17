@@ -22,23 +22,17 @@ var sendtxTask = function(data){
 }
 
 var getReceiptTask = function(data){
-    console.log("getReceiptTask")
     errorTask(data)
-    console.log(data)
     return client.sendSync("getReceiptByTxHash", data.txhash, data.abi)
 }
 
 var getTxTask = function(data){
-    console.log("getTxTask")
     errorTask(data)
-    console.log(data)
     return client.sendSync("getTransactionByHash", data)
 }
 
 var getBlockTask = function(data){
-    console.log("getBlockTask")
     errorTask(data)
-    console.log(data)
     return client.sendSync("getBlock", data.blockHash || "", data.blockHeight || -1, false)
 }
 
@@ -99,6 +93,10 @@ class Dice{
         client.getAccountNonce(account, callbackFunction)
     }
 
+    GetHeight(callbackFunction) {
+        client.getBlockHeight(callbackFunction)
+    }
+
     GetReceipt(txHash, callbackFunction) {
         let Bettor, RollUnder, Bet, Roll, Payout, Event
         
@@ -106,7 +104,6 @@ class Dice{
             data.forEach(r => {
                 errorTask(r)
             })
-            console.log(data)
             let log = JSON.parse(data[0].logs[0])
             Event = log.Event
             Bettor = log.Args[0]
@@ -116,13 +113,9 @@ class Dice{
                 Payout = log.Args[3]
             }
             Bet = data[1].transaction.amount
-            console.log(log.Event)
-            console.log(log.Args)
-            console.log(Bet)
             return {"blockHash":data[1].blockHash}
         }).then(getBlockTask).then(function(data){
             errorTask(data)
-            console.log(data)
             callbackFunction({
                 "Time":new Date(data.header.CreateTimestamp*1000),
                 "Bettor":Bettor,
