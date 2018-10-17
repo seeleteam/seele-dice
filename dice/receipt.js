@@ -1,11 +1,11 @@
 const seelejs = require('seele.js')
-const client = new seelejs()
 const SeelediceABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"senders\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"creator\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"dice\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"diceNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"}]"
-// client = new seelejs('106.75.118.187')
+const client = new seelejs('117.50.20.218')
+// const client = new seelejs()
 
-client.getBalance("0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1")
+// client.getBalance("0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1")
 
-client.getReceiptByTxHash("0xa1fd2a9c497b5649ed655a1432aea3e025ab35fa5ed3e362f44b721531ac46c6", SeelediceABI, function(err, receipt){
+client.getReceiptByTxHash("0x001acf10eec0bca19de1708b3710ed547a56c086c6b7e184551d308aa6c4f4f1", SeelediceABI, function(err, receipt){
 	if (err){
 		console.log(err)
 		return 

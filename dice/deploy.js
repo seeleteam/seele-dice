@@ -1,7 +1,7 @@
 const seelejs = require('seele.js')
 
-// client = new seelejs('106.75.118.187')
-var client = new seelejs()
+client = new seelejs('117.50.20.218')
+// var client = new seelejs()
 
 client.getBalance("0x7c00f5a4312a6a3e458a07c2d650ce13c76b68b1")
 
@@ -15,7 +15,7 @@ client.getAccountNonce("0x7c00f5a4312a6a3e458a07c2d650ce13c76b68b1", function(er
 	var rawTx = {
 		"From" : "0x7c00f5a4312a6a3e458a07c2d650ce13c76b68b1",
 		"To" : "0x0000000000000000000000000000000000000000",
-		"Amount" : 100000000000,
+		"Amount" : 90000000000,
 		"AccountNonce" : accountNonce,
 		"GasPrice":1,
 		"GasLimit":3000000,
