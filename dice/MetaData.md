@@ -2,7 +2,7 @@
 
 ## Master Net Node
 
-IP Address: 106.75.118.187
+IP Address: 117.50.20.218
 HTTP  Port: 8037
 
 ## Payload
