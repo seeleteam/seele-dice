@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>seele-dice</title>
+    <title>Seele Dice</title>
     <meta name="description" content="">
     <meta name="google" value="notranslate">
     <link rel="stylesheet" type="text/css" href="css/seele-dice.css">
@@ -23,7 +23,7 @@
                 <img src="images/loginhead.png" class="loginImg">
             </div>
             <div class="personalInformation">
-                <span><img src="images/loginhead.png" width="40" height="40"> 00000000000000000000000</span>
+                <span><img src="images/loginhead.png" width="40" height="40"> <span class="getUserName">00000000000000000000000</span></span>              
                 <input type="button" value="Logout" class="logout" />
             </div>
         </div>
@@ -80,7 +80,7 @@
             <div class="rollButton">
                 <button>Roll</button>
                 <ul>
-                    <li>0</li>
+                    <li class="accountBalance">0</li>
                     <li>seele</li>
                 </ul>
             </div>
@@ -139,28 +139,12 @@
                                 <th>Payout</th>
                             </thead>
                             <tr>
-                                <td>15:47:36</td>
-                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
-                                <td>93</td>
-                                <td>500.0000 seele</td>
-                                <td>90</td>
-                                <td>500.324 seele</td>
-                            </tr>
-                            <tr>
-                                <td>15:47:36</td>
-                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
-                                <td>93</td>
-                                <td>500.0000 seele</td>
-                                <td>90</td>
-                                <td>500.324 seele</td>
-                            </tr>
-                            <tr>
-                                <td>15:47:36</td>
-                                <td>firemaxherb1firemaxherb1firemaxhqw</td>
-                                <td>93</td>
-                                <td>500.0000 seele</td>
-                                <td>90</td>
-                                <td>500.324 seele</td>
+                                <td class="listTime"></td>
+                                <td class="listBet"></td>
+                                <td class="listRollUnder"></td>
+                                <td><span class="listBet"></span> seele</td>
+                                <td class="listRoll"></td>
+                                <td><span class="listPayout"></span> seele</td>
                             </tr>
                         </table>
                     </div>
@@ -176,27 +160,30 @@
         <h1>&nbsp;&nbsp;Welcome Back！</h1>
         <div id="loginTab">
             <ul>
-                <li><a href="#loginTab-1" title="Key Flie">Key Flie</a></li>
-                <li><a href="#loginTab-2" title="Private Key">Private Key</a></li>
+                <li><a href="#loginTab-1" title="Private Key">Private Key</a></li>
+                <!-- <li><a href="#loginTab-1" title="Key Flie">Key Flie</a></li> -->
             </ul>
             <div id="tabs_container" class="loginTab_container">
+                <form id="loginValidate">
                 <div id="loginTab-1">
                     <ul>
-                        <li><input type="text" class="setImageName" placeholder="Please select keyfile"><input type="button" value="Click Upload"><input
-                                type="file" class="getImageName"></li>
-                        <li><input type="password" placeholder="Password"></li>
+                        <li><input type="text" name="username" placeholder="Please select documents for public holidays." id="username"></li>
+                        <li><input type="password" name="Please choose private holiday documents." placeholder="Please choose private holiday documents." id="private"></li>
+                        <li><input type="password" name="password" placeholder="Password" id="password"></li>
                     </ul>
-                    <button>Login</button>
+                    <button type="button">Login</button>
                     <p>Please follow this <a href="#">tutorial</a> to create an account if you don't have</p>
                 </div>
-                <div id="loginTab-2">
+                </form>
+                <!-- <div id="loginTab-2">
                     <ul>
-                        <li><input type="text" placeholder="Please select keyfile"></li>
+                        <li><input type="text" class="setImageName" placeholder="Please select keyfile"><input type="button"
+                                value="Click Upload"><input type="file" class="getImageName"></li>
                         <li><input type="password" placeholder="Password"></li>
                     </ul>
                     <button>Login</button>
                     <p>Please follow this <a href="#">tutorial</a> to create an account if you don't have</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -208,35 +195,35 @@
             <table>
                 <tr>
                     <td>From</td>
-                    <td>0xa61e5b0b30e91c4ae10dda3a6ddeb9d9d35ebfe1</td>
+                    <td class="from"></td>
                 </tr>
                 <tr>
                     <td>To</td>
-                    <td>0xa61e5b0b30e91c4ae10dda3a6ddeb9d9d35ebfe1</td>
+                    <td>0xedf195e667b32d036f2a73aa37153068fd090012</td>
                 </tr>
                 <tr>
-                    <td>Amount</td>
-                    <td>0</td>
+                    <td>Bet Amount</td>
+                    <td class="betAmount">0</td>
                 </tr>
                 <tr>
-                    <td>AccountNonce</td>
-                    <td>221</td>
+                    <td>Account Nonce</td>
+                    <td class="accountNonce"></td>
                 </tr>
                 <tr>
-                    <td>Quantity</td>
-                    <td>200 seele</td>
+                    <td>Payout</td>
+                    <td><span class="payOut"></span> seele</td>
                 </tr>
                 <tr>
                     <td>GasPrice</td>
-                    <td><input type="text" placeholder="0.01"><span>fan</span></td>
+                    <td><input type="text" placeholder="1" class="gasPrice"><span>fan</span></td>
                 </tr>
                 <tr>
                     <td>GasLimit</td>
-                    <td><input type="text" placeholder="Maximum value (estimate: 30) "></td>
+                    <td><input type="text" placeholder="Maximum value (estimate: 30)" class="gasLimit"></td>
                 </tr>
                 <tr>
-                    <td>Payload</td>
-                    <td></td>
+                    <td>Roll Under</td>
+                    <td class="rollUnder"></td>
                 </tr>
             </table>
         </div>
@@ -261,8 +248,14 @@
                 unique Encryption technology, the result of rolling will not be changed by any means.</p>
         </div>
     </div>
+    <div class="result"></div>
 </body>
+<script src="js/jQuery.js"></script>
+<script src="js/aes.js"></script>
 <script src="js/tab.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/dice.js"></script>
+<script src="js/seele.js"></script>
 <script src="js/seele-dice.js"></script>
 
 </html>

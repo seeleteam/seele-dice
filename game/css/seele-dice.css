@@ -12,6 +12,14 @@ button {
 	margin: 0;
 }
 
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px #273458 inset !important;
+	-webkit-text-fill-color: #788fcc;
+	caret-color: #788fcc;
+}
+
 ul,
 li {
 	list-style: none;
@@ -75,9 +83,11 @@ body {
 	text-decoration: unset;
 	cursor: pointer;
 }
-.quicklink span.play:hover{
+
+.quicklink span.play:hover {
 	color: #fff;
 }
+
 .quicklink button {
 	width: 72px;
 	height: 36px;
@@ -87,9 +97,11 @@ body {
 	border-radius: 4px;
 	cursor: pointer;
 }
+
 .quicklink button:hover {
 	color: #c4d0f4;
 }
+
 .quicklink .loginImg {
 	width: 40px;
 	height: 40px;
@@ -131,8 +143,9 @@ body {
 	font-size: 16px;
 	cursor: pointer;
 }
-.personalInformation input:hover{
-	color:#c4d0f4;
+
+.personalInformation input:hover {
+	color: #c4d0f4;
 	background: #3a4268;
 	cursor: pointer;
 }
@@ -386,12 +399,15 @@ body {
 	animation: fade 3s infinite running;
 	-webkit-animation: fade 3s infinite running;
 }
-.rollButton{
+
+.rollButton {
 	width: 100%;
 }
-.rollButton button{
+
+.rollButton button {
 	float: left;
 }
+
 /* Account Balance */
 .rollButton ul {
 	width: 220px;
@@ -824,7 +840,7 @@ table thead tr:hover {
 }
 
 #loginTab ul li {
-	line-height: 42px;
+	/* line-height: 42px; */
 	width: 50%;
 	float: left;
 	text-align: center;
@@ -832,6 +848,7 @@ table thead tr:hover {
 }
 
 #loginTab ul li a {
+	line-height: 42px;
 	display: block;
 	color: #fff;
 	text-decoration: none;
@@ -875,7 +892,8 @@ table thead tr:hover {
 }
 
 #loginTab-1 ul li:nth-child(2),
-#loginTab-2 ul li:nth-child(2) {
+#loginTab-2 ul li:nth-child(2),
+#loginTab-1 ul li:nth-child(3) {
 	margin-top: 25px;
 }
 
@@ -896,13 +914,13 @@ table thead tr:hover {
 	color: #788fcc;
 }
 
-#loginTab-1 ul li:nth-child(1) input:nth-child(1) {
+/* #loginTab-1 ul li:nth-child(1) input:nth-child(1) {
 	width: 189px;
 	float: left;
 	border-right: none;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
-}
+} */
 
 #loginTab-1 ul li:nth-child(1) input:nth-child(2) {
 	width: 120px;
@@ -947,7 +965,7 @@ table thead tr:hover {
 	color: #fff;
 	font-size: 16px;
 	border-radius: 4px;
-	margin: 88px 0 0 79px;
+	margin: 45px 0 0 79px;
 }
 
 #loginTab-1 p,
@@ -955,7 +973,7 @@ table thead tr:hover {
 	width: 100%;
 	white-space: nowrap;
 	color: #788fcc;
-	margin-top: 52px;
+	margin-top: 35px;
 	text-align: center;
 	margin-left: -32px;
 }
@@ -1107,4 +1125,63 @@ table thead tr:hover {
 	line-height: 25px;
 	font-size: 14px;
 	margin: 10px 0 0 0;
+}
+
+
+/* validate */
+#loginTab ul li label#username-error,
+#loginTab ul li label#password-error {
+	width: 100%;
+	display: inline-block;
+	font-size: 12px;
+	position: absolute;
+	z-index: 10;
+	top: 72px;
+	left: 0;
+	text-align: left;
+	line-height: 12px;
+	height: unset;
+	padding: 0;
+	margin: 0;
+	color: #fff;
+}
+
+#loginTab ul li label#password-error {
+	top: 133px;
+}
+
+.personalInformation .getUserName {
+	padding: 0;
+	float: left;
+	width: calc(100% - 50px);
+	word-wrap: break-word;
+	line-height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+}
+
+
+.payOut{
+	line-height: unset;
+}
+
+.result{
+	width: 400px;
+	height: 120px;
+	background: #263457;
+	border-radius: 4px;
+	position: absolute;
+	z-index: 5;
+	top: -200px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	color: #fff;
+	text-align: center;
+	line-height: 120px;
 }
