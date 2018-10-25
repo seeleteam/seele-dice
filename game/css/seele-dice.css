@@ -103,6 +103,7 @@ body {
 }
 
 .quicklink .loginImg {
+	display: none;
 	width: 40px;
 	height: 40px;
 }
@@ -110,6 +111,7 @@ body {
 .personalInformation {
 	width: 360px;
 	height: 140px;
+	display: none;
 	position: absolute;
 	z-index: 3;
 	background: rgb(20, 26, 52);
@@ -326,7 +328,9 @@ body {
 	height: 56px;
 	padding: 80px 0 70px 240px;
 }
-
+.rollButton{
+	display: none;
+}
 .loginButton button,
 .rollButton button {
 	width: 180px;
@@ -793,6 +797,7 @@ table thead tr:hover {
 .login {
 	width: 500px;
 	height: 680px;
+	display: none;
 	position: absolute;
 	z-index: 10;
 	top: -200px;
@@ -987,6 +992,7 @@ table thead tr:hover {
 .transaction {
 	width: 700px;
 	height: 600px;
+	display: none;
 	background: #273458;
 	z-index: 10;
 	border-radius: 4px;
@@ -1098,6 +1104,7 @@ table thead tr:hover {
 .playPopup {
 	width: 540px;
 	height: 640px;
+	display: none;
 	background: #263457;
 	border-radius: 4px;
 	position: absolute;
@@ -1172,6 +1179,7 @@ table thead tr:hover {
 .result{
 	width: 400px;
 	height: 120px;
+	display: none;
 	background: #263457;
 	border-radius: 4px;
 	position: absolute;
@@ -1185,4 +1193,7 @@ table thead tr:hover {
 	text-align: center;
 	line-height: 120px;
 	font-size: 14px;
+}
+.beData,.dataSuccess {
+	display: none;
 }
