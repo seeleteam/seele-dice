@@ -3,44 +3,6 @@ author: Miya_yang
 time:2018.10.11
 */
 const dice = require('dice.js')
-// const seelejs = require('seele.js')
-// callback function
-// function tryMe (param) { 
-//   console.log(param)
-// } 
-// // callback executer 
-// function callbackTester (callback) { 
-//   dice.GetBalance(dice.ContractAddress, function (data) {
-//     callback(data.Balance)
-//   })
-// } 
-
-// // test function
-// callbackTester (function(k) {
-//   tryMe(k)
-// })
-// function tryMe(param) {
-//   console.log(param1);
-// }
-// dice.GetBalance(dice.ContractAddress, function (data) {
-//   callback(data.Balance)
-// })
-
-// // function callbackTester(callback) {
-// //   callback(arguments[1], arguments[2]);
-// // }
-
-// dice.GetBalance(tryMe, data.Balance);
-// Account balance
-// function getBook(callback) {
-//   dice.GetBalance(dice.ContractAddress, function (data) {
-//     $('.accountBalance').text(data.Balance)
-//   })
-// }
-// getBook(function (data) {
-//   console.dir(data.Balance)
-//   $('.accountBalance').text(data.Balance)
-// });
 $(document).ready(function ($) {
   // tab
   $('#tab').tabulous({
@@ -143,83 +105,6 @@ $(document).ready(function ($) {
     return accDiv(this, arg)
   }
 
-  // bets click
-  var betsSeele = $('.getVal').val()
-  if (betsSeele !== '' || betsSeele !== null) {
-    var isLogin = true
-    var getOdds = $('.getOdds').text()
-    var indemnity = betsSeele * getOdds
-    $('.winSeele').text(indemnity)
-    if (isLogin == true) {
-      var balance = 20000000
-      var mostBets = balance / 2
-      // $('.accountBalance').text()
-      if (indemnity > mostBets) {
-        var indemnity = betsSeele * getOdds
-        $('.winSeele').text(indemnity)
-        $('.bets ul li').click(function () {
-          $(this).siblings('li').removeClass('current')
-          $(this).addClass('current')
-        })
-        $('.getVal').val(balance / 4)
-        $('.winSeele').text(balance / 2)
-      } else {
-        $('.halve').click(function () {
-          var getOdds = $('.getOdds').text()
-          var indemnity = betsSeele * getOdds
-          $('.winSeele').text(indemnity)
-          var betsSeeleHalve = $('.getVal').val() / 2
-          $('.multiple,.all').removeClass('current')
-          $(this).addClass('current')
-          $('.getVal').val($('.getVal').val() / 2)
-          $('.winSeele').text((betsSeeleHalve).mul(getOdds))
-        })
-        $('.multiple').click(function () {
-          var getOdds = $('.getOdds').text()
-          var indemnity = betsSeele * getOdds
-          $('.winSeele').text(indemnity)
-          var betsSeeleMul = $('.getVal').val() * 2
-          $('.halve,.all').removeClass('current')
-          $(this).addClass('current')
-          $('.getVal').val($('.getVal').val() * 2)
-          $('.winSeele').text((betsSeeleMul).mul(getOdds))
-        })
-        $('.all').click(function () {
-          var getOdds = $('.getOdds').text()
-          var indemnity = betsSeele * getOdds
-          $('.winSeele').text(indemnity)
-          var betsSeeleAll = 5000 //usrs.balance
-          $('.multiple,.halve').removeClass('current')
-          $(this).addClass('current')
-          $('.getVal').val(betsSeeleAll)
-          $('.winSeele').text((betsSeeleAll).mul(getOdds))
-        })
-      }
-    } else {
-      $('.halve').click(function () {
-        var getOdds = $('.getOdds').text()
-        var indemnity = betsSeele * getOdds
-        $('.winSeele').text(indemnity)
-        $('.multiple,.all').removeClass('current')
-        $(this).addClass('current')
-        $('.getVal').val($('.getVal').val() / 2)
-        $('.winSeele').text(indemnity)
-      })
-      $('.multiple').click(function () {
-        var getOdds = $('.getOdds').text()
-        var indemnity = betsSeele * getOdds
-        $('.winSeele').text(indemnity)
-        $('.halve,.all').removeClass('current')
-        $(this).addClass('current')
-        $('.getVal').val($('.getVal').val() * 2)
-        $('.winSeele').text(indemnity)
-      })
-      $('.all').click(function () {
-        $('.login').show()
-      })
-    }
-  } else {}
-
   $('.loginImg').hide()
   $('.loginHeadButton').show()
   $('.personalInformation').hide()
@@ -228,8 +113,11 @@ $(document).ready(function ($) {
   $('.transaction').hide()
   $('.login').hide()
   $('.playPopup').hide()
+  $('.result').hide()
+  $('.beData').hide()
+  $('.noData').show()
   // show login
-  $('.login').click(function () {
+  $('.loginButton button').click(function () {
     $('.login').show()
   })
   // login close
@@ -277,6 +165,10 @@ $(document).ready(function ($) {
           isSpecialChar: true,
           minlength: '32'
         },
+        private: {
+          required: true,
+          minlength: '32'
+        },
         password: {
           required: true
         }
@@ -289,15 +181,13 @@ $(document).ready(function ($) {
           minlength: 'Please input not less than 32 characters.'
         },
         password: {
-          required: 'Password can not be empty.'
+          required: 'Password can not be empty.',
+          minlength: 'Please input not less than 32 characters.'
         }
       }
     })
   }
   $(validform())
-
-  // get SessionStorage
-  var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
 
   // Numerical conversion
   function balanceValueInteger(value) {
@@ -312,6 +202,7 @@ $(document).ready(function ($) {
       return formatNumber(value)
     }
   }
+
   function balanceValueDecimal(value) {
     var stringVal = (value / 100000000).toString()
     if (!/^\d+$/.test(stringVal)) {
@@ -326,7 +217,7 @@ $(document).ready(function ($) {
   }
 
   // click login
-  $('#loginTab-1 button,.loginButton button,.quicklink button').click(function () {
+  $('#loginTab-1 button,.quicklink button').click(function () {
     if (validform().form()) {
       var getUsername = $('#username').val()
       var getPrivate = aesEncryption($('#private').val())
@@ -348,10 +239,60 @@ $(document).ready(function ($) {
         $('.loginButton').hide()
         if (data instanceof Error) {
           $('.accountBalance').text('0')
+          $('.halve,.multiple,.all').click(function () {
+            $('.result').show()
+            $('.result').text('Your balance is 0. Please check your account.')
+            setTimeout(function () {
+              $('.result').hide()
+            }, 2000)
+            return false
+          })
           return
-        } else {
-          $('.accountBalance').text(data.Balance)
         }
+        var betsSeele = $('.getVal').val()
+        var getOdds = $('.getOdds').text()
+        var indemnity = (betsSeele).mul(getOdds)
+        $('.winSeele').text(indemnity)
+        var balance = data.Balance / 100000000
+        var mostBets = balance / 2
+        $('.accountBalance').text(balance)
+        if (indemnity > mostBets) {
+          $('.bets ul li').click(function () {
+            $(this).siblings('li').removeClass('current')
+            $(this).addClass('current')
+          })
+          $('.getVal').val(mostBets.division(getOdds))
+          $('.winSeele').text(mostBets)
+        }
+        $('.halve').click(function () {
+          var getOdds = $('.getOdds').text()
+          var indemnity = (betsSeele).mul(getOdds)
+          $('.winSeele').text(indemnity)
+          var betsSeeleHalve = $('.getVal').val() / 2
+          $('.multiple,.all').removeClass('current')
+          $(this).addClass('current')
+          $('.getVal').val($('.getVal').val() / 2)
+          $('.winSeele').text((betsSeeleHalve).mul(getOdds))
+        })
+        $('.multiple').click(function () {
+          var getOdds = $('.getOdds').text()
+          var indemnity = (betsSeele).mul(getOdds)
+          $('.winSeele').text(indemnity)
+          var betsSeeleMul = $('.getVal').val() * 2
+          $('.halve,.all').removeClass('current')
+          $(this).addClass('current')
+          $('.getVal').val($('.getVal').val() * 2)
+          $('.winSeele').text((betsSeeleMul).mul(getOdds))
+        })
+        $('.all').click(function () {
+          var getOdds = $('.getOdds').text()
+          var indemnity = (betsSeele).mul(getOdds)
+          $('.winSeele').text(indemnity)
+          $('.multiple,.halve').removeClass('current')
+          $(this).addClass('current')
+          $('.getVal').val(balance)
+          $('.winSeele').text((balance).mul(getOdds))
+        })
       })
     }
   })
@@ -378,8 +319,23 @@ $(document).ready(function ($) {
     var payout = $('.winSeele').text()
     var gasPricePost = 1
     var gasLimitPost = 3000000
-
+    if (bet == '') {
+      $('.result').show()
+      $('.result').text('Please bet first.')
+      setTimeout(function () {
+        $('.result').hide()
+      }, 2000)
+      return false
+    } else if (roll == '0') {
+      $('.result').show()
+      $('.result').text('Please play a game first.')
+      setTimeout(function () {
+        $('.result').hide()
+      }, 2000)
+      return false
+    }
     // get username
+    var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
     var getStorageUsername = userJsonStrUser.username
 
     $('.from').text(getStorageUsername)
@@ -409,6 +365,8 @@ $(document).ready(function ($) {
   })
   // post transction data
   $('.transaction ul li:nth-child(2) button').click(function () {
+    // get sessionStorage
+    var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
     // get private
     var getStoragePrivate = aesDecrypt(userJsonStrUser.private)
 
@@ -450,11 +408,13 @@ $(document).ready(function ($) {
           $('.listBet').text(balanceValueInteger(data.Bet) + '.' + balanceValueDecimal(data.Bet))
           $('.listRoll').text(data.Roll)
           $('.listPayout').text(balanceValueInteger(data.Payout) + '.' + balanceValueDecimal(data.Payout))
-          if(data.Event == 'winAction') {
-            $('.result').text('Congratulations on winning.')
-          }
-          else if(data.Event == 'lossAction'){
-            $('.result').text("I'm sorry you failed.")
+          $('.result').show()
+          $('.beData').show()
+          $('.noData').hide()
+          if (data.Event == 'winAction') {
+            setTimeout("$('.result').text('Congratulations on winning.')", 3000)
+          } else if (data.Event == 'lossAction') {
+            setTimeout("$('.result').text('Im sorry you failed.')", 3000)
           }
           console.log('callback Success')
         })
