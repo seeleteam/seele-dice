@@ -972,6 +972,7 @@ table thead tr:hover {
 	font-size: 16px;
 	border-radius: 4px;
 	margin: 45px 0 0 79px;
+	cursor: pointer;
 }
 
 #loginTab-1 p,
@@ -1072,7 +1073,12 @@ table thead tr:hover {
 	color: #9dacd3;
 	line-height: 26px;
 }
-
+.transactionMain table tr td span.payOut {
+	position: unset;
+	margin: unset;
+	color: #fff;
+	line-height: unset;
+}
 .transaction ul {
 	width: auto;
 	margin: 40px 0 0 130px;
