@@ -261,16 +261,13 @@ $(document).ready(function ($) {
   })
   // No user login
   var betsSeele = $('.getVal').val()
-  console.log(betsSeele)
   var getOdds = $('.getOdds').text()
-  console.log(getOdds)
   var indemnity = betsSeele * getOdds
-  console.log(indemnity)
   $('.winSeele').text(indemnity)
   $('.halve').click(function () {
     var betsSeele = $('.getVal').val()
     var getOdds = $('.getOdds').text()
-    var indemnity = betsSeele * getOdds
+    var indemnity = betsSeele*getOdds
     $('.winSeele').text(indemnity)
     var betsSeeleHalve = $('.getVal').val() / 2
     $('.multiple,.all').removeClass('current')
@@ -298,8 +295,11 @@ $(document).ready(function ($) {
     $(this).addClass('current')
     $('.login').show()
   })
+  $('.loginHeadButton').click(function(){
+    $('.login').show()
+  })
   // click login
-  $('#loginTab-1 button,.quicklink button').click(function () {
+  $('#loginTab-1 button').click(function () {
     if (validform().form()) {
       var getUsername = $('#username').val()
       var getPrivate = aesEncryption($('#private').val())
