@@ -217,6 +217,7 @@ $(document).ready(function ($) {
   dice.GetHeight(function (data) {
     if (data instanceof Error) {
       console.log('callback Error GetHeight')
+      console.log(data)
       return
     }
     var height = data
@@ -321,60 +322,60 @@ $(document).ready(function ($) {
         $('.loginButton').hide()
         if (data instanceof Error) {
           $('.accountBalance').text('0')
-          // $('.halve,.multiple,.all').click(function() {
-          //   $('.result').show()
-          //   $('.result').text('Your balance is 0. Please check your account.')
-          //   setTimeout(function() {
-          //     $('.result').hide()
-          //   }, 2000)
-          //   return false
-          // })
+          $('.halve,.multiple,.all').click(function() {
+            $('.result').show()
+            $('.result').text('Your balance is 0. Please check your account.')
+            setTimeout(function() {
+              $('.result').hide()
+            }, 2000)
+            return false
+          })
           return
         }
-        // var betsSeele = $('.getVal').val()
-        // var getOdds = $('.getOdds').text()
-        // var indemnity = (betsSeele).mul(getOdds)
-        // $('.winSeele').text(indemnity)
-        // var balance = data.Balance / 100000000
-        // var mostBets = balance / 2
-        // $('.accountBalance').text(balance)
-        // if (indemnity > mostBets) {
-        //   $('.bets ul li').click(function() {
-        //     $(this).siblings('li').removeClass('current')
-        //     $(this).addClass('current')
-        //   })
-        //   $('.getVal').val(mostBets.division(getOdds))
-        //   $('.winSeele').text(mostBets)
-        // }
-        // $('.halve').click(function() {
-        //   var getOdds = $('.getOdds').text()
-        //   var indemnity = (betsSeele).mul(getOdds)
-        //   $('.winSeele').text(indemnity)
-        //   var betsSeeleHalve = $('.getVal').val() / 2
-        //   $('.multiple,.all').removeClass('current')
-        //   $(this).addClass('current')
-        //   $('.getVal').val($('.getVal').val() / 2)
-        //   $('.winSeele').text((betsSeeleHalve).mul(getOdds))
-        // })
-        // $('.multiple').click(function() {
-        //   var getOdds = $('.getOdds').text()
-        //   var indemnity = (betsSeele).mul(getOdds)
-        //   $('.winSeele').text(indemnity)
-        //   var betsSeeleMul = $('.getVal').val() * 2
-        //   $('.halve,.all').removeClass('current')
-        //   $(this).addClass('current')
-        //   $('.getVal').val($('.getVal').val() * 2)
-        //   $('.winSeele').text((betsSeeleMul).mul(getOdds))
-        // })
-        // $('.all').click(function() {
-        //   var getOdds = $('.getOdds').text()
-        //   var indemnity = (betsSeele).mul(getOdds)
-        //   $('.winSeele').text(indemnity)
-        //   $('.multiple,.halve').removeClass('current')
-        //   $(this).addClass('current')
-        //   $('.getVal').val(balance)
-        //   $('.winSeele').text((balance).mul(getOdds))
-        // })
+        var betsSeele = $('.getVal').val()
+        var getOdds = $('.getOdds').text()
+        var indemnity = (betsSeele).mul(getOdds)
+        $('.winSeele').text(indemnity)
+        var balance = data.Balance / 100000000
+        var mostBets = balance / 2
+        $('.accountBalance').text(balance)
+        if (indemnity > mostBets) {
+          $('.bets ul li').click(function() {
+            $(this).siblings('li').removeClass('current')
+            $(this).addClass('current')
+          })
+          $('.getVal').val(mostBets.division(getOdds))
+          $('.winSeele').text(mostBets)
+        }
+        $('.halve').click(function() {
+          var getOdds = $('.getOdds').text()
+          var indemnity = (betsSeele).mul(getOdds)
+          $('.winSeele').text(indemnity)
+          var betsSeeleHalve = $('.getVal').val() / 2
+          $('.multiple,.all').removeClass('current')
+          $(this).addClass('current')
+          $('.getVal').val($('.getVal').val() / 2)
+          $('.winSeele').text((betsSeeleHalve).mul(getOdds))
+        })
+        $('.multiple').click(function() {
+          var getOdds = $('.getOdds').text()
+          var indemnity = (betsSeele).mul(getOdds)
+          $('.winSeele').text(indemnity)
+          var betsSeeleMul = $('.getVal').val() * 2
+          $('.halve,.all').removeClass('current')
+          $(this).addClass('current')
+          $('.getVal').val($('.getVal').val() * 2)
+          $('.winSeele').text((betsSeeleMul).mul(getOdds))
+        })
+        $('.all').click(function() {
+          var getOdds = $('.getOdds').text()
+          var indemnity = (betsSeele).mul(getOdds)
+          $('.winSeele').text(indemnity)
+          $('.multiple,.halve').removeClass('current')
+          $(this).addClass('current')
+          $('.getVal').val(balance)
+          $('.winSeele').text((balance).mul(getOdds))
+        })
       })
     }
   })
