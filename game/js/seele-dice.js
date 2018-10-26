@@ -3,7 +3,7 @@ author: Miya_yang
 time:2018.10.11
 */
 const dice = require('dice.js')
-$(document).ready(function($) {
+$(document).ready(function ($) {
   // tab
   $('#tab').tabulous({
     effect: 'slideLeft'
@@ -12,6 +12,7 @@ $(document).ready(function($) {
   $('#loginTab').tabulous({
     effect: 'flip'
   })
+
   // progress
   var scroll = document.getElementById('scroll')
   var bar = document.getElementById('bar')
@@ -19,15 +20,16 @@ $(document).ready(function($) {
   var ptxt = document.getElementsByTagName('p')[0]
   var barleft = 0
   ptxt.innerHTML = '0'
+  $('.getOdds').text('0')
   // setWin
   $('.setWin').text('0')
   // setChance
   $('.setChance').text('0')
-  bar.onmousedown = function(event) {
+  bar.onmousedown = function (event) {
     var event = event || window.event
     var leftVal = event.clientX - this.offsetLeft
     var that = this
-    document.onmousemove = function(event) {
+    document.onmousemove = function (event) {
       var event = event || window.event
       var currentVal = $('#scroll p').text()
       barleft = event.clientX - leftVal
@@ -65,7 +67,7 @@ $(document).ready(function($) {
     }
 
   }
-  document.onmouseup = function() {
+  document.onmouseup = function () {
     document.onmousemove = null
   }
   // repair javascript Floating-point number bug
@@ -81,7 +83,7 @@ $(document).ready(function($) {
     } catch (e) {}
     return Number(s1.replace('.', '')) * Number(s2.replace('.', '')) / Math.pow(10, m)
   }
-  Number.prototype.mul = function(arg) {
+  Number.prototype.mul = function (arg) {
     return accMul(arg, this);
   }
 
@@ -101,7 +103,7 @@ $(document).ready(function($) {
       return (r1 / r2) * pow(10, t2 - t1);
     }
   }
-  Number.prototype.division = function(arg) {
+  Number.prototype.division = function (arg) {
     return accDiv(this, arg)
   }
 
@@ -112,11 +114,11 @@ $(document).ready(function($) {
   $('.dataError').show()
 
   // show login
-  $('.loginButton button').click(function() {
+  $('.loginButton button').click(function () {
     $('.login').show()
   })
   // login close
-  $('.close').click(function() {
+  $('.close').click(function () {
     $('.login').hide()
   })
 
@@ -146,7 +148,7 @@ $(document).ready(function($) {
     return decryptedText
   }
   // Start with 0x,English and integer only.     
-  jQuery.validator.addMethod('isSpecialChar', function(value, element) {
+  jQuery.validator.addMethod('isSpecialChar', function (value, element) {
     return this.optional(element) || /^0x[A-Za-z0-9_-]+$/.test(value)
   }, 'Start with 0x,English and integer only.')
   // return validform result
@@ -163,10 +165,10 @@ $(document).ready(function($) {
         private: {
           required: true,
           minlength: '32'
-        },
-        password: {
-          required: true
         }
+        // password: {
+        //   required: true
+        // }
       },
       messages: {
         username: {
@@ -175,7 +177,7 @@ $(document).ready(function($) {
           isSpecialChar: 'Start with 0x,English and integer only.',
           minlength: 'Please input not less than 32 characters.'
         },
-        password: {
+        private: {
           required: 'Password can not be empty.',
           minlength: 'Please input not less than 32 characters.'
         }
@@ -212,23 +214,31 @@ $(document).ready(function($) {
   }
 
   // get block height
-  dice.GetHeight(function(data) {
+  dice.GetHeight(function (data) {
     if (data instanceof Error) {
       console.log('callback Error GetHeight')
       return
     }
     var height = data
     // get block hash 
-    dice.FilterBlockTx(height, function(data) {
+    dice.FilterBlockTx(height, function (data) {
       console.log('callback')
       console.log(data)
+      if (data === 'end') {
+        $('.dataSuccess').hide()
+        $('.dataError').show()
+        console.log('fileter over')
+        return
+      }
       if (data instanceof Error) {
+        $('.dataSuccess').hide()
+        $('.dataError').show()
         console.log('callback Error')
         return
       }
       var txHash = data.blockHash
       // get all bets info
-      dice.GetReceipt(txHash, function(data) {
+      dice.GetReceipt(txHash, function (data) {
         console.log('callback')
         console.log(data)
         if (data instanceof Error) {
@@ -254,10 +264,10 @@ $(document).ready(function($) {
   console.log(betsSeele)
   var getOdds = $('.getOdds').text()
   console.log(getOdds)
-  var indemnity = betsSeele*getOdds
+  var indemnity = betsSeele * getOdds
   console.log(indemnity)
   $('.winSeele').text(indemnity)
-  $('.halve').click(function() {
+  $('.halve').click(function () {
     var betsSeele = $('.getVal').val()
     var getOdds = $('.getOdds').text()
     var indemnity = betsSeele * getOdds
@@ -268,7 +278,7 @@ $(document).ready(function($) {
     $('.getVal').val($('.getVal').val() / 2)
     $('.winSeele').text((betsSeeleHalve).mul(getOdds))
   })
-  $('.multiple').click(function() {
+  $('.multiple').click(function () {
     var betsSeele = $('.getVal').val()
     var getOdds = $('.getOdds').text()
     var indemnity = betsSeele * getOdds
@@ -279,7 +289,7 @@ $(document).ready(function($) {
     $('.getVal').val($('.getVal').val() * 2)
     $('.winSeele').text((betsSeeleMul).mul(getOdds))
   })
-  $('.all').click(function() {
+  $('.all').click(function () {
     var betsSeele = $('.getVal').val()
     var getOdds = $('.getOdds').text()
     var indemnity = betsSeele * getOdds
@@ -289,7 +299,7 @@ $(document).ready(function($) {
     $('.login').show()
   })
   // click login
-  $('#loginTab-1 button,.quicklink button').click(function() {
+  $('#loginTab-1 button,.quicklink button').click(function () {
     if (validform().form()) {
       var getUsername = $('#username').val()
       var getPrivate = aesEncryption($('#private').val())
@@ -303,7 +313,7 @@ $(document).ready(function($) {
       var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
       var getStorageUsername = userJsonStrUser.username
       $('.getUserName').text(getStorageUsername)
-      dice.GetBalance(getStorageUsername, function(data) {
+      dice.GetBalance(getStorageUsername, function (data) {
         $('.login').hide()
         $('.loginImg').show()
         $('.loginHeadButton').hide()
@@ -369,14 +379,14 @@ $(document).ready(function($) {
     }
   })
   // longinImg mouse
-  $('.loginImg').mouseover(function() {
+  $('.loginImg').mouseover(function () {
     $('.personalInformation').show()
   })
-  $(document).bind('click', function() {
+  $(document).bind('click', function () {
     $('.personalInformation').hide()
   })
   // logout
-  $('.logout').click(function() {
+  $('.logout').click(function () {
     $('.personalInformation').hide()
     $('.loginImg').hide()
     $('.loginHeadButton').show()
@@ -384,7 +394,7 @@ $(document).ready(function($) {
     $('.rollButton').hide()
   })
   // transaction popup
-  $('.rollButton button').click(function() {
+  $('.rollButton button').click(function () {
     // pulic
     var bet = $('.getVal').val()
     var roll = $('.setWin').text()
@@ -394,14 +404,14 @@ $(document).ready(function($) {
     if (bet == '') {
       $('.result').show()
       $('.result').text('Please bet first.')
-      setTimeout(function() {
+      setTimeout(function () {
         $('.result').hide()
       }, 2000)
       return false
     } else if (roll == '0') {
       $('.result').show()
       $('.result').text('Please play a game first.')
-      setTimeout(function() {
+      setTimeout(function () {
         $('.result').hide()
       }, 2000)
       return false
@@ -418,7 +428,7 @@ $(document).ready(function($) {
     $('.rollUnder').text(roll)
 
     // get nonce
-    dice.GetAccountNonce(getStorageUsername, function(data) {
+    dice.GetAccountNonce(getStorageUsername, function (data) {
       console.log('callback')
       console.log(data)
       if (data instanceof Error) {
@@ -432,11 +442,11 @@ $(document).ready(function($) {
     $('.transaction').show()
   })
   // close transction
-  $('.transaction ul li:nth-child(1) button,.transaction .close').click(function() {
+  $('.transaction ul li:nth-child(1) button,.transaction .close').click(function () {
     $('.transaction').hide()
   })
   // post transction data
-  $('.transaction ul li:nth-child(2) button').click(function() {
+  $('.transaction ul li:nth-child(2) button').click(function () {
     // get sessionStorage
     var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
     // get private
@@ -462,12 +472,12 @@ $(document).ready(function($) {
       'GasPrice': gasPrice,
       'GasLimit': gasLimit
     }
-    dice.Sendtx(keypair, args, function(data) {
+    dice.Sendtx(keypair, args, function (data) {
       if (data instanceof Error) {
         console.log('callback Error')
         return
       } else {
-        dice.GetReceipt(data, function(data) {
+        dice.GetReceipt(data, function (data) {
           console.log('callback')
           console.log(data)
           if (data instanceof Error) {
@@ -486,13 +496,13 @@ $(document).ready(function($) {
           if (data.Event == 'winAction') {
             $('.result').show()
             $('.result').text('Congratulations on winning.')
-            setTimeout(function() {
+            setTimeout(function () {
               $('.result').hide()
             }, 2000)
           } else if (data.Event == 'lossAction') {
             $('.result').show()
             $('.result').text("I'm sorry you failed.")
-            setTimeout(function() {
+            setTimeout(function () {
               $('.result').hide()
             }, 2000)
           }
@@ -504,11 +514,11 @@ $(document).ready(function($) {
     $('.transaction').hide()
   })
   // close playPopup
-  $('.playPopup .close').click(function() {
+  $('.playPopup .close').click(function () {
     $('.playPopup').hide()
   })
   // show how to play
-  $('.play').click(function() {
+  $('.play').click(function () {
     $('.playPopup').show()
   })
   // get file name
@@ -522,7 +532,7 @@ $(document).ready(function($) {
       return path.substring(pos + 1)
     }
   }
-  $('.getImageName').change(function() {
+  $('.getImageName').change(function () {
     var str = $(this).val()
     var fileName = getFileName(str)
     var fileExt = str.substring(str.lastIndexOf('.') + 1)
