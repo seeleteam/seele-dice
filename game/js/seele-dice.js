@@ -217,14 +217,12 @@ $(document).ready(function ($) {
   dice.GetHeight(function (data) {
     if (data instanceof Error) {
       console.log('callback Error GetHeight')
-      console.log(data)
       return
     }
     var height = data
     // get block hash 
     dice.FilterBlockTx(height, function (data) {
       console.log('callback')
-      console.log(data)
       if (data === 'end') {
         $('.dataSuccess').hide()
         $('.dataError').show()
@@ -241,7 +239,6 @@ $(document).ready(function ($) {
       // get all bets info
       dice.GetReceipt(txHash, function (data) {
         console.log('callback')
-        console.log(data)
         if (data instanceof Error) {
           console.log('callback Error')
           return
@@ -431,7 +428,6 @@ $(document).ready(function ($) {
     // get nonce
     dice.GetAccountNonce(getStorageUsername, function (data) {
       console.log('callback')
-      console.log(data)
       if (data instanceof Error) {
         console.log('callback Error')
         return
@@ -474,14 +470,12 @@ $(document).ready(function ($) {
       'GasLimit': Number(gasLimit)
     }
     dice.Sendtx(keypair, args, function (data) {
-      console.log(args)
       if (data instanceof Error) {
         console.log('callback Error')
         return
       } else {
         dice.GetReceipt(data, function (data) {
           console.log('callback')
-          console.log(data)
           if (data instanceof Error) {
             console.log('callback Error')
             return
