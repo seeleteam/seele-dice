@@ -510,6 +510,7 @@ p {
 #tabs_container {
 	padding: 20px;
 	overflow: hidden;
+	min-height: 102px;
 	position: relative;
 	background: #15244e;
 }
