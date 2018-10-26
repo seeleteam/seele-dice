@@ -1138,7 +1138,7 @@ table thead tr:hover {
 
 /* validate */
 #loginTab ul li label#username-error,
-#loginTab ul li label#password-error {
+#loginTab ul li label#private-error {
 	width: 100%;
 	display: inline-block;
 	font-size: 12px;
@@ -1154,7 +1154,7 @@ table thead tr:hover {
 	color: #fff;
 }
 
-#loginTab ul li label#password-error {
+#loginTab ul li label#private-error{
 	top: 133px;
 }
 
