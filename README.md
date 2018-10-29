@@ -28,3 +28,7 @@ dice.FilterBlockTx(6066, function(data){
     console.log("callback Success")
 })
 ```
+
+## Deploy
+
+The dice is connected to `http://localhost:8037`. When the game goes online, someone needs to change the nginx configuration to connect to the seee master node.
