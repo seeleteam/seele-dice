@@ -4,7 +4,8 @@ const SeelediceABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"
 const ContractAddress = "0xedf195e667b32d036f2a73aa37153068fd090012"
 
 // let client = new seelejs('117.50.20.218')
-let client = new seelejs()
+// let client = new seelejs()
+let client = new seelejs(document.domain+'/seelens')
 
 var generatePayloadTask = function(data){
     errorTask(data)
