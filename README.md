@@ -1,7 +1,7 @@
 # seele-dice
 
 In root floder runs:
-browserify -r .\dice\dice.js:dice.js > dice.js
+browserify -r ./dice/dice.js:dice.js > ./game/js/dice.js
 
 ## seele.js version
 
