@@ -468,8 +468,8 @@ $(document).ready(function ($) {
 
     // post data
     var from = $('.from').text()
-    var betAmount = $('.betAmount').text() * 100000000
-    var rollPayout = $('.payOut').text() * 100000000
+    var betAmount = Math.floor($('.betAmount').text() * 100000000)
+    var rollPayout = Math.floor($('.payOut').text() * 100000000)
     var gasPrice = $('.gasPrice').val()
     var gasLimit = $('.gasLimit').val()
     var rollUnder = $('.rollUnder').text()
