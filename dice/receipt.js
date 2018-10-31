@@ -5,7 +5,7 @@ const client = new seelejs('117.50.20.218')
 
 // client.getBalance("0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1")
 
-client.getReceiptByTxHash("0x001acf10eec0bca19de1708b3710ed547a56c086c6b7e184551d308aa6c4f4f1", SeelediceABI, function(err, receipt){
+client.getReceiptByTxHash("0x1e26639e3a94d8c14542dc96107946cd04f3842cd2eec1565882444f8f8cdb41", SeelediceABI, function(err, receipt){
 	if (err){
 		console.log(err)
 		return 
