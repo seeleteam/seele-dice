@@ -1110,13 +1110,13 @@ table thead tr:hover {
 /* playPopup */
 .playPopup {
 	width: 540px;
-	height: 640px;
+	height: 850px;
 	display: none;
 	background: #263457;
 	border-radius: 4px;
 	position: absolute;
 	z-index: 5;
-	top: -200px;
+	top: 0px;
 	right: 0;
 	bottom: 0;
 	left: 0;
