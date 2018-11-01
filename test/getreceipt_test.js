@@ -1,6 +1,6 @@
 const dice = require("../dice/dice")
 
-dice.GetReceipt("0xd94100cdcaf606cb10640c071734ecb0de4a5c973d2b9954e6f5b2c39f80732f", function(data){
+dice.GetReceipt("0xc6d83fb560857b346bfa6cc2a789c3cfc19b8dc9f264dc9bdd7c31a28d435df6", function(data){
     console.log("callback")
     console.log(data)
     if (data instanceof Error){

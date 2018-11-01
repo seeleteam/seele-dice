@@ -21601,7 +21601,6 @@ var getBlockTask = function(data){
 
 var errorTask = function(data){
     if (data instanceof Error){
-        console.log(data)
         throw data
     }
 
@@ -21666,6 +21665,10 @@ class Dice{
         Promise.all([getReceiptTask({"txhash":txHash, "abi":SeelediceABI}), getTxTask(txHash)]).then(function(data){
             data.forEach(r => {
                 errorTask(r)
+                if (r.failed) {
+                    console.log(r)
+                    errorTask(new Error(r.result))
+                }
             })
             let log = JSON.parse(data[0].logs[0])
             Event = log.Event

@@ -1,0 +1,113 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "Lps/+JqMRVlrXgO/+cazYcfsglg=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/github.com/davecgh/go-spew/spew",
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "k0AFFj8B5/xCAw1+mF85+p8pJ1U=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/github.com/ethereum/go-ethereum/rlp",
+			"path": "github.com/ethereum/go-ethereum/rlp",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "sZBC82LlCP+qEu9/4rzKzgfEdIc=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/github.com/hashicorp/golang-lru",
+			"path": "github.com/hashicorp/golang-lru",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "BBPs41SjdH2T+Kos+L4KbjmDsJk=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/github.com/hashicorp/golang-lru/simplelru",
+			"path": "github.com/hashicorp/golang-lru/simplelru",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "Tlfyw4mNjmUWPzYdoOSjdEysQpE=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/github.com/howeyc/gopass",
+			"path": "github.com/howeyc/gopass",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "KxrjWViqXgNppMsQeg4CVrNyqUI=",
+			"path": "github.com/magiconair/properties/assert",
+			"revision": "2c9e9502788518c97fe44e8955cd069417ee89df",
+			"revisionTime": "2018-02-17T13:45:45Z"
+		},
+		{
+			"checksumSHA1": "R3yk3OJzuq4MVfVGX5AhkkYv1ko=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/github.com/pmezard/go-difflib/difflib",
+			"path": "github.com/pmezard/go-difflib/difflib",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "YdlZ2Etkl1b65aVYsT0lPCB6mJE=",
+			"path": "github.com/seeleteam/e2e-blackbox/testcase",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "F3GBO/gjSIs/FmOBRmuo/C/lyUM=",
+			"path": "github.com/seeleteam/e2e-blackbox/testcase/contract",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "5myqaI8W7RyFwGRZ0QnUoNV4gak=",
+			"path": "github.com/seeleteam/go-seele/common",
+			"revision": "cd9ef943f66c84b921d8d2952498974c577f6507",
+			"revisionTime": "2018-10-29T03:21:02Z"
+		},
+		{
+			"checksumSHA1": "MEL6EIBhVTWbGi/YQjH5l573WmE=",
+			"path": "github.com/seeleteam/go-seele/common/errors",
+			"revision": "cd9ef943f66c84b921d8d2952498974c577f6507",
+			"revisionTime": "2018-10-29T03:21:02Z"
+		},
+		{
+			"checksumSHA1": "lRfO/8jbDGS9s0pJOGij+DQgDHk=",
+			"path": "github.com/seeleteam/go-seele/common/hexutil",
+			"revision": "cd9ef943f66c84b921d8d2952498974c577f6507",
+			"revisionTime": "2018-10-29T03:21:02Z"
+		},
+		{
+			"checksumSHA1": "fygRczENWW2FPC+Th6W/fIZNiHM=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/github.com/stretchr/testify/assert",
+			"path": "github.com/stretchr/testify/assert",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "xka61yH7sv+itLfgiLvNON6ANpc=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/golang.org/x/crypto/ssh/terminal",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "I/9n2IzTbjfaDoPOmJ7LsjJzkJ8=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/golang.org/x/sys/unix",
+			"path": "golang.org/x/sys/unix",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		},
+		{
+			"checksumSHA1": "/7DQXQzdHD84a4wItJkx5IGI4fU=",
+			"origin": "github.com/seeleteam/e2e-blackbox/vendor/golang.org/x/sys/windows",
+			"path": "golang.org/x/sys/windows",
+			"revision": "a7a9e2204f6dcc50c0ba4c61996695ca3177c389",
+			"revisionTime": "2018-10-31T06:51:54Z"
+		}
+	],
+	"rootPath": "github.com/seeleteam/seele-dice"
+}

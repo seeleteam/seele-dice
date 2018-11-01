@@ -1,0 +1,157 @@
+[
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "creator",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "magicNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "rand",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "destory",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "diceNumber",
+				"type": "uint256"
+			},
+			{
+				"name": "winValue",
+				"type": "uint256"
+			},
+			{
+				"name": "magicHash",
+				"type": "uint256"
+			}
+		],
+		"name": "commit",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "diceNumber",
+				"type": "uint256"
+			},
+			{
+				"name": "winValue",
+				"type": "uint256"
+			},
+			{
+				"name": "magicHash",
+				"type": "uint256"
+			},
+			{
+				"name": "magicNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "reveal",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "diceNumber",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "rollNumber",
+				"type": "uint256"
+			}
+		],
+		"name": "lossAction",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "diceNumber",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "rollNumber",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "winValue",
+				"type": "uint256"
+			}
+		],
+		"name": "winAction",
+		"type": "event"
+	}
+]
