@@ -346,10 +346,10 @@ $(document).ready(function ($) {
   })
 
  // longinImg mouse
-$('.loginImg').mouseover(function () {
+$('.loginImg,.personalInformation').mouseover(function () {
   $('.personalInformation').show()
 })
-$('.loginImg').mouseout(function () {
+$('.loginImg,.personalInformation').mouseleave(function () {
   $('.personalInformation').hide()
 })
 
@@ -367,7 +367,7 @@ $('.getVal').keyup(function(){
 
   // logout
   $('.logout').click(function () {
-    $('.loginHeadButton,.loginButton').hide()
+    $('.loginHeadButton,.loginButton').show()
     $('.loginImg,.rollButton,.personalInformation').hide()
     sessionStorage.clear()
     window.clearInterval(refreshBalanceId)
