@@ -3,6 +3,8 @@ author: Miya_yang
 time:2018.10.11
 */
 const dice = require('dice.js')
+const minUserBet = 0.00000001 // seele
+
 $(document).ready(function ($) {
   // tab
   $('#tab').tabulous({
@@ -274,48 +276,61 @@ $(document).ready(function ($) {
   //     console.log('callback Success')
   //   })
   // }, 3000)
-  // No user login
-  var betsSeele = $('.getVal').val()
-  var getOdds = $('.getOdds').text()
-  var indemnity = Number(betsSeele).mul(getOdds)
-  $('.winSeele').text(indemnity)
+
+  // Initial bet amount
+  $('.getVal').val(0.5)
+
+  // Half button
   $('.halve').click(function () {
-    var betsSeele = $('.getVal').val()
-    var getOdds = $('.getOdds').text()
-    var indemnity = Number(betsSeele).mul(getOdds)
-    $('.winSeele').text(indemnity)
-    var betsSeeleHalve = $('.getVal').val() / 2
+    updateBetAndPayoutOnWin($('.getVal').val() / 2)
     $('.multiple,.all').removeClass('current')
     $(this).addClass('current')
-    $('.getVal').val($('.getVal').val() / 2)
-    $('.winSeele').text(Number(betsSeeleHalve).mul(getOdds))
-  })
-  $('.multiple').click(function () {
-    var betsSeele = $('.getVal').val()
-    var getOdds = $('.getOdds').text()
-    var indemnity = Number(betsSeele).mul(getOdds)
-    $('.winSeele').text(indemnity)
-    var betsSeeleMul = $('.getVal').val() * 2
-    $('.halve,.all').removeClass('current')
-    $(this).addClass('current')
-    $('.getVal').val($('.getVal').val() * 2)
-    $('.winSeele').text(Number(betsSeeleMul).mul(getOdds))
-  })
-  $('.all').click(function () {
-    var betsSeele = $('.getVal').val()
-    var getOdds = $('.getOdds').text()
-    var indemnity = Number(betsSeele).mul(getOdds)
-    $('.winSeele').text(indemnity)
-    $('.multiple,.halve').removeClass('current')
-    $(this).addClass('current')
-    $('.login').show()
-  })
-  $('.loginHeadButton').click(function () {
-    $('.login').show()
   })
 
-  var refreshBalanceId
+  // Double button
+  $('.multiple').click(function () {
+    updateBetAndPayoutOnWin($('.getVal').val() * 2)
+    $('.halve,.all').removeClass('current')
+    $(this).addClass('current')
+  })
+
+  // Max button
+  $('.all').click(function () {
+    if (maxPayoutOnWin > 0){
+      updateBetAndPayoutOnWin(getMaxUserBet())
+      $('.multiple,.halve').removeClass('current')
+      $(this).addClass('current')
+    }
+  })
+
+  function updateBetAndPayoutOnWin(newBet){
+    // Bet
+    if (newBet > getMaxUserBet()){
+      newBet = getMaxUserBet()
+    }
+    if (newBet < minUserBet){
+      newBet = minUserBet
+    }
+    $('.getVal').val(newBet)
+    // Payout On Win
+    var getOdds = $('.getOdds').text()
+    if (getOdds > 0){
+      $('.winSeele').text(Number(newBet).mul(getOdds))
+    }
+  }
+
+  // Get max user bet against contract balance and payout
+  function getMaxUserBet(){
+    if (maxPayoutOnWin > 0){
+      var payout = $('.getOdds').text()
+      return maxPayoutOnWin/payout
+    }
+  }
+
+  // Refresh user and contract balance
+  var refreshBalanceId, maxPayoutOnWin
   function refreshBalance() {
+    // user balance
     var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
     refreshBalanceId = setInterval(function() {
       dice.GetBalance(userJsonStrUser.username, function (data) {
@@ -325,9 +340,27 @@ $(document).ready(function ($) {
         $('.accountBalance').text(data.Balance / 100000000)
       })
     }, 1000)
+
+    // contract balance
+    setInterval(function() {
+      dice.GetBalance(dice.ContractAddress, function (data) {
+        if (data instanceof Error) {
+            return
+        }
+        maxPayoutOnWin = Number(data.Balance/200000000)
+        if ($('.winSeele').text() > maxPayoutOnWin){
+          updateBetAndPayoutOnWin(getMaxUserBet())
+        }
+      })
+    }, 1000)
   }
 
-  // click login
+  // Show login box
+  $('.loginHeadButton').click(function () {
+    $('.login').show()
+  })
+
+  // User login
   $('#loginTab-1 button').click(function () {
     if (validform().form()) {
       var getUsername = $('#username').val()
@@ -345,13 +378,13 @@ $(document).ready(function ($) {
     }
   })
 
- // longinImg mouse
-$('.loginImg,.personalInformation').mouseover(function () {
-  $('.personalInformation').show()
-})
-$('.loginImg,.personalInformation').mouseleave(function () {
-  $('.personalInformation').hide()
-})
+  // longinImg,personalInformation mouse
+  $('.loginImg,.personalInformation').mouseover(function () {
+    $('.personalInformation').show()
+  })
+  $('.loginImg,.personalInformation').mouseleave(function () {
+    $('.personalInformation').hide()
+  })
 
 // Payout On Win Change
 function payoutOnWinChange(){
@@ -365,15 +398,16 @@ $('.getVal').keyup(function(){
   payoutOnWinChange()
 })
 
-  // logout
-  $('.logout').click(function () {
-    $('.loginHeadButton,.loginButton').show()
-    $('.loginImg,.rollButton,.personalInformation').hide()
-    sessionStorage.clear()
-    window.clearInterval(refreshBalanceId)
-    $('#username').val('')
-    $('#private').val('')
-  })
+// logout
+$('.logout').click(function () {
+  $('.loginHeadButton,.loginButton').show()
+  $('.loginImg,.rollButton,.personalInformation').hide()
+  sessionStorage.clear()
+  window.clearInterval(refreshBalanceId)
+  $('#username').val('')
+  $('#private').val('')
+})
+
   // transaction popup
   $('.rollButton button').click(function () {
     // pulic
