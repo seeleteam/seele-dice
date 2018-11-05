@@ -282,14 +282,14 @@ $(document).ready(function ($) {
 
   // Half button
   $('.halve').click(function () {
-    updateBetAndPayoutOnWin($('.getVal').val() / 2)
+    updateBetAndPayoutOnWin(($('.getVal').val() / 2).toFixed(9))
     $('.multiple,.all').removeClass('current')
     $(this).addClass('current')
   })
 
   // Double button
   $('.multiple').click(function () {
-    updateBetAndPayoutOnWin($('.getVal').val() * 2)
+    updateBetAndPayoutOnWin(($('.getVal').val() * 2).toFixed(9))
     $('.halve,.all').removeClass('current')
     $(this).addClass('current')
   })
@@ -311,11 +311,11 @@ $(document).ready(function ($) {
     if (newBet < minUserBet){
       newBet = minUserBet
     }
-    $('.getVal').val(newBet)
+    $('.getVal').val(newBet).toFixed(9)
     // Payout On Win
     var getOdds = $('.getOdds').text()
     if (getOdds > 0){
-      $('.winSeele').text(Number(newBet).mul(getOdds))
+      $('.winSeele').text(Number(newBet).mul(getOdds)).toFixed(9)
     }
   }
 
@@ -348,7 +348,7 @@ $(document).ready(function ($) {
             return
         }
         maxPayoutOnWin = Number(data.Balance/200000000)
-        if ($('.winSeele').text() > maxPayoutOnWin){
+        if ($('.winSeele').text().toFixed(9) > maxPayoutOnWin){
           updateBetAndPayoutOnWin(getMaxUserBet())
         }
       })
@@ -388,10 +388,10 @@ $(document).ready(function ($) {
 
 // Payout On Win Change
 function payoutOnWinChange(){
-  var betsSeele = $('.getVal').val()
+  var betsSeele = $('.getVal').val().toFixed(9)
   var getOdds = $('.getOdds').text()
   var indemnity = Number(betsSeele).mul(getOdds)
-  $('.winSeele').text(indemnity)
+  $('.winSeele').text(indemnity).toFixed(9)
 }
 // BET AMOUNT Change
 $('.getVal').keyup(function(){
@@ -411,9 +411,9 @@ $('.logout').click(function () {
   // transaction popup
   $('.rollButton button').click(function () {
     // pulic
-    var bet = $('.getVal').val()
+    var bet = $('.getVal').val().toFixed(9)
     var roll = $('.setWin').text()
-    var payout = $('.winSeele').text()
+    var payout = $('.winSeele').text().toFixed(9)
     var gasPricePost = 1
     var gasLimitPost = 3000000
     if (bet == '') {
