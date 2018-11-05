@@ -278,7 +278,7 @@ $(document).ready(function ($) {
 
   // Initial bet amount
   $('.getVal').val(0.5)
-  // 
+  // watch decimal
   function watchDecimal(number) {
     var pointLocation = String(number).indexOf('.') + 1
     var count = String(number).length - pointLocation
