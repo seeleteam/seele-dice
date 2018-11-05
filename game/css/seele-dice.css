@@ -509,10 +509,10 @@ p {
 
 #tabs_container {
 	padding: 20px;
-	overflow: hidden;
 	min-height: 102px;
 	position: relative;
 	background: #15244e;
+	overflow-y: auto;
 }
 
 /* #tabs_container div {
@@ -1186,7 +1186,15 @@ table thead tr:hover {
 .payOut{
 	line-height: unset;
 }
-
+.dask{
+	width: 100%;
+	height: 100%;
+	background: rgb(0,0,0,.3);
+	display: none;
+	top: 0;
+	position: absolute;
+	z-index: 5;
+}
 .result{
 	width: 400px;
 	height: 120px;
@@ -1207,4 +1215,19 @@ table thead tr:hover {
 }
 .beData,.dataSuccess {
 	display: none;
+}
+
+#tabs_container::-webkit-scrollbar {
+	width: 10px;   
+	height: 1px;
+}
+#tabs_container::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	 -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: #535353;
+}
+#tabs_container::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	border-radius: 10px;
+	background: #EDEDED;
 }

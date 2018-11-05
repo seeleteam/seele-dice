@@ -401,18 +401,28 @@ $(document).ready(function ($) {
         return
       }
       reRollResultId = setInterval(function () {
+        $('.result').show()
+        $('.dask').show()
+        $('.result').text('Loading results...')
         dice.GetReceipt(data, function (data) {
           if (data instanceof Error) {
+            // setTimeout(function () {
+            //   $('.result').show()
+            //   $('.dask').show()
+            //   $('.result').text('Loading error...')
+            // }, 3000)
             return
           }
           $('.noData').hide()
           if (data.Event == 'winAction') {
-            var pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + balanceValueInteger(data.Bet) + balanceValueDecimal(data.Bet) + ' Seele' + '</td>' + '<td>' + data.Roll + '</td>' + '<td style="color:#d3f709;">' + balanceValueInteger(data.Payout) + balanceValueDecimal(data.Payout) + ' Seele' + '</td>'+ '</tr>'
+            var pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + balanceValueInteger(data.Bet) + balanceValueDecimal(data.Bet) + ' Seele' + '</td>' + '<td>' + data.Roll + '</td>' + '<td style="color:#d3f709;">' + balanceValueInteger(data.Payout) + balanceValueDecimal(data.Payout) + ' Seele' + '</td>' + '</tr>'
           } else if (data.Event == 'lossAction') {
             var pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + balanceValueInteger(data.Bet) + balanceValueDecimal(data.Bet) + ' Seele' + '</td>' + '<td style="color:#f20765;">' + data.Roll + '</td>' + '<td>' + '</td>' + '</tr>'
           }
           $('.noData').before(pushTr)
           window.clearInterval(reRollResultId)
+          $('.result').hide()
+          $('.dask').hide()
         })
       }, 3000)
     })
