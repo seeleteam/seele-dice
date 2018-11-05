@@ -41,13 +41,13 @@
             }
 
             var firstdiv = this.$elem.find('#tabs_container');
-            var firstdivheight = firstdiv.find('div:first').height() - 80;
+           // var firstdivheight = firstdiv.find('div:first').height() - 20;
 
             var alldivs = this.$elem.find('div:first').find('div');
 
             // alldivs.css({'position': 'absolute','top':'40px'});
 
-            firstdiv.css('height',firstdivheight+'px');
+            firstdiv.css('min-height','500px');
 
             firstchild.addClass('tabulous_active');
 
