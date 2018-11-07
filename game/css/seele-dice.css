@@ -508,11 +508,12 @@ p {
 }
 
 #tabs_container {
+	width: calc(100% - 40px);
 	padding: 20px;
 	min-height: 102px;
 	position: relative;
 	background: #15244e;
-	overflow-y: auto;
+	overflow: hidden;
 }
 
 /* #tabs_container div {
@@ -1230,4 +1231,9 @@ table thead tr:hover {
 	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
 	border-radius: 10px;
 	background: #EDEDED;
+}
+
+
+.playContent p,#loginTab-1 p{
+	cursor: pointer;
 }
