@@ -117,7 +117,7 @@ $(document).ready(function ($) {
     var hour = date.getHours()
     var minutes = date.getMinutes()
     var second = date.getSeconds()
-    var dateNew = year + '-' + month + '-' + date1 + '-' + hour + ':' + minutes + ':' + second
+    var dateNew = year + '-' + month + '-' + date1 + ' ' + hour + ':' + minutes + ':' + second
     return dateNew
   }
   // login variable
@@ -406,11 +406,7 @@ $(document).ready(function ($) {
         $('.result').text('Loading results...')
         dice.GetReceipt(data, function (data) {
           if (data instanceof Error) {
-            // setTimeout(function () {
-            //   $('.result').show()
-            //   $('.dask').show()
-            //   $('.result').text('Loading error...')
-            // }, 3000)
+            // console.log(data + 'my bets')
             return
           }
           $('.noData').hide()
@@ -419,7 +415,17 @@ $(document).ready(function ($) {
           } else if (data.Event == 'lossAction') {
             var pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + balanceValueInteger(data.Bet) + balanceValueDecimal(data.Bet) + ' Seele' + '</td>' + '<td style="color:#f20765;">' + data.Roll + '</td>' + '<td>' + '</td>' + '</tr>'
           }
-          $('.noData').before(pushTr)
+          $('.noData').after(pushTr)
+          var height = $('#tabs_container').height()
+          var trNumber = $('.showleft').find('tr')
+          console.log(trNumber.length)
+          if (trNumber.length < 3) {
+            height = height
+          } else {
+            var tableHeight = trNumber.length - 2
+            height = 80 + (42 * tableHeight)
+          }
+          $('#tabs_container').css('min-height', height + 'px')
           window.clearInterval(reRollResultId)
           $('.result').hide()
           $('.dask').hide()
@@ -526,7 +532,6 @@ $(document).ready(function ($) {
       console.log('callback Success')
       $('.transactionMain table tr:nth-child(4) td:nth-child(2)').text(data)
     })
-
     $('.transaction').show()
   })
   // close transction
