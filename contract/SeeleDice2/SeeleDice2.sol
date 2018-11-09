@@ -57,7 +57,7 @@ contract SeeleDice{
             c = msg.sender;    
         }
         croupier = c;
-        maxProfit = getDiceWinAmount(MAX_BET, MAX_ROLLUNDER);
+        maxProfit = getDiceWinAmount(MAX_BET, MIN_ROLLUNDER) - MAX_BET;
     }
 
     // Standard modifier on methods invokable only by contract owner.
@@ -112,7 +112,7 @@ contract SeeleDice{
         uint winAmount = getDiceWinAmount(amount, rollUnder);
 
         // Enforce max profit limit.
-        require (winAmount <= maxProfit, "maxProfit limit violation.");
+        require (winAmount <= amount + maxProfit, "maxProfit limit violation.");
 
         // Lock funds.
         lockedInBets += uint128(winAmount);
