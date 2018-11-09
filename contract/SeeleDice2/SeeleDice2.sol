@@ -12,16 +12,17 @@ contract SeeleDice{
     uint8 constant MAX_ROLLUNDER = 96;
 
     // Each bet is deducted 1% in favour of the house, but no less than some minimum.
-    uint constant HOUSE_EDGE_PERCENT = 1;
+    uint8 constant HOUSE_EDGE_PERCENT = 1;
     uint constant HOUSE_EDGE_MINIMUM_AMOUNT = 1000000;     // 0.01 Seele
 
     // EVM BLOCKHASH opcode can query no further than 256 blocks into the
     // past. Given that settleBet uses block hash of placeBet as one of
     // complementary entropy sources, we cannot process bets older than this
     // threshold.
-    uint constant BET_EXPIRATION_BLOCKS = 250;
+    uint8 constant BET_EXPIRATION_BLOCKS = 250;
     
     // Adjustable max profit for a single bet.
+    uint constant MAX_PROFIT = MAX_BET * MODULO / MIN_ROLLUNDER;
     uint public maxProfit;
 
     // Funds that are locked in potentially winning bets. Prevents contract from
@@ -57,7 +58,7 @@ contract SeeleDice{
             c = msg.sender;    
         }
         croupier = c;
-        maxProfit = getDiceWinAmount(MAX_BET, MIN_ROLLUNDER) - MAX_BET;
+        maxProfit = MAX_PROFIT;
     }
 
     // Standard modifier on methods invokable only by contract owner.
@@ -91,7 +92,7 @@ contract SeeleDice{
 
     // Change max bet reward. Setting this to zero effectively disables betting.
     function setMaxProfit(uint _maxProfit) external onlyOwner {
-        require (_maxProfit < MAX_BET, "maxProfit should be a sane number.");
+        require (_maxProfit <= MAX_PROFIT, "maxProfit should be a sane number[0, MAX_PROFIT].");
         maxProfit = _maxProfit;
     }
 
