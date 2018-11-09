@@ -1,5 +1,19 @@
 [
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "croupier",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [],
 		"name": "destory",
@@ -39,31 +53,86 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
 			{
-				"name": "newCroupier",
+				"name": "",
 				"type": "address"
 			}
 		],
-		"name": "setCroupier",
-		"outputs": [],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "maxProfit",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_maxProfit",
+				"name": "beneficiary",
+				"type": "address"
+			},
+			{
+				"name": "withdrawAmount",
 				"type": "uint256"
 			}
 		],
-		"name": "setMaxProfit",
+		"name": "withdrawFunds",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"name": "rollUnder",
+				"type": "uint8"
+			}
+		],
+		"name": "getDiceWinAmount",
+		"outputs": [
+			{
+				"name": "winAmount",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "pure",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "lockedInBets",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint128"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -88,15 +157,25 @@
 		"constant": false,
 		"inputs": [
 			{
-				"name": "beneficiary",
+				"name": "newCroupier",
 				"type": "address"
-			},
+			}
+		],
+		"name": "setCroupier",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
 			{
-				"name": "withdrawAmount",
+				"name": "_maxProfit",
 				"type": "uint256"
 			}
 		],
-		"name": "withdrawFunds",
+		"name": "setMaxProfit",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -200,84 +279,5 @@
 		],
 		"name": "winAction",
 		"type": "event"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "croupier",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"name": "rollUnder",
-				"type": "uint8"
-			}
-		],
-		"name": "getDiceWinAmount",
-		"outputs": [
-			{
-				"name": "winAmount",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "pure",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "lockedInBets",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint128"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "maxProfit",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
