@@ -94,12 +94,12 @@ class Dice2{
 module.exports = new Dice2()
 
 let a = new Dice2()
-// console.log(a.Properties)
-// let croupier = a.GetCroupier().croupier
-// console.log(croupier)
-// console.log(a.GetOwner().owner)
-// console.log(a.GetMaxProfit())
-// console.log(a.GetLockedInBets())
+console.log(a.Properties)
+let croupier = a.GetCroupier().croupier
+console.log(croupier)
+console.log(a.GetOwner().owner)
+console.log(a.GetMaxProfit())
+console.log(a.GetLockedInBets())
 // 20000000000000
 //  1031250000000
-console.log(a.GetDiceWinAmount(100000000, 50))
+// console.log(a.GetDiceWinAmount(100000000, 50))
