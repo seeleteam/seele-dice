@@ -15,7 +15,7 @@ client.getAccountNonce("0x7c00f5a4312a6a3e458a07c2d650ce13c76b68b1", function(re
 	var rawTx = {
 		"From" : "0x7c00f5a4312a6a3e458a07c2d650ce13c76b68b1",
 		"To" : "0x0000000000000000000000000000000000000000",
-		"Amount" : 500000000000,
+		"Amount" : 50000000000,
 		"AccountNonce" : accountNonce,
 		"GasPrice":1,
 		"GasLimit":3000000,
