@@ -2,6 +2,9 @@
 
 In root floder runs:
 browserify -r ./dice/dice.js:dice.js > ./game/js/dice.js
+browserify -r ./dice/dice2.js:dice2.js > ./game/js/dice2.js
+
+> Check the file encoding is UTF-8.
 
 ## seele.js version
 
