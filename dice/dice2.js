@@ -1,8 +1,7 @@
 'use strict'
 const seelejs = require('seele.js')
 const randservice = require('../rand/rand')
-const util = require('util');
-const setImmediatePromise = util.promisify(setImmediate);
+const BigNumber = require('bignumber.js');
 // const fs = require('fs')
 // SeeleDice2ABI is the input ABI used to generate the binding from.
 const SeeleDice2ABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"croupier\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"rollUnder\",\"type\":\"uint8\"},{\"name\":\"commit\",\"type\":\"bytes32\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"},{\"name\":\"v\",\"type\":\"uint8\"}],\"name\":\"placeBet\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"maxProfit\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"withdrawAmount\",\"type\":\"uint256\"}],\"name\":\"withdrawFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"rollUnder\",\"type\":\"uint8\"}],\"name\":\"getDiceWinAmount\",\"outputs\":[{\"name\":\"winAmount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lockedInBets\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"reveal\",\"type\":\"bytes\"},{\"name\":\"blockHash\",\"type\":\"bytes32\"}],\"name\":\"settleBet\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCroupier\",\"type\":\"address\"}],\"name\":\"setCroupier\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_maxProfit\",\"type\":\"uint256\"}],\"name\":\"setMaxProfit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"c\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FailedPayment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Payment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"}]"
@@ -28,7 +27,6 @@ class Dice2{
      *     'lockedInBets' : client.sendSync("generatePayload", this.SeelediceABI, "lockedInBets", []),
      * }
      */
-
     constructor(){
         this.ContractAddress = "0xbc46614da8e742da7c23df823802a55141e20002"
         this.SeeleDiceABI = SeeleDice2ABI
@@ -40,6 +38,23 @@ class Dice2{
             lockedInBets: '0xdf88126f',
             destory : '0x6bdebcc9',
         }
+        this.MODULO = 100
+        // There is minimum and maximum bet.
+        this.MIN_BET = new BigNumber('10000000') // 0.1 Seele
+        this.MAX_BET = new BigNumber('10000').multipliedBy(new BigNumber('100000000')) // 10000 Seele
+        // There is minimum and maximum rollUnder.
+        this.MIN_ROLLUNDER = 5
+        this.MAX_ROLLUNDER = 96
+        // Each bet is deducted 1% in favour of the house, but no less than some minimum.
+        this.HOUSE_EDGE_PERCENT = 1 // %1
+        this.HOUSE_EDGE_MINIMUM_AMOUNT = 1 // 0.01 Seele
+        // EVM BLOCKHASH opcode can query no further than 256 blocks into the
+        // past. Given that settleBet uses block hash of placeBet as one of
+        // complementary entropy sources, we cannot process bets older than this
+        // threshold.
+        this.BET_EXPIRATION_BLOCKS = 250
+        // Adjustable max profit for a single bet.
+        // uint constant MAX_PROFIT = MAX_BET * MODULO / MIN_ROLLUNDER;
     }
 
     GetCroupier(){
@@ -123,27 +138,7 @@ class Dice2{
 
     async SettleBet(commit, txHash){
         let reveal = randservice.bets.get(commit), self = this
-        // let filterTxByHashTxHash = (txHash) => {
-        //     return client.getTransactionByHash(txHash).then(tx =>{
-        //         if (tx.status !== 'block'){
-        //             return filterTxByHashTxHash(txHash)
-        //         }
-        //         return tx
-        //     }).catch(err => {
-        //         console.log("filterTxByHashTxHash err")
-        //         console.log(err)
-        //         try {
-        //             let errmsg = JSON.parse(err.message)
-        //             if (errmsg.includes('leveldb: not found')) {
-        //                 return filterTxByHashTxHash(txHash)
-        //             }
-        //         } catch (err1) {
-        //             console.log(err1)
-        //             Promise.reject(err1)
-        //         }
-        //     })
-        // }
-        let betTx = await this.filterTxByHashTxHash(txHash)
+        let betTx = await this.filterTxByTxHash(txHash)
         // console.log(JSON.stringify(betTx))
         let [payload, nonce] = await Promise.all([
             client.generatePayload(self.SeeleDiceABI, 'settleBet', [reveal, betTx.blockHash]),
@@ -172,7 +167,7 @@ class Dice2{
     }
 
     async GetReceipt(txHash, bet) {
-        let settleTx = await this.filterTxByHashTxHash(txHash)
+        let settleTx = await this.filterTxByTxHash(txHash)
         let receipt = await client.getReceiptByTxHash(txHash, this.SeeleDiceABI)
         // console.log(receipt)
         if (receipt.failed){
@@ -208,20 +203,20 @@ class Dice2{
         return this.GetReceipt(settleData.txHash, settleData.bet)
     }
 
-    filterTxByHashTxHash(txHash){
+    filterTxByTxHash(txHash){
         let self = this
         return client.getTransactionByHash(txHash).then(tx =>{
             if (tx.status !== 'block'){
-                return self.filterTxByHashTxHash(txHash)
+                return self.filterTxByTxHash(txHash)
             }
             return tx
         }).catch(err => {
-            console.log("filterTxByHashTxHash err")
+            console.log("filterTxByTxHash err")
             console.log(err)
             try {
                 let errmsg = JSON.parse(err.message)
                 if (errmsg.includes('leveldb: not found')) {
-                    return self.filterTxByHashTxHash(txHash)
+                    return self.filterTxByTxHash(txHash)
                 }
             } catch (err1) {
                 console.log(err1)
