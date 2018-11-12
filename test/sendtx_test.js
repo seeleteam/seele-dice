@@ -6,7 +6,7 @@ var keypair = {"PublicKey":"0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1", "Privat
 // var keypair = {"PublicKey":"0xd33474acdec14ffca5f729dae3bbcdae2930a1a1", "PrivateKey":"0x6d1f85693db116011b340dfc0ffd5824af192666562f995136e5d371f4a46356"}
 // var keypair = {"PublicKey":"0x2813cbedc420f207bbc8b85c5a4feaa9a831b5a1", "PrivateKey":"0xbc9356b2a96b966dafd8cf427bec0aa872a4a74593e1c5345e38a26f698a7be7"}
 
-var args = {"RollUnder":90, "Payout":111, "Bet": 100, "GasPrice":2, "GasLimit":200000}
+var args = {"RollUnder":90, "Payout":111, "Bet": 100000000, "GasPrice":2, "GasLimit":200000}
 dice.Sendtx(keypair, args, function(data){
     console.log("callback")
     console.log(data)

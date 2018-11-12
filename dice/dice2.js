@@ -1,5 +1,8 @@
 'use strict'
 const seelejs = require('seele.js')
+const randservice = require('../rand/rand')
+const util = require('util');
+const setImmediatePromise = util.promisify(setImmediate);
 // const fs = require('fs')
 // SeeleDice2ABI is the input ABI used to generate the binding from.
 const SeeleDice2ABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"croupier\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"rollUnder\",\"type\":\"uint8\"},{\"name\":\"commit\",\"type\":\"bytes32\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"},{\"name\":\"v\",\"type\":\"uint8\"}],\"name\":\"placeBet\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"maxProfit\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"withdrawAmount\",\"type\":\"uint256\"}],\"name\":\"withdrawFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"rollUnder\",\"type\":\"uint8\"}],\"name\":\"getDiceWinAmount\",\"outputs\":[{\"name\":\"winAmount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lockedInBets\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"reveal\",\"type\":\"bytes\"},{\"name\":\"blockHash\",\"type\":\"bytes32\"}],\"name\":\"settleBet\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCroupier\",\"type\":\"address\"}],\"name\":\"setCroupier\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_maxProfit\",\"type\":\"uint256\"}],\"name\":\"setMaxProfit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"c\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FailedPayment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Payment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"}]"
@@ -89,17 +92,143 @@ class Dice2{
         let payout = data.result
         return parseInt(payout, 16)
     }
+
+    async PlaceBet(keypair, args){
+        let rand = randservice.GetRand(), self = this
+        let [payload, nonce] = await Promise.all([
+            client.generatePayload(self.SeeleDiceABI, 'placeBet', [args.RollUnder.toString(), rand.commit, rand.r, rand.s, rand.v]),
+            client.getAccountNonce(keypair.PublicKey),
+        ])
+        
+        let rawTx = {
+            "From" : keypair.PublicKey,
+            "To" : self.ContractAddress,
+            "Amount" : args.Bet || 0,
+            "AccountNonce" : nonce,
+            "GasPrice":args.GasPrice || 1,
+            "GasLimit":args.GasLimit || 3000000,
+            "Timestamp":0,
+            "Payload": payload
+        }
+        let tx = await client.generateTx(keypair.PrivateKey, rawTx)
+        // console.log(JSON.stringify(tx))
+
+        let result = await client.addTx(tx)
+        if (result){
+            return {'commit' : rand.commit, 'txHash' : tx.Hash}
+        }
+
+        Promise.resolve(result)
+    }
+
+    async SettleBet(commit, txHash){
+        let reveal = randservice.bets.get(commit), self = this
+        // let filterTxByHashTxHash = (txHash) => {
+        //     return client.getTransactionByHash(txHash).then(tx =>{
+        //         if (tx.status !== 'block'){
+        //             return filterTxByHashTxHash(txHash)
+        //         }
+        //         return tx
+        //     }).catch(err => {
+        //         console.log("filterTxByHashTxHash err")
+        //         console.log(err)
+        //         try {
+        //             let errmsg = JSON.parse(err.message)
+        //             if (errmsg.includes('leveldb: not found')) {
+        //                 return filterTxByHashTxHash(txHash)
+        //             }
+        //         } catch (err1) {
+        //             console.log(err1)
+        //             Promise.reject(err1)
+        //         }
+        //     })
+        // }
+        let betTx = await this.filterTxByHashTxHash(txHash)
+        // console.log(JSON.stringify(betTx))
+        let [payload, nonce] = await Promise.all([
+            client.generatePayload(self.SeeleDiceABI, 'settleBet', [reveal, betTx.blockHash]),
+            client.getAccountNonce(randservice.publickey),
+        ])
+
+        let rawTx = {
+            "From" : randservice.publickey,
+            "To" : self.ContractAddress,
+            "Amount" : 0,
+            "AccountNonce" : nonce,
+            "GasPrice": 1,
+            "GasLimit": 3000000,
+            "Timestamp":0,
+            "Payload": payload
+        }
+        let tx = await client.generateTx(randservice.privatekey, rawTx)
+        // console.log(JSON.stringify(tx))
+
+        let result = await client.addTx(tx)
+        if (result){
+            return {'txHash':tx.Hash,'bet':betTx.transaction.amount}
+        }
+
+        Promise.resolve(result)
+    }
+
+    async GetReceipt(txHash, bet) {
+        let settleTx = await this.filterTxByHashTxHash(txHash)
+        let receipt = await client.getReceiptByTxHash(txHash, this.SeeleDiceABI)
+        // console.log(receipt)
+        if (receipt.failed){
+            Promise.reject(receipt.result)
+        }
+
+        let log, payout
+        // winAction
+        if (receipt.logs.length == 2){
+            log = JSON.parse(receipt.logs[1])
+            payout = log.Args[3]
+        } else {
+            log = JSON.parse(receipt.logs[0])
+        }
+        
+        let block = await client.getBlock(settleTx.blockHash, -1, false)
+        return {
+            "Time":new Date(block.header.CreateTimestamp*1000),
+            "Bettor":log.Args[0],
+            "RollUnder":log.Args[1],
+            "Bet":bet,
+            "Roll":log.Args[2],
+            "Payout":payout,
+            "Event":log.Event,
+        }
+    }
+
+    async Roll(keypair, args){
+        let betData = await this.PlaceBet(keypair, args)
+        // console.log("PlaceBet success!")
+        let settleData = await this.SettleBet(betData.commit, betData.txHash)
+        // console.log("SettleBet success!")
+        return this.GetReceipt(settleData.txHash, settleData.bet)
+    }
+
+    filterTxByHashTxHash(txHash){
+        let self = this
+        return client.getTransactionByHash(txHash).then(tx =>{
+            if (tx.status !== 'block'){
+                return self.filterTxByHashTxHash(txHash)
+            }
+            return tx
+        }).catch(err => {
+            console.log("filterTxByHashTxHash err")
+            console.log(err)
+            try {
+                let errmsg = JSON.parse(err.message)
+                if (errmsg.includes('leveldb: not found')) {
+                    return self.filterTxByHashTxHash(txHash)
+                }
+            } catch (err1) {
+                console.log(err1)
+                Promise.reject(err1)
+            }
+        })
+    }
 }
 
 module.exports = new Dice2()
-
-let a = new Dice2()
-// console.log(a.Properties)
-// let croupier = a.GetCroupier().croupier
-// console.log(croupier)
-// console.log(a.GetOwner().owner)
-// console.log(a.GetMaxProfit())
-// console.log(a.GetLockedInBets())
-// 20000000000000
-//  1031250000000
-console.log(a.GetDiceWinAmount(100000000, 50))
