@@ -1,7 +1,7 @@
 const createKeccakHash = require('keccak')
 const BigNumber = require('bignumber.js');
 const secp256k1 = require('secp256k1')
-
+const fs = require('fs')
 // reveal: 2360310757221256559
 // reveal.Bytes(): [32 193 130 32 211 180 205 111]
 // reveal.hex(): 0x20c18220d3b4cd6f
@@ -15,24 +15,38 @@ const secp256k1 = require('secp256k1')
 // r: 0x5d9b960afd6e0ffd94f5ae362d120d001be78475f3b48524da011f1479524639
 // s: 0x605145159bf51ac1e1fa0cd06a2258d4581a613c9ef5eb987d32b0db3e50f537
 // v: 1
-    
-function getRand(){
-    let privatekey = "b60fdfccc1b83d483b0f7c64ee44a84bef998523de6c68d12db94a3fb917842c"
-    // let reveal = new BigNumber("2360310757221256559")
-    // Math.random()*10*new Date().getMilliseconds()
-    let source = new BigNumber(Math.floor(Math.random()*100000000+1))
-    let timestamp = new BigNumber(Date.now())
-    let reveal = (source.multipliedBy(timestamp)).toString(16)
-    let c = Buffer.from(reveal, 'hex')
-    let commit = createKeccakHash('keccak256').update(c).digest()
-    let sig = secp256k1.sign(commit, Buffer.from(privatekey, 'hex'))
-    return{
-        'reveal':'0x' + reveal,
-        'commit' : '0x' + commit.toString('hex'),
-        'r' : '0x' + sig.signature.slice(0, 32).toString('hex'),
-        's' : '0x' + sig.signature.slice(32, 64).toString('hex'),
-        'v' : sig.recovery
+// PublicKey.hex 0x6d4fca4dc6c49ce8df30e7b2887a08cd4d5a1451
+class RandService{
+    constructor(){
+        let file = fs.readFileSync('croupier.keypair.cfg').toString()
+        let keypair = JSON.parse(file)
+        this.privatekey = keypair.PrivateKey
+        this.publickey = keypair.PublicKey
+        this.bets = new Map()
+    }
+
+    GetRand(){
+        let privatekey = this.privatekey.substring(2)
+        // let reveal = new BigNumber("2360310757221256559")
+        // Math.random()*10*new Date().getMilliseconds()
+        let source = new BigNumber(Math.floor(Math.random()*100000000+1))
+        let timestamp = new BigNumber(Date.now())
+        let reveal = (source.multipliedBy(timestamp)).toString(16)
+        if (reveal.length % 2 != 0){
+            reveal = '0' + reveal
+        }
+        let c = Buffer.from(reveal, 'hex')
+        let commit = createKeccakHash('keccak256').update(c).digest()
+        let sig = secp256k1.sign(commit, Buffer.from(privatekey, 'hex'))
+        // save the bets
+        this.bets.set('0x' + commit.toString('hex'), '0x' + reveal)
+        return{
+            'commit' : '0x' + commit.toString('hex'),
+            'r' : '0x' + sig.signature.slice(0, 32).toString('hex'),
+            's' : '0x' + sig.signature.slice(32, 64).toString('hex'),
+            'v' : sig.recovery.toString()
+        }
     }
 }
 
-console.log(getRand())
+module.exports = new RandService()
