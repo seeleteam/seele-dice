@@ -2,9 +2,15 @@ pragma solidity ^0.4.25;
 
 contract SeeleDice{
     uint8 constant MODULO = 100;
+    
+    // register
+    uint256 internal timestamp = 1541914008;
+    uint8 public registrations = 10;
+    uint256 constant REGISTRATION_GIFT = 5000000; // 0.05 Seele
+    mapping(uint256 => mapping(address => bool)) registrants;
 
     // There is minimum and maximum bet.
-    uint constant MIN_BET = 10000000;     // 0.1 Seele
+    uint constant MIN_BET = 1000000;     // 0.01 Seele
     uint constant MAX_BET = 10000 * 100000000; // 10000 Seele
 
     // There is minimum and maximum rollUnder.
@@ -49,8 +55,12 @@ contract SeeleDice{
     event FailedPayment(address indexed beneficiary, uint amount);
     event Payment(address indexed beneficiary, uint amount);
 
-    event lossAction(address sender, uint256 rollUnder, uint256 randNumber);
-    event winAction(address sender, uint256 rollUnder, uint256 randNumber, uint256 winValue);
+    event lossAction(address sender, uint256 rollUnder, uint256 bet, uint256 randNumber);
+    event winAction(address sender, uint256 rollUnder, uint256 bet, uint256 randNumber, uint256 winValue);
+
+    // Register
+    event FailedRegisterPayment(address indexed beneficiary, uint amount);
+    event RegisterPayment(address indexed beneficiary, uint amount);
 
     constructor(address c) public payable{
         owner = msg.sender;
@@ -165,9 +175,9 @@ contract SeeleDice{
                 emit FailedPayment(gambler, winAmount);
             }
 
-            emit winAction(gambler, rollUnder, randNumber, winAmount);
+            emit winAction(gambler, rollUnder, randNumber, winAmount, amount);
         } else {
-            emit lossAction(gambler, rollUnder, randNumber);
+            emit lossAction(gambler, rollUnder, randNumber, amount);
         }
     }
 
@@ -188,5 +198,23 @@ contract SeeleDice{
     function destory() external onlyOwner {
         require (lockedInBets == 0, "All bets should be processed (settled or refunded) before self-destruct.");
         selfdestruct(owner);
+    }
+    
+    function register(address registrant) public onlyCroupier{
+        while (now >= timestamp + 1 days){
+            timestamp += 1 days;
+            registrations = 10;
+        }
+        require(registrations > 0, 'Registration is over today!');
+        require(registrants[timestamp][registrant] == false, 'You have already registered today.');
+        require (REGISTRATION_GIFT <= address(this).balance, "Cannot afford to lose this registration gift.");
+
+        if (registrant.send(REGISTRATION_GIFT)) {
+            registrations -= 1;
+            registrants[timestamp][registrant] = true;
+            emit RegisterPayment(registrant, REGISTRATION_GIFT);
+        } else {
+            emit FailedRegisterPayment(registrant, REGISTRATION_GIFT);
+        }
     }
 }
