@@ -10,9 +10,13 @@ const args = {"RollUnder":50, "Payout":111, "Bet": 100000000, "GasPrice":2, "Gas
 // console.log(dice.GetMaxProfit())
 // console.log(dice.GetLockedInBets())
 // console.log(dice.GetDiceWinAmount(100000000, 50))
+// console.log(dice.GetBalance(keypair.PublicKey))
+// console.log(dice.GetAccountNonce(keypair.PublicKey))
+// console.log(dice.GetHeight())
 dice.Roll(keypair, args).then(data => {
     console.log(data)
 }).catch(err => {
     console.log(err)
 })
 // dice.GetReceipt('0xcf2a4a9f48f0e19b532a2df3ecb3080f10b9ca93a1d3d3768518d1ee4d26a5ff',100000000)
+// dice.filterBlockTx(console.log)

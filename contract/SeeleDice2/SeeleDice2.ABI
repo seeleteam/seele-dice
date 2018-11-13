@@ -1,5 +1,33 @@
 [
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "registrant",
+				"type": "address"
+			}
+		],
+		"name": "register",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "registrations",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "croupier",
@@ -246,6 +274,11 @@
 			},
 			{
 				"indexed": false,
+				"name": "bet",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
 				"name": "randNumber",
 				"type": "uint256"
 			}
@@ -268,6 +301,11 @@
 			},
 			{
 				"indexed": false,
+				"name": "bet",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
 				"name": "randNumber",
 				"type": "uint256"
 			},
@@ -278,6 +316,40 @@
 			}
 		],
 		"name": "winAction",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "beneficiary",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "FailedRegisterPayment",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"name": "beneficiary",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "RegisterPayment",
 		"type": "event"
 	}
 ]
