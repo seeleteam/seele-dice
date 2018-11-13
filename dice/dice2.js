@@ -236,7 +236,7 @@ class Dice2{
         // console.log("PlaceBet success!")
         let settleTxHash = await this.SettleBet(betData.commit, betData.txHash)
         // console.log("SettleBet success!")
-        console.log("settleTxHash: ",settleTxHash)
+        console.log({'placeTxHash':betData.txHash, 'settleTxHash' : settleTxHash})
         return this.GetReceipt(settleTxHash)
     }
 
@@ -302,11 +302,32 @@ class Dice2{
         })
     }
 
-    Register(){
-        let keypair = client.wallet.create()
-        if (this.GetRegistrations() < 0){
-            keypair.isReceivedGift = true
-            // TODO - call register function
+    async Register(){
+        let keypair = client.wallet.createbyshard(1)
+        if (this.GetRegistrations() > 0){
+            let [payload, nonce] = await Promise.all([
+                client.generatePayload(this.SeeleDiceABI, 'register', [keypair.publickey]),
+                client.getAccountNonce(randservice.publickey),
+            ])
+            
+            let rawTx = {
+                "From" : randservice.publickey,
+                "To" : this.ContractAddress,
+                "Amount" : 0,
+                "AccountNonce" : nonce,
+                "GasPrice": 1,
+                "GasLimit": 3000000,
+                "Timestamp":0,
+                "Payload": payload
+            }
+            let tx = await client.generateTx(randservice.privatekey, rawTx)
+            let result = await client.addTx(tx)
+            if (result){
+                keypair.isReceivedGift = true
+                return keypair
+            }
+
+            Promise.resolve(result)
         }
 
         return keypair
