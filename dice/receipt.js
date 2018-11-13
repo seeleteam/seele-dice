@@ -5,7 +5,7 @@ const client = new seelejs('http://117.50.20.218:8037')
 
 // client.getBalance("0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1")
 let SeelediceABI = fs.readFileSync('../contract/SeeleDice2/SeeleDice2.ABI').toString()
-client.getReceiptByTxHash("0x03dcb24e61070bdf335b45cc44914aecf572bf40ef4f85e0447a73759e8e11ce", SeelediceABI).then(data =>{
+client.getReceiptByTxHash("0x9822ed6412f1586646163700608054628715640e8c7564598c83a9b7b07cc20c", SeelediceABI).then(data =>{
     console.log("data!")
     console.log(data)
 }).catch(err => {
