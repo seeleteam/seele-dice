@@ -48,3 +48,23 @@ func Test_pri(t *testing.T) {
 	fmt.Println("err:", err)
 	fmt.Println("pub.hex:", crypto.GetAddress(pub).ToHex())
 }
+
+func Test_time(t *testing.T) {
+	timestamp := int64(1542086808)
+	tm := time.Unix(timestamp, 0)
+
+	fmt.Println(tm.Format("2006-01-02 15:04:05"))
+
+	// UTC
+	// tm2, _ := time.Parse("2006-01-02 15:04:05", "2018-11-13 13:26:48")
+	toBeCharge := "2018-11-11 13:26:48"
+	timeLayout := "2006-01-02 15:04:05"
+	loc, _ := time.LoadLocation("Local")
+	tm2, _ := time.ParseInLocation(timeLayout, toBeCharge, loc)
+	fmt.Println(tm2.Unix())
+	fmt.Println(tm2.Format("2006-01-02 15:04:05"))
+
+	tm3 := time.Unix(tm2.Unix(), 0)
+
+	fmt.Println(tm3.Format("2006-01-02 15:04:05"))
+}
