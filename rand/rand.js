@@ -17,6 +17,7 @@ const fs = require('fs')
 // v: 1
 // PublicKey.hex 0x6d4fca4dc6c49ce8df30e7b2887a08cd4d5a1451
 class RandService{
+    // TODO - need build in server instead of client
     constructor(){
         let file = fs.readFileSync('croupier.keypair.cfg').toString()
         let keypair = JSON.parse(file)
