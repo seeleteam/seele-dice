@@ -1,23 +1,6 @@
-const dice = require("../dice/dice")
+// const dice = require("../dice/dice")
+const dice = require("../dice/dice2")
 
-dice.GetBalance("0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1", function(data){
-    console.log("callback")
-    console.log(data)
-    if (data instanceof Error){
-        console.log("callback Error")
-        return
-    }
-    
-    console.log("callback Success")
-})
+console.log(dice.GetBalance("0xb46bdddd042d96b73dd915394bb2a3c694347071"))
 
-dice.GetBalance(dice.ContractAddress, function(data){
-    console.log("callback")
-    console.log(data)
-    if (data instanceof Error){
-        console.log("callback Error")
-        return
-    }
-    
-    console.log("callback Success")
-})
+console.log(dice.GetBalance(dice.ContractAddress))
