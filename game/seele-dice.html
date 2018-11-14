@@ -16,13 +16,23 @@
     <div class="container">
         <div class="header">
             <div class="logo"><img src="images/logo.png"></div>
+            <ul class="pool-amount">
+                <li>Pool Amount</li>
+                <li>123,412,122,331 seele</li>
+            </ul>
             <div class="quicklink">
                 <span class="play">How to play？</span>
                 <button class="loginHeadButton">Login</button>
+                <!-- <button class="registerHeadButton">Register</button> -->
                 <img src="images/loginhead.png" class="loginImg">
             </div>
             <div class="personalInformation">
-                <span><img src="images/loginhead.png" width="40" height="40"> <span class="getUserName">00000000000000000000000</span></span>              
+                <span><img src="images/loginhead.png" width="40" height="40"> <span class="getUserName">00000000000000000000000</span></span>
+                <ul>
+                    <li><span>Profit Details</span><span class="profitBalance">123,123,123,123</span><span>seele</span></li>
+                    <li><span>Individual Odds</span><span class="my-individual">72</span><span>%</span></li>
+                    <li><span>Balance</span><span class="accountBalance">123,123,123</span><span>seele</span></li>
+                </ul>
                 <input type="button" value="Logout" class="logout" />
             </div>
         </div>
@@ -30,7 +40,7 @@
             <div class="bets">
                 <h3>BET AMOUNT</h3>
                 <ul>
-                    <li><input class="getVal" type="text" placeholder="Enter the stakes"><span>seele</span></li>
+                    <li><input class="getVal" id='bets' type="text" placeholder="Enter the stakes"><span>seele</span></li>
                     <li class="halve">1/2</li>
                     <li class="multiple">2X</li>
                     <li class="all">MAX</li>
@@ -46,11 +56,11 @@
             <div class="odds">
                 <dl>
                     <dt>ROLL UNDER TO WIN</dt>
-                    <dd><span class="setWin">68</span><span><img src="images/down.png" width="14" height="16"></span></dd>
+                    <dd><span class="setWin" id='rollUnder'>68</span><span><img src="images/down.png" width="14" height="16"></span></dd>
                 </dl>
                 <dl>
                     <dt>PAYOUT</dt>
-                    <dd><span class="getOdds">0</span><span>X</span></dd>
+                    <dd><span class="getOdds" id='payout'>0</span><span>X</span></dd>
                 </dl>
                 <dl>
                     <dt>WIN CHANCE</dt>
@@ -77,18 +87,24 @@
                 <button>Login</button>
             </div>
             <div class="rollButton">
+                <ul class="profitDetail">
+                    <li class="profitBalance">Profit Details</li>
+                    <li class="profitBalance">0</li>
+                    <li>seele</li>
+                </ul>
                 <button>Roll</button>
-                <ul>
+                <ul class="accountDetail">
                     <li class="accountBalance">0</li>
                     <li>seele</li>
                 </ul>
             </div>
+            <span class="registerMoneyIndex">The top 10 registered users can get 0.05seele per day！</span>
         </div>
         <div class="gameList">
             <div id="tab">
                 <ul>
-                    <li><a href="#tabs-1" title="ALL BETS">ALL BETS</a></li>
-                    <li><a href="#tabs-2" title="MY BETS">MY BETS</a></li>
+                    <li><a href="#tabs-1" title="ALL BETS">ALL BETS <span>(</span><span class="all-number">1200</span><span>,</span><span class="all-individual">86</span><span>%)</span></a></li>
+                    <li><a href="#tabs-2" title="MY BETS">MY BETS <span>(</span><span class="my-number">10</span><span>,</span><span class="my-individual">66</span><span>%)</span></a></li>
                 </ul>
                 <div id="tabs_container">
                     <div id="tabs-1">
@@ -138,15 +154,19 @@
             </ul>
             <div id="tabs_container" class="loginTab_container">
                 <form id="loginValidate">
-                <div id="loginTab-1">
-                    <ul>
-                        <li><input type="text" name="username" placeholder="Please select documents for public holidays." id="username"></li>
-                        <li><input type="password" name="private" placeholder="Please choose private holiday documents." id="private"></li>
-                        <!-- <li><input type="password" name="password" placeholder="Password" id="password"></li> -->
-                    </ul>
-                    <button type="button">Login</button>
-                    <p>Please follow this <a onclick="window.location = 'https://seeleteam.github.io/seele-doc/docs/How-To-Create-An-Account.html'" target="_blank">tutorial</a> to create an account if you don't have</p>
-                </div>
+                    <div id="loginTab-1">
+                        <ul>
+                            <li><input type="text" name="username" placeholder="Please select documents for public holidays."
+                                    id="username"></li>
+                            <li><input type="password" name="private" placeholder="Please choose private holiday documents."
+                                    id="private"></li>
+                            <!-- <li><input type="password" name="password" placeholder="Password" id="password"></li> -->
+                        </ul>
+                        <button type="button" class="loginShow">Login</button>
+                        <button type="button" class="registerShow">Register</button>
+                        <p>Please follow this <a onclick="window.location = 'https://seeleteam.github.io/seele-doc/docs/How-To-Create-An-Account.html'"
+                                target="_blank">tutorial</a> to create an account if you don't have</p>
+                    </div>
                 </form>
                 <!-- <div id="loginTab-2">
                     <ul>
@@ -159,6 +179,19 @@
                 </div> -->
             </div>
         </div>
+    </div>
+    <div class="register">
+        <div class="close"><img src="images/close.png"></div>
+        <div class="loginLogo"><img src="images/loginLogo.png" width="90" height="90"></div>
+        <h1>&nbsp;&nbsp;Welcome Back！</h1>
+        <span class="successRegister">Registered Successfully</span>
+        <span class="registerMoney">The top 10 registered users can get 0.05seele per day！</span>
+        <ul>
+            <li><span>Public Key</span><span class="register-public">0xd3ee9ab572ed74f0b837ad9ea86f85e30e1dd6d1</span></li>
+            <li><span>Private Key</span><span class="register-private">0xf1f3a35c187e360b7a8b795270e382bced7b6b8eaf4ac2826aa81e5d7b61ef48</span></li>
+        </ul>
+        <button type="button">Login</button>
+        <span class="toLogin">Please copy and save your public and private keys for later login！</span>
     </div>
     <div class="transaction">
         <span class="close"><img src="images/close.png"></span>
@@ -209,27 +242,39 @@
         <span class="close"><img src="images/close.png"></span>
         <h1>How to Play?</h1>
         <div class="playContent">
-            <p>What you are betting on is the result of a 100-faced dice. The result of the dice is limited to 1-100. The result of the dice needs to be lower than the number you choose. If the result of the dice is lower than your number, you win! Example: The number that you choose is 61. When the result of the dice is less than 61 (1-60), you win. If the result is greater than or equal to 61 (61-100), you lose</p>
-            <p>1. Prepare your Seele account. Please follow <a onclick="window.location = 'https://seeleteam.github.io/seele-doc/docs/How-To-Create-An-Account.html'"  target="_blank">tutorial</a> to create an account if you don't have</p>
+            <p>What you are betting on is the result of a 100-faced dice. The result of the dice is limited to 1-100.
+                The result of the dice needs to be lower than the number you choose. If the result of the dice is lower
+                than your number, you win! Example: The number that you choose is 61. When the result of the dice is
+                less than 61 (1-60), you win. If the result is greater than or equal to 61 (61-100), you lose</p>
+            <p>1. Prepare your Seele account. Please follow <a onclick="window.location = 'https://seeleteam.github.io/seele-doc/docs/How-To-Create-An-Account.html'"
+                    target="_blank">tutorial</a> to create an account if you don't have</p>
             <p>2. Press the login button to login with public and private key</p>
             <p>3. Select your bet amount, this is the amount of Seele you want to bet</p>
             <p>4. Slide the slider to change your chance of winning by guessing the upper limit of the dice number</p>
             <p>5. Click "Roll" to bet. Click “Accept” to confirm, and the bet is successful</p>
             <p>6. If the dice number rolled is lower than dice number you guess, you win and gets the payout</p>
-            <p>7. If you receive a notification that the transaction has failed, please check if you have enough Seele to make the bet</p>
-            <p>You can check your Seele balance next to the Roll button. The table below the slider bar shows the recent game status and your bet details for all players worldwide.</p>
-            <p>** As the game is run on the Seele Smart Contract, it is proved to be fair and cannot be cheated. By our unique Encryption technology, the result of rolling will not be changed by any means.</p>
+            <p>7. If you receive a notification that the transaction has failed, please check if you have enough Seele
+                to make the bet</p>
+            <p>You can check your Seele balance next to the Roll button. The table below the slider bar shows the
+                recent game status and your bet details for all players worldwide.</p>
+            <p>** As the game is run on the Seele Smart Contract, it is proved to be fair and cannot be cheated. By our
+                unique Encryption technology, the result of rolling will not be changed by any means.</p>
         </div>
     </div>
     <div class="dask"></div>
     <div class="result"></div>
+    <div class="result-register">
+        <p>Are you sure to register again?</p>
+        <button class="result-cancel">Cancel</button>
+        <button class="result-ok">OK</button>
+    </div>
+    <div class="getAllBetsVal"></div>
 </body>
 <script src="js/jQuery.js"></script>
 <script src="js/aes.js"></script>
 <script src="js/tab.js"></script>
 <script src="js/jquery.validate.js"></script>
-<script src="js/dice.js"></script>
-<script src="js/seele.js"></script>
+<script src="js/dice2.js"></script>
 <script src="js/seele-dice.js"></script>
 
 </html>
