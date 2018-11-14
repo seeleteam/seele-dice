@@ -57,7 +57,7 @@ func Test_time(t *testing.T) {
 
 	// UTC
 	// tm2, _ := time.Parse("2006-01-02 15:04:05", "2018-11-13 13:26:48")
-	toBeCharge := "2018-11-11 13:26:48"
+	toBeCharge := "2018-11-11 00:00:00"
 	timeLayout := "2006-01-02 15:04:05"
 	loc, _ := time.LoadLocation("Local")
 	tm2, _ := time.ParseInLocation(timeLayout, toBeCharge, loc)
