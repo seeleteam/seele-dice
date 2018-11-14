@@ -4,7 +4,7 @@ contract SeeleDice{
     uint8 constant MODULO = 100;
     
     // register
-    uint256 internal timestamp = 1541914008;
+    uint256 internal timestamp = 1541865600;
     uint8 public registrations = 10;
     uint256 constant REGISTRATION_GIFT = 5000000; // 0.05 Seele
     mapping(uint256 => mapping(address => bool)) registrants;
@@ -19,7 +19,7 @@ contract SeeleDice{
 
     // Each bet is deducted 1% in favour of the house, but no less than some minimum.
     uint8 constant HOUSE_EDGE_PERCENT = 1;
-    uint constant HOUSE_EDGE_MINIMUM_AMOUNT = 1000000;     // 0.01 Seele
+    uint constant HOUSE_EDGE_MINIMUM_AMOUNT = 500000;     // 0.005 Seele
 
     // EVM BLOCKHASH opcode can query no further than 256 blocks into the
     // past. Given that settleBet uses block hash of placeBet as one of

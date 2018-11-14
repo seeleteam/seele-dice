@@ -125,6 +125,7 @@ http.createServer(function (req, res) {
 
     req.on('end', function () {
         console.log("You've sent:", data, 'by', req.url);
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.writeHead(200, {'Content-Type' : 'application/json'})
         try{
             content = JSON.parse(data)
