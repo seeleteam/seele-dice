@@ -1,6 +1,6 @@
 'use strict'
 const seelejs = require('seele.js')
-const randservice = require('../rand/rand')
+const randClient = require('../rand/randClient')
 const BigNumber = require('bignumber.js');
 // const fs = require('fs')
 // SeeleDice2ABI is the input ABI used to generate the binding from.
@@ -133,7 +133,7 @@ class Dice2{
     }
 
     async PlaceBet(keypair, args){
-        let rand = randservice.GetRand(), self = this
+        let rand = await randClient.GetRand(), self = this
         let [payload, nonce] = await Promise.all([
             client.generatePayload(self.SeeleDiceABI, 'placeBet', [args.RollUnder.toString(), rand.commit, rand.r, rand.s, rand.v]),
             client.getAccountNonce(keypair.PublicKey),
@@ -157,37 +157,7 @@ class Dice2{
             return {'commit' : rand.commit, 'txHash' : tx.Hash}
         }
 
-        Promise.resolve(result)
-    }
-
-    async SettleBet(commit, txHash){
-        let reveal = randservice.bets.get(commit), self = this
-        let betTx = await this.filterTxByTxHash(txHash)
-        // console.log(JSON.stringify(betTx))
-        let [payload, nonce] = await Promise.all([
-            client.generatePayload(self.SeeleDiceABI, 'settleBet', [reveal, betTx.blockHash]),
-            client.getAccountNonce(randservice.publickey),
-        ])
-
-        let rawTx = {
-            "From" : randservice.publickey,
-            "To" : self.ContractAddress,
-            "Amount" : 0,
-            "AccountNonce" : nonce,
-            "GasPrice": 1,
-            "GasLimit": 3000000,
-            "Timestamp":0,
-            "Payload": payload
-        }
-        let tx = await client.generateTx(randservice.privatekey, rawTx)
-        // console.log(JSON.stringify(tx))
-
-        let result = await client.addTx(tx)
-        if (result){
-            return tx.Hash
-        }
-
-        Promise.resolve(result)
+        throw new Error('add tx result is: ' + result)
     }
 
     async GetReceipt(txHash) {
@@ -195,7 +165,7 @@ class Dice2{
         let receipt = await client.getReceiptByTxHash(txHash, this.SeeleDiceABI)
         // console.log(receipt)
         if (receipt.failed){
-            Promise.reject(receipt.result)
+            throw new Error(receipt)
         }
 
         let log, payout
@@ -234,10 +204,15 @@ class Dice2{
 
         let betData = await this.PlaceBet(keypair, args)
         // console.log("PlaceBet success!")
-        let settleTxHash = await this.SettleBet(betData.commit, betData.txHash)
+        // console.log("betData:", betData)
+        let settleData = await randClient.SettleBet(betData)
         // console.log("SettleBet success!")
-        console.log({'placeTxHash':betData.txHash, 'settleTxHash' : settleTxHash})
-        return this.GetReceipt(settleTxHash)
+        // console.log({'placeTxHash':betData.txHash, 'settleTxHash' : settleTxHash})
+        return this.GetReceipt(settleData.settleTxHash)
+    }
+
+    Register(){
+        return randClient.Register()
     }
 
     filterBlockTx(callbackFunction){
@@ -300,37 +275,6 @@ class Dice2{
                 Promise.reject(err1)
             }
         })
-    }
-
-    async Register(){
-        let keypair = client.wallet.createbyshard(1)
-        if (this.GetRegistrations() > 0){
-            let [payload, nonce] = await Promise.all([
-                client.generatePayload(this.SeeleDiceABI, 'register', [keypair.publickey]),
-                client.getAccountNonce(randservice.publickey),
-            ])
-            
-            let rawTx = {
-                "From" : randservice.publickey,
-                "To" : this.ContractAddress,
-                "Amount" : 0,
-                "AccountNonce" : nonce,
-                "GasPrice": 1,
-                "GasLimit": 3000000,
-                "Timestamp":0,
-                "Payload": payload
-            }
-            let tx = await client.generateTx(randservice.privatekey, rawTx)
-            let result = await client.addTx(tx)
-            if (result){
-                keypair.isReceivedGift = true
-                return keypair
-            }
-
-            Promise.resolve(result)
-        }
-
-        return keypair
     }
 }
 

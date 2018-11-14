@@ -74,7 +74,7 @@ Entity.prototype.encode = function encode(data, enc, /* internal */ reporter) {
   return this._getEncoder(enc).encode(data, reporter);
 };
 
-},{"../asn1":2,"inherits":106,"vm":174}],4:[function(require,module,exports){
+},{"../asn1":2,"inherits":106,"vm":172}],4:[function(require,module,exports){
 var inherits = require('inherits');
 var Reporter = require('../base').Reporter;
 var Buffer = require('buffer').Buffer;
@@ -24077,7 +24077,7 @@ http.METHODS = [
 	'UNSUBSCRIBE'
 ]
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/request":164,"./lib/response":165,"builtin-status-codes":53,"url":169,"xtend":175}],163:[function(require,module,exports){
+},{"./lib/request":164,"./lib/response":165,"builtin-status-codes":53,"url":169,"xtend":173}],163:[function(require,module,exports){
 (function (global){
 exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
 
@@ -25942,10 +25942,6 @@ function config (name) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],172:[function(require,module,exports){
-arguments[4][18][0].apply(exports,arguments)
-},{"dup":18}],173:[function(require,module,exports){
-arguments[4][19][0].apply(exports,arguments)
-},{"./support/isBuffer":172,"_process":125,"dup":19,"inherits":106}],174:[function(require,module,exports){
 var indexOf = function (xs, item) {
     if (xs.indexOf) return xs.indexOf(item);
     else for (var i = 0; i < xs.length; i++) {
@@ -26096,7 +26092,7 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{}],175:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -26117,7 +26113,7 @@ function extend() {
     return target
 }
 
-},{}],176:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 ;(function (globalObject) {
   'use strict';
 
@@ -28978,7 +28974,7 @@ function extend() {
   }
 })(this);
 
-},{}],177:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 // Reference https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki
 // Format: 0x30 [total-length] 0x02 [R-length] [R] 0x02 [S-length] [S]
 // NOTE: SIGHASH byte ignored AND restricted, truncate before use
@@ -29093,7 +29089,7 @@ module.exports = {
   encode: encode
 }
 
-},{"safe-buffer":224}],178:[function(require,module,exports){
+},{"safe-buffer":222}],176:[function(require,module,exports){
 (function (module, exports) {
   'use strict';
 
@@ -32522,7 +32518,7 @@ module.exports = {
   };
 })(typeof module === 'undefined' || module, this);
 
-},{"buffer":23}],179:[function(require,module,exports){
+},{"buffer":23}],177:[function(require,module,exports){
 var r;
 
 module.exports = function rand(len) {
@@ -32589,7 +32585,7 @@ if (typeof self === 'object') {
   }
 }
 
-},{"crypto":23}],180:[function(require,module,exports){
+},{"crypto":23}],178:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
 var StringDecoder = require('string_decoder').StringDecoder
@@ -32690,7 +32686,7 @@ CipherBase.prototype._toString = function (value, enc, fin) {
 
 module.exports = CipherBase
 
-},{"inherits":212,"safe-buffer":224,"stream":161,"string_decoder":166}],181:[function(require,module,exports){
+},{"inherits":210,"safe-buffer":222,"stream":161,"string_decoder":166}],179:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var MD5 = require('md5.js')
@@ -32722,7 +32718,7 @@ module.exports = function createHash (alg) {
   return new Hash(sha(alg))
 }
 
-},{"cipher-base":180,"inherits":212,"md5.js":219,"ripemd160":222,"sha.js":240}],182:[function(require,module,exports){
+},{"cipher-base":178,"inherits":210,"md5.js":217,"ripemd160":220,"sha.js":238}],180:[function(require,module,exports){
 'use strict';
 
 var elliptic = exports;
@@ -32737,7 +32733,7 @@ elliptic.curves = require('./elliptic/curves');
 elliptic.ec = require('./elliptic/ec');
 elliptic.eddsa = require('./elliptic/eddsa');
 
-},{"../package.json":197,"./elliptic/curve":185,"./elliptic/curves":188,"./elliptic/ec":189,"./elliptic/eddsa":192,"./elliptic/utils":196,"brorand":179}],183:[function(require,module,exports){
+},{"../package.json":195,"./elliptic/curve":183,"./elliptic/curves":186,"./elliptic/ec":187,"./elliptic/eddsa":190,"./elliptic/utils":194,"brorand":177}],181:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -33114,7 +33110,7 @@ BasePoint.prototype.dblp = function dblp(k) {
   return r;
 };
 
-},{"../../elliptic":182,"bn.js":178}],184:[function(require,module,exports){
+},{"../../elliptic":180,"bn.js":176}],182:[function(require,module,exports){
 'use strict';
 
 var curve = require('../curve');
@@ -33549,7 +33545,7 @@ Point.prototype.eqXToP = function eqXToP(x) {
 Point.prototype.toP = Point.prototype.normalize;
 Point.prototype.mixedAdd = Point.prototype.add;
 
-},{"../../elliptic":182,"../curve":185,"bn.js":178,"inherits":212}],185:[function(require,module,exports){
+},{"../../elliptic":180,"../curve":183,"bn.js":176,"inherits":210}],183:[function(require,module,exports){
 'use strict';
 
 var curve = exports;
@@ -33559,7 +33555,7 @@ curve.short = require('./short');
 curve.mont = require('./mont');
 curve.edwards = require('./edwards');
 
-},{"./base":183,"./edwards":184,"./mont":186,"./short":187}],186:[function(require,module,exports){
+},{"./base":181,"./edwards":182,"./mont":184,"./short":185}],184:[function(require,module,exports){
 'use strict';
 
 var curve = require('../curve');
@@ -33741,7 +33737,7 @@ Point.prototype.getX = function getX() {
   return this.x.fromRed();
 };
 
-},{"../../elliptic":182,"../curve":185,"bn.js":178,"inherits":212}],187:[function(require,module,exports){
+},{"../../elliptic":180,"../curve":183,"bn.js":176,"inherits":210}],185:[function(require,module,exports){
 'use strict';
 
 var curve = require('../curve');
@@ -34680,7 +34676,7 @@ JPoint.prototype.isInfinity = function isInfinity() {
   return this.z.cmpn(0) === 0;
 };
 
-},{"../../elliptic":182,"../curve":185,"bn.js":178,"inherits":212}],188:[function(require,module,exports){
+},{"../../elliptic":180,"../curve":183,"bn.js":176,"inherits":210}],186:[function(require,module,exports){
 'use strict';
 
 var curves = exports;
@@ -34887,7 +34883,7 @@ defineCurve('secp256k1', {
   ]
 });
 
-},{"../elliptic":182,"./precomputed/secp256k1":195,"hash.js":199}],189:[function(require,module,exports){
+},{"../elliptic":180,"./precomputed/secp256k1":193,"hash.js":197}],187:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -35129,7 +35125,7 @@ EC.prototype.getKeyRecoveryParam = function(e, signature, Q, enc) {
   throw new Error('Unable to find valid recovery factor');
 };
 
-},{"../../elliptic":182,"./key":190,"./signature":191,"bn.js":178,"hmac-drbg":211}],190:[function(require,module,exports){
+},{"../../elliptic":180,"./key":188,"./signature":189,"bn.js":176,"hmac-drbg":209}],188:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -35250,7 +35246,7 @@ KeyPair.prototype.inspect = function inspect() {
          ' pub: ' + (this.pub && this.pub.inspect()) + ' >';
 };
 
-},{"../../elliptic":182,"bn.js":178}],191:[function(require,module,exports){
+},{"../../elliptic":180,"bn.js":176}],189:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -35387,7 +35383,7 @@ Signature.prototype.toDER = function toDER(enc) {
   return utils.encode(res, enc);
 };
 
-},{"../../elliptic":182,"bn.js":178}],192:[function(require,module,exports){
+},{"../../elliptic":180,"bn.js":176}],190:[function(require,module,exports){
 'use strict';
 
 var hash = require('hash.js');
@@ -35507,7 +35503,7 @@ EDDSA.prototype.isPoint = function isPoint(val) {
   return val instanceof this.pointClass;
 };
 
-},{"../../elliptic":182,"./key":193,"./signature":194,"hash.js":199}],193:[function(require,module,exports){
+},{"../../elliptic":180,"./key":191,"./signature":192,"hash.js":197}],191:[function(require,module,exports){
 'use strict';
 
 var elliptic = require('../../elliptic');
@@ -35605,7 +35601,7 @@ KeyPair.prototype.getPublic = function getPublic(enc) {
 
 module.exports = KeyPair;
 
-},{"../../elliptic":182}],194:[function(require,module,exports){
+},{"../../elliptic":180}],192:[function(require,module,exports){
 'use strict';
 
 var BN = require('bn.js');
@@ -35673,7 +35669,7 @@ Signature.prototype.toHex = function toHex() {
 
 module.exports = Signature;
 
-},{"../../elliptic":182,"bn.js":178}],195:[function(require,module,exports){
+},{"../../elliptic":180,"bn.js":176}],193:[function(require,module,exports){
 module.exports = {
   doubles: {
     step: 4,
@@ -36455,7 +36451,7 @@ module.exports = {
   }
 };
 
-},{}],196:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 'use strict';
 
 var utils = exports;
@@ -36577,7 +36573,7 @@ function intFromLE(bytes) {
 utils.intFromLE = intFromLE;
 
 
-},{"bn.js":178,"minimalistic-assert":220,"minimalistic-crypto-utils":221}],197:[function(require,module,exports){
+},{"bn.js":176,"minimalistic-assert":218,"minimalistic-crypto-utils":219}],195:[function(require,module,exports){
 module.exports={
   "_from": "elliptic@^6.2.3",
   "_id": "elliptic@6.4.1",
@@ -36665,7 +36661,7 @@ module.exports={
   "version": "6.4.1"
 }
 
-},{}],198:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
@@ -36762,7 +36758,7 @@ HashBase.prototype._digest = function () {
 
 module.exports = HashBase
 
-},{"inherits":212,"safe-buffer":224,"stream":161}],199:[function(require,module,exports){
+},{"inherits":210,"safe-buffer":222,"stream":161}],197:[function(require,module,exports){
 var hash = exports;
 
 hash.utils = require('./hash/utils');
@@ -36779,7 +36775,7 @@ hash.sha384 = hash.sha.sha384;
 hash.sha512 = hash.sha.sha512;
 hash.ripemd160 = hash.ripemd.ripemd160;
 
-},{"./hash/common":200,"./hash/hmac":201,"./hash/ripemd":202,"./hash/sha":203,"./hash/utils":210}],200:[function(require,module,exports){
+},{"./hash/common":198,"./hash/hmac":199,"./hash/ripemd":200,"./hash/sha":201,"./hash/utils":208}],198:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -36873,7 +36869,7 @@ BlockHash.prototype._pad = function pad() {
   return res;
 };
 
-},{"./utils":210,"minimalistic-assert":220}],201:[function(require,module,exports){
+},{"./utils":208,"minimalistic-assert":218}],199:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -36922,7 +36918,7 @@ Hmac.prototype.digest = function digest(enc) {
   return this.outer.digest(enc);
 };
 
-},{"./utils":210,"minimalistic-assert":220}],202:[function(require,module,exports){
+},{"./utils":208,"minimalistic-assert":218}],200:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -37070,7 +37066,7 @@ var sh = [
   8, 5, 12, 9, 12, 5, 14, 6, 8, 13, 6, 5, 15, 13, 11, 11
 ];
 
-},{"./common":200,"./utils":210}],203:[function(require,module,exports){
+},{"./common":198,"./utils":208}],201:[function(require,module,exports){
 'use strict';
 
 exports.sha1 = require('./sha/1');
@@ -37079,7 +37075,7 @@ exports.sha256 = require('./sha/256');
 exports.sha384 = require('./sha/384');
 exports.sha512 = require('./sha/512');
 
-},{"./sha/1":204,"./sha/224":205,"./sha/256":206,"./sha/384":207,"./sha/512":208}],204:[function(require,module,exports){
+},{"./sha/1":202,"./sha/224":203,"./sha/256":204,"./sha/384":205,"./sha/512":206}],202:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -37155,7 +37151,7 @@ SHA1.prototype._digest = function digest(enc) {
     return utils.split32(this.h, 'big');
 };
 
-},{"../common":200,"../utils":210,"./common":209}],205:[function(require,module,exports){
+},{"../common":198,"../utils":208,"./common":207}],203:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -37187,7 +37183,7 @@ SHA224.prototype._digest = function digest(enc) {
 };
 
 
-},{"../utils":210,"./256":206}],206:[function(require,module,exports){
+},{"../utils":208,"./256":204}],204:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -37294,7 +37290,7 @@ SHA256.prototype._digest = function digest(enc) {
     return utils.split32(this.h, 'big');
 };
 
-},{"../common":200,"../utils":210,"./common":209,"minimalistic-assert":220}],207:[function(require,module,exports){
+},{"../common":198,"../utils":208,"./common":207,"minimalistic-assert":218}],205:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -37331,7 +37327,7 @@ SHA384.prototype._digest = function digest(enc) {
     return utils.split32(this.h.slice(0, 12), 'big');
 };
 
-},{"../utils":210,"./512":208}],208:[function(require,module,exports){
+},{"../utils":208,"./512":206}],206:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -37663,7 +37659,7 @@ function g1_512_lo(xh, xl) {
   return r;
 }
 
-},{"../common":200,"../utils":210,"minimalistic-assert":220}],209:[function(require,module,exports){
+},{"../common":198,"../utils":208,"minimalistic-assert":218}],207:[function(require,module,exports){
 'use strict';
 
 var utils = require('../utils');
@@ -37714,7 +37710,7 @@ function g1_256(x) {
 }
 exports.g1_256 = g1_256;
 
-},{"../utils":210}],210:[function(require,module,exports){
+},{"../utils":208}],208:[function(require,module,exports){
 'use strict';
 
 var assert = require('minimalistic-assert');
@@ -37969,7 +37965,7 @@ function shr64_lo(ah, al, num) {
 }
 exports.shr64_lo = shr64_lo;
 
-},{"inherits":212,"minimalistic-assert":220}],211:[function(require,module,exports){
+},{"inherits":210,"minimalistic-assert":218}],209:[function(require,module,exports){
 'use strict';
 
 var hash = require('hash.js');
@@ -38084,7 +38080,7 @@ HmacDRBG.prototype.generate = function generate(len, enc, add, addEnc) {
   return utils.encode(res, enc);
 };
 
-},{"hash.js":199,"minimalistic-assert":220,"minimalistic-crypto-utils":221}],212:[function(require,module,exports){
+},{"hash.js":197,"minimalistic-assert":218,"minimalistic-crypto-utils":219}],210:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -38109,11 +38105,11 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],213:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 'use strict'
 module.exports = require('./lib/api')(require('./lib/keccak'))
 
-},{"./lib/api":214,"./lib/keccak":218}],214:[function(require,module,exports){
+},{"./lib/api":212,"./lib/keccak":216}],212:[function(require,module,exports){
 'use strict'
 var createKeccak = require('./keccak')
 var createShake = require('./shake')
@@ -38143,7 +38139,7 @@ module.exports = function (KeccakState) {
   }
 }
 
-},{"./keccak":215,"./shake":216}],215:[function(require,module,exports){
+},{"./keccak":213,"./shake":214}],213:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
@@ -38229,7 +38225,7 @@ module.exports = function (KeccakState) {
   return Keccak
 }
 
-},{"inherits":212,"safe-buffer":224,"stream":161}],216:[function(require,module,exports){
+},{"inherits":210,"safe-buffer":222,"stream":161}],214:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var Transform = require('stream').Transform
@@ -38306,7 +38302,7 @@ module.exports = function (KeccakState) {
   return Shake
 }
 
-},{"inherits":212,"safe-buffer":224,"stream":161}],217:[function(require,module,exports){
+},{"inherits":210,"safe-buffer":222,"stream":161}],215:[function(require,module,exports){
 'use strict'
 var P1600_ROUND_CONSTANTS = [1, 0, 32898, 0, 32906, 2147483648, 2147516416, 2147483648, 32907, 0, 2147483649, 0, 2147516545, 2147483648, 32777, 2147483648, 138, 0, 136, 0, 2147516425, 0, 2147483658, 0, 2147516555, 0, 139, 2147483648, 32905, 2147483648, 32771, 2147483648, 32770, 2147483648, 128, 2147483648, 32778, 0, 2147483658, 2147483648, 2147516545, 2147483648, 32896, 2147483648, 2147483649, 0, 2147516424, 2147483648]
 
@@ -38495,7 +38491,7 @@ exports.p1600 = function (s) {
   }
 }
 
-},{}],218:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var keccakState = require('./keccak-state-unroll')
@@ -38567,7 +38563,7 @@ Keccak.prototype.copy = function (dest) {
 
 module.exports = Keccak
 
-},{"./keccak-state-unroll":217,"safe-buffer":224}],219:[function(require,module,exports){
+},{"./keccak-state-unroll":215,"safe-buffer":222}],217:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var HashBase = require('hash-base')
@@ -38715,7 +38711,7 @@ function fnI (a, b, c, d, m, k, s) {
 
 module.exports = MD5
 
-},{"hash-base":198,"inherits":212,"safe-buffer":224}],220:[function(require,module,exports){
+},{"hash-base":196,"inherits":210,"safe-buffer":222}],218:[function(require,module,exports){
 module.exports = assert;
 
 function assert(val, msg) {
@@ -38728,7 +38724,7 @@ assert.equal = function assertEqual(l, r, msg) {
     throw new Error(msg || ('Assertion failed: ' + l + ' != ' + r));
 };
 
-},{}],221:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 'use strict';
 
 var utils = exports;
@@ -38788,7 +38784,7 @@ utils.encode = function encode(arr, enc) {
     return arr;
 };
 
-},{}],222:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 'use strict'
 var Buffer = require('buffer').Buffer
 var inherits = require('inherits')
@@ -38953,7 +38949,7 @@ function fn5 (a, b, c, d, e, m, k, s) {
 
 module.exports = RIPEMD160
 
-},{"buffer":52,"hash-base":198,"inherits":212}],223:[function(require,module,exports){
+},{"buffer":52,"hash-base":196,"inherits":210}],221:[function(require,module,exports){
 const assert = require('assert')
 const Buffer = require('safe-buffer').Buffer
 /**
@@ -39185,7 +39181,7 @@ function toBuffer (v) {
   return v
 }
 
-},{"assert":16,"safe-buffer":224}],224:[function(require,module,exports){
+},{"assert":16,"safe-buffer":222}],222:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -39249,7 +39245,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":52}],225:[function(require,module,exports){
+},{"buffer":52}],223:[function(require,module,exports){
 (function (setImmediate){
 "use strict";
 
@@ -39707,11 +39703,11 @@ SafeBuffer.allocUnsafeSlow = function (size) {
 })(this);
 
 }).call(this,require("timers").setImmediate)
-},{"timers":167}],226:[function(require,module,exports){
+},{"timers":167}],224:[function(require,module,exports){
 'use strict'
 module.exports = require('./lib')(require('./lib/elliptic'))
 
-},{"./lib":230,"./lib/elliptic":229}],227:[function(require,module,exports){
+},{"./lib":228,"./lib/elliptic":227}],225:[function(require,module,exports){
 (function (Buffer){
 'use strict'
 var toString = Object.prototype.toString
@@ -39759,7 +39755,7 @@ exports.isNumberInInterval = function (number, x, y, message) {
 }
 
 }).call(this,{"isBuffer":require("../../../../../../../../AppData/Roaming/npm/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../AppData/Roaming/npm/node_modules/browserify/node_modules/is-buffer/index.js":107}],228:[function(require,module,exports){
+},{"../../../../../../../../AppData/Roaming/npm/node_modules/browserify/node_modules/is-buffer/index.js":107}],226:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var bip66 = require('bip66')
@@ -39954,7 +39950,7 @@ exports.signatureImportLax = function (sig) {
   return { r: r, s: s }
 }
 
-},{"bip66":177,"safe-buffer":224}],229:[function(require,module,exports){
+},{"bip66":175,"safe-buffer":222}],227:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var createHash = require('create-hash')
@@ -40216,7 +40212,7 @@ exports.ecdhUnsafe = function (publicKey, privateKey, compressed) {
   return Buffer.from(pair.pub.mul(scalar).encode(true, compressed))
 }
 
-},{"../messages.json":231,"bn.js":178,"create-hash":181,"elliptic":182,"safe-buffer":224}],230:[function(require,module,exports){
+},{"../messages.json":229,"bn.js":176,"create-hash":179,"elliptic":180,"safe-buffer":222}],228:[function(require,module,exports){
 'use strict'
 var assert = require('./assert')
 var der = require('./der')
@@ -40463,7 +40459,7 @@ module.exports = function (secp256k1) {
   }
 }
 
-},{"./assert":227,"./der":228,"./messages.json":231}],231:[function(require,module,exports){
+},{"./assert":225,"./der":226,"./messages.json":229}],229:[function(require,module,exports){
 module.exports={
   "COMPRESSED_TYPE_INVALID": "compressed should be a boolean",
   "EC_PRIVATE_KEY_TYPE_INVALID": "private key should be a Buffer",
@@ -40502,10 +40498,10 @@ module.exports={
   "TWEAK_LENGTH_INVALID": "tweak length is invalid"
 }
 
-},{}],232:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 'use strict'
 module.exports = require('./src/seele')
-},{"./src/seele":235}],233:[function(require,module,exports){
+},{"./src/seele":233}],231:[function(require,module,exports){
 
 var commands = module.exports.commands = {
   "seele" : [
@@ -40573,7 +40569,7 @@ module.exports.getNamespace = function(command) {
   }
 }
 
-},{}],234:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 class fileter {
     constructor(seele) {
         this.seele = seele;
@@ -40652,7 +40648,7 @@ class fileter {
 module.exports = fileter
 
 
-},{}],235:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 (function (global,Buffer){
 var api  = require('./commands')
  ,  transaction   = require('./tx')
@@ -40910,7 +40906,7 @@ if(typeof global !== 'undefined') {
 module.exports = SeeleWebProvider;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"./commands":233,"./filter":234,"./tx":236,"./wallet":238,"buffer":52,"xmlhttprequest":248}],236:[function(require,module,exports){
+},{"./commands":231,"./filter":232,"./tx":234,"./wallet":236,"buffer":52,"xmlhttprequest":246}],234:[function(require,module,exports){
 (function (Buffer){
 const createKeccakHash = require('keccak')
 const secp256k1 = require('secp256k1')
@@ -40981,7 +40977,7 @@ class Transaction {
 
 module.exports = Transaction
 }).call(this,require("buffer").Buffer)
-},{"buffer":52,"keccak":213,"rlp":223,"secp256k1":226}],237:[function(require,module,exports){
+},{"buffer":52,"keccak":211,"rlp":221,"secp256k1":224}],235:[function(require,module,exports){
 var BigNumber = require('bignumber.js');
 var utf8 = require('utf8');
 
@@ -41423,7 +41419,7 @@ module.exports = {
     isJson: isJson,
 };
 
-},{"bignumber.js":176,"utf8":247}],238:[function(require,module,exports){
+},{"bignumber.js":174,"utf8":245}],236:[function(require,module,exports){
 (function (Buffer){
 "use strict"
 const fs = require("fs")
@@ -41544,7 +41540,7 @@ function scryptPrivFile(self, keyfilePath, pwd){
 module.exports = Wallet
 
 }).call(this,require("buffer").Buffer)
-},{"./utils":237,"buffer":52,"crypto":61,"elliptic":182,"fs":1,"keccak":213,"path":118,"rlp":223,"scrypt-js":225,"secp256k1":226}],239:[function(require,module,exports){
+},{"./utils":235,"buffer":52,"crypto":61,"elliptic":180,"fs":1,"keccak":211,"path":118,"rlp":221,"scrypt-js":223,"secp256k1":224}],237:[function(require,module,exports){
 var Buffer = require('safe-buffer').Buffer
 
 // prototype class for hash functions
@@ -41627,7 +41623,7 @@ Hash.prototype._update = function () {
 
 module.exports = Hash
 
-},{"safe-buffer":224}],240:[function(require,module,exports){
+},{"safe-buffer":222}],238:[function(require,module,exports){
 var exports = module.exports = function SHA (algorithm) {
   algorithm = algorithm.toLowerCase()
 
@@ -41644,7 +41640,7 @@ exports.sha256 = require('./sha256')
 exports.sha384 = require('./sha384')
 exports.sha512 = require('./sha512')
 
-},{"./sha":241,"./sha1":242,"./sha224":243,"./sha256":244,"./sha384":245,"./sha512":246}],241:[function(require,module,exports){
+},{"./sha":239,"./sha1":240,"./sha224":241,"./sha256":242,"./sha384":243,"./sha512":244}],239:[function(require,module,exports){
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-0, as defined
  * in FIPS PUB 180-1
@@ -41740,7 +41736,7 @@ Sha.prototype._hash = function () {
 
 module.exports = Sha
 
-},{"./hash":239,"inherits":212,"safe-buffer":224}],242:[function(require,module,exports){
+},{"./hash":237,"inherits":210,"safe-buffer":222}],240:[function(require,module,exports){
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -41841,7 +41837,7 @@ Sha1.prototype._hash = function () {
 
 module.exports = Sha1
 
-},{"./hash":239,"inherits":212,"safe-buffer":224}],243:[function(require,module,exports){
+},{"./hash":237,"inherits":210,"safe-buffer":222}],241:[function(require,module,exports){
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -41896,7 +41892,7 @@ Sha224.prototype._hash = function () {
 
 module.exports = Sha224
 
-},{"./hash":239,"./sha256":244,"inherits":212,"safe-buffer":224}],244:[function(require,module,exports){
+},{"./hash":237,"./sha256":242,"inherits":210,"safe-buffer":222}],242:[function(require,module,exports){
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -42033,7 +42029,7 @@ Sha256.prototype._hash = function () {
 
 module.exports = Sha256
 
-},{"./hash":239,"inherits":212,"safe-buffer":224}],245:[function(require,module,exports){
+},{"./hash":237,"inherits":210,"safe-buffer":222}],243:[function(require,module,exports){
 var inherits = require('inherits')
 var SHA512 = require('./sha512')
 var Hash = require('./hash')
@@ -42092,7 +42088,7 @@ Sha384.prototype._hash = function () {
 
 module.exports = Sha384
 
-},{"./hash":239,"./sha512":246,"inherits":212,"safe-buffer":224}],246:[function(require,module,exports){
+},{"./hash":237,"./sha512":244,"inherits":210,"safe-buffer":222}],244:[function(require,module,exports){
 var inherits = require('inherits')
 var Hash = require('./hash')
 var Buffer = require('safe-buffer').Buffer
@@ -42354,7 +42350,7 @@ Sha512.prototype._hash = function () {
 
 module.exports = Sha512
 
-},{"./hash":239,"inherits":212,"safe-buffer":224}],247:[function(require,module,exports){
+},{"./hash":237,"inherits":210,"safe-buffer":222}],245:[function(require,module,exports){
 /*! https://mths.be/utf8js v3.0.0 by @mathias */
 ;(function(root) {
 
@@ -42558,7 +42554,7 @@ module.exports = Sha512
 
 }(typeof exports === 'undefined' ? this.utf8 = {} : exports));
 
-},{}],248:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 (function (process,Buffer){
 /**
  * Wrapper for built-in http.js to emulate the browser XMLHttpRequest object.
@@ -43182,73 +43178,76 @@ exports.XMLHttpRequest = function() {
 };
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":125,"buffer":52,"child_process":1,"fs":1,"http":162,"https":104,"url":169}],249:[function(require,module,exports){
-(function (Buffer){
-const createKeccakHash = require('keccak')
-const BigNumber = require('bignumber.js');
-const secp256k1 = require('secp256k1')
-const fs = require('fs')
-// reveal: 2360310757221256559
-// reveal.Bytes(): [32 193 130 32 211 180 205 111]
-// reveal.hex(): 0x20c18220d3b4cd6f
-// commit: [44 66 255 202 254 78 44 77 36 168 135 167 26 51 161 56 50 219 88 5 72 123 126 75 126 49 248 57 151 192 184 8] commit.length: 32
-// commit: 0x2c42ffcafe4e2c4d24a887a71a33a13832db5805487b7e4b7e31f83997c0b808
-// secKey: [182 15 223 204 193 184 61 72 59 15 124 100 238 68 168 75 239 153 133 35 222 108 104 209 45 185 74 63 185 23 132 44]
-// secKey: 0xb60fdfccc1b83d483b0f7c64ee44a84bef998523de6c68d12db94a3fb917842c
-// r: [93 155 150 10 253 110 15 253 148 245 174 54 45 18 13 0 27 231 132 117 243 180 133 36 218 1 31 20 121 82 70 57]
-// s: [96 81 69 21 155 245 26 193 225 250 12 208 106 34 88 212 88 26 97 60 158 245 235 152 125 50 176 219 62 80 245 55]
-// v: 1
-// r: 0x5d9b960afd6e0ffd94f5ae362d120d001be78475f3b48524da011f1479524639
-// s: 0x605145159bf51ac1e1fa0cd06a2258d4581a613c9ef5eb987d32b0db3e50f537
-// v: 1
-// PublicKey.hex 0x6d4fca4dc6c49ce8df30e7b2887a08cd4d5a1451
-class RandService{
+},{"_process":125,"buffer":52,"child_process":1,"fs":1,"http":162,"https":104,"url":169}],247:[function(require,module,exports){
+const http = require('http');
+
+class RandClient{
     constructor(){
-        let file = fs.readFileSync('croupier.keypair.cfg').toString()
-        let keypair = JSON.parse(file)
-        this.privatekey = keypair.PrivateKey
-        this.publickey = keypair.PublicKey
-        this.bets = new Map()
+        this.options = {
+            hostname : '127.0.0.1',
+            port : 8888,
+            method : 'POST',
+          }
     }
 
     GetRand(){
-        let privatekey = this.privatekey.substring(2)
-        // let reveal = new BigNumber("2360310757221256559")
-        // Math.random()*10*new Date().getMilliseconds()
-        let source = new BigNumber(Math.floor(Math.random()*100000000+1))
-        let timestamp = new BigNumber(Date.now())
-        let reveal = (source.multipliedBy(timestamp)).toString(16)
-        if (reveal.length % 2 != 0){
-            reveal = '0' + reveal
-        }
-        let c = Buffer.from(reveal, 'hex')
-        let commit = createKeccakHash('keccak256').update(c).digest()
-        let sig = secp256k1.sign(commit, Buffer.from(privatekey, 'hex'))
-        // save the bets
-        this.bets.set('0x' + commit.toString('hex'), '0x' + reveal)
-        return{
-            'commit' : '0x' + commit.toString('hex'),
-            'r' : '0x' + sig.signature.slice(0, 32).toString('hex'),
-            's' : '0x' + sig.signature.slice(32, 64).toString('hex'),
-            'v' : sig.recovery.toString()
-        }
+        return sendReq(this.options, JSON.stringify({
+            id:      new Date().getTime(),
+            method:  'GetRand'
+        }))
+    }
+
+    SettleBet(betData){
+        return sendReq(this.options, JSON.stringify({
+            id : new Date().getTime(),
+            method : 'SettleBet',
+            params : betData
+        }))
+    }
+
+    Register(){
+        return sendReq(this.options, JSON.stringify({
+            id : new Date().getTime(),
+            method : 'Register'
+        }))
     }
 }
 
-module.exports = new RandService()
-}).call(this,require("buffer").Buffer)
-},{"bignumber.js":176,"buffer":52,"fs":1,"keccak":213,"secp256k1":226}],"dice2.js":[function(require,module,exports){
-(function (setImmediate){
+function sendReq(opts, rpcData) {
+    return new Promise((resolve, reject) => {
+        const req = http.request(opts, function(res) {
+            var data = ''
+            res.setEncoding('utf8')
+            res.on('data', function(chunk) {
+                data += chunk
+            })
+            res.on('end', function() {
+                try {
+                    data = JSON.parse(data)
+                    return resolve(data)
+                } catch (err) {
+                    console.log(err)
+                    return reject(err)
+                }
+            })
+        })
+
+        req.on('error', reject)
+        req.end(rpcData)
+    })
+}
+
+module.exports = new RandClient()
+},{"http":162}],"dice2.js":[function(require,module,exports){
 'use strict'
 const seelejs = require('seele.js')
-const randservice = require('../rand/rand')
-const util = require('util');
-const setImmediatePromise = util.promisify(setImmediate);
+const randClient = require('../rand/randClient')
+const BigNumber = require('bignumber.js');
 // const fs = require('fs')
 // SeeleDice2ABI is the input ABI used to generate the binding from.
-const SeeleDice2ABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"croupier\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"rollUnder\",\"type\":\"uint8\"},{\"name\":\"commit\",\"type\":\"bytes32\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"},{\"name\":\"v\",\"type\":\"uint8\"}],\"name\":\"placeBet\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"maxProfit\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"withdrawAmount\",\"type\":\"uint256\"}],\"name\":\"withdrawFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"rollUnder\",\"type\":\"uint8\"}],\"name\":\"getDiceWinAmount\",\"outputs\":[{\"name\":\"winAmount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lockedInBets\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"reveal\",\"type\":\"bytes\"},{\"name\":\"blockHash\",\"type\":\"bytes32\"}],\"name\":\"settleBet\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCroupier\",\"type\":\"address\"}],\"name\":\"setCroupier\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_maxProfit\",\"type\":\"uint256\"}],\"name\":\"setMaxProfit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"c\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FailedPayment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Payment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"}]"
+const SeeleDice2ABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"registrant\",\"type\":\"address\"}],\"name\":\"register\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"registrations\",\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"croupier\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"rollUnder\",\"type\":\"uint8\"},{\"name\":\"commit\",\"type\":\"bytes32\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"},{\"name\":\"v\",\"type\":\"uint8\"}],\"name\":\"placeBet\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"maxProfit\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"withdrawAmount\",\"type\":\"uint256\"}],\"name\":\"withdrawFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"rollUnder\",\"type\":\"uint8\"}],\"name\":\"getDiceWinAmount\",\"outputs\":[{\"name\":\"winAmount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lockedInBets\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"reveal\",\"type\":\"bytes\"},{\"name\":\"blockHash\",\"type\":\"bytes32\"}],\"name\":\"settleBet\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCroupier\",\"type\":\"address\"}],\"name\":\"setCroupier\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_maxProfit\",\"type\":\"uint256\"}],\"name\":\"setMaxProfit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"c\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FailedPayment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Payment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"bet\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"bet\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FailedRegisterPayment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"RegisterPayment\",\"type\":\"event\"}]"
 // SeeleDice2Bin is the compiled bytecode used for deploying new contracts.
-const SeeleDice2Bin = `0x60806040526040516020806118ee8339810180604052810190808051906020019092919050505033600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156100a0573390505b80600460006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600560ff16606460ff1664e8d4a51000028115156100fb57fe5b04600081905550506117dc806101126000396000f3006080604052600436106100af576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680636b5c5f39146100b15780636bdebcc91461010857806377b7572c1461011f5780638da5cb5b14610179578063b539cd55146101d0578063c1075329146101fb578063cb67284d14610248578063df88126f14610296578063e7c25c35146102e5578063f8bb201c1461032e578063fbd668a914610371575b005b3480156100bd57600080fd5b506100c661039e565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011457600080fd5b5061011d6103c4565b005b610177600480360381019080803560ff169060200190929190803560001916906020019092919080356000191690602001909291908035600019169060200190929190803560ff1690602001909291905050506105de565b005b34801561018557600080fd5b5061018e610aee565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156101dc57600080fd5b506101e5610b14565b6040518082815260200191505060405180910390f35b34801561020757600080fd5b50610246600480360381019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190505050610b1a565b005b34801561025457600080fd5b5061028060048036038101908080359060200190929190803560ff169060200190929190505050610d11565b6040518082815260200191505060405180910390f35b3480156102a257600080fd5b506102ab610eb1565b60405180826fffffffffffffffffffffffffffffffff166fffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156102f157600080fd5b5061032c6004803603810190808035906020019082018035906020019190919293919293908035600019169060200190929190505050610ed3565b005b34801561033a57600080fd5b5061036f600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506114d4565b005b34801561037d57600080fd5b5061039c60048036038101908080359060200190929190505050611603565b005b600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156104af576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260268152602001807f4f6e6c794f776e6572206d6574686f64732063616c6c6564206279206e6f6e2d81526020017f6f776e65722e000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b6000600160009054906101000a90046fffffffffffffffffffffffffffffffff166fffffffffffffffffffffffffffffffff161415156105a3576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260488152602001807f416c6c20626574732073686f756c642062652070726f6365737365642028736581526020017f74746c6564206f7220726566756e64656429206265666f72652073656c662d6481526020017f657374727563742e00000000000000000000000000000000000000000000000081525060600191505060405180910390fd5b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b6000806000806002600089600019166000191681526020019081526020016000209350600084600001541415156106a3576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260218152602001807f4265742073686f756c6420626520696e20612027636c65616e2720737461746581526020017f2e0000000000000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b3492506298968083101580156106be575064e8d4a510008311155b1515610758576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602d8152602001807f4265742073686f756c642062652077697468696e2072616e67655b4d494e5f4281526020017f45542c204d41585f4245545d2e0000000000000000000000000000000000000081525060400191505060405180910390fd5b84915060018260ff1611151561076f57601b850191505b600188838989604051600081526020016040526040518085600019166000191681526020018460ff1660ff1681526020018360001916600019168152602001826000191660001916815260200194505050505060206040516020810390808403906000865af11580156107e6573d6000803e3d6000fd5b5050506020604051035173ffffffffffffffffffffffffffffffffffffffff16600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161415156108b4576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601d8152602001807f4543445341207369676e6174757265206973206e6f742076616c69642e00000081525060200191505060405180910390fd5b6108be838a610d11565b90506000548301811115151561093c576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601a8152602001807f6d617850726f666974206c696d69742076696f6c6174696f6e2e00000000000081525060200191505060405180910390fd5b80600160008282829054906101000a90046fffffffffffffffffffffffffffffffff160192506101000a8154816fffffffffffffffffffffffffffffffff02191690836fffffffffffffffffffffffffffffffff1602179055503073ffffffffffffffffffffffffffffffffffffffff1631600160009054906101000a90046fffffffffffffffffffffffffffffffff166fffffffffffffffffffffffffffffffff1611151515610a55576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f43616e6e6f74206166666f726420746f206c6f73652074686973206265742e0081525060200191505060405180910390fd5b828460000181905550888460010160006101000a81548160ff021916908360ff160217905550438460010160016101000a81548164ffffffffff021916908364ffffffffff160217905550338460010160066101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505050505050505050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60005481565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c05576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260268152602001807f4f6e6c794f776e6572206d6574686f64732063616c6c6564206279206e6f6e2d81526020017f6f776e65722e000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b3073ffffffffffffffffffffffffffffffffffffffff163181600160009054906101000a90046fffffffffffffffffffffffffffffffff166fffffffffffffffffffffffffffffffff160111151515610cc6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260118152602001807f4e6f7420656e6f7567682066756e64732e00000000000000000000000000000081525060200191505060405180910390fd5b8173ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f19350505050158015610d0c573d6000803e3d6000fd5b505050565b600080600560ff168360ff1610158015610d325750606060ff168360ff1611155b1515610dcc576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252603b8152602001807f57696e2070726f626162696c697479206f7574206f662072616e67655b4d494e81526020017f5f524f4c4c554e4445522c204d41585f524f4c4c554e4445525d2e000000000081525060400191505060405180910390fd5b6064600160ff168502811515610dde57fe5b049050620f4240811015610df357620f424090505b838111151515610e91576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001807f42657420646f65736e2774206576656e20636f76657220686f7573652065646781526020017f652e00000000000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b8260ff16606460ff1682860302811515610ea757fe5b0491505092915050565b600160009054906101000a90046fffffffffffffffffffffffffffffffff1681565b6000806000806000806000806000600460009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610fcc576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602c8152602001807f4f6e6c7943726f7570696572206d6574686f64732063616c6c6564206279206e81526020017f6f6e2d63726f75706965722e000000000000000000000000000000000000000081525060400191505060405180910390fd5b8b8b6040518083838082843782019150509250505060405180910390209850600260008a6000191660001916815260200190815260200160002097508760010160019054906101000a900464ffffffffff1664ffffffffff16965086431115156110c4576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260338152602001807f736574746c6542657420696e207468652073616d6520626c6f636b206173207081526020017f6c6163654265742c206f72206265666f72652e0000000000000000000000000081525060400191505060405180910390fd5b60fa60ff1687014311151515611168576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260228152602001807f426c6f636b686173682063616e2774206265207175657269656420627920455681526020017f4d2e00000000000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b896000191687406000191614151561117f57600080fd5b876000015495508760010160009054906101000a900460ff1694508760010160069054906101000a900473ffffffffffffffffffffffffffffffffffffffff169350600088600001819055508b8b8b604051602001808484808284378201915050826000191660001916815260200193505050506040516020818303038152906040526040518082805190602001908083835b6020831015156112375780518252602082019150602081019050602083039250611212565b6001836020036101000a038019825116818451168082178552505050505050905001915050604051809103902092506001606460ff16846001900481151561127b57fe5b060191506112898686610d11565b905080600160008282829054906101000a90046fffffffffffffffffffffffffffffffff160392506101000a8154816fffffffffffffffffffffffffffffffff02191690836fffffffffffffffffffffffffffffffff1602179055508460ff1682101561144f578373ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f193505050501561137d578373ffffffffffffffffffffffffffffffffffffffff167fd4f43975feb89f48dd30cabbb32011045be187d1e11c8ea9faa43efc35282519826040518082815260200191505060405180910390a26113cc565b8373ffffffffffffffffffffffffffffffffffffffff167fac464fe4d3a86b9121261ac0a01dd981bfe0777c7c9d9c8f4473d31a9c0f9d2d826040518082815260200191505060405180910390a25b7f4d1dda173b8c0fcc123ee7c5cb331e3731e5e2dcde5bcc763c40ce953f81f8bf84868484604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018460ff16815260200183815260200182815260200194505050505060405180910390a16114c6565b7f655dc916988b3746402901627e8485408dccba300f8396bcc750826ca9a92182848684604051808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018360ff168152602001828152602001935050505060405180910390a15b505050505050505050505050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156115bf576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260268152602001807f4f6e6c794f776e6572206d6574686f64732063616c6c6564206279206e6f6e2d81526020017f6f776e65722e000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b80600460006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156116ee576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260268152602001807f4f6e6c794f776e6572206d6574686f64732063616c6c6564206279206e6f6e2d81526020017f6f776e65722e000000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b600560ff16606460ff1664e8d4a510000281151561170857fe5b0481111515156117a6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260318152602001807f6d617850726f6669742073686f756c6420626520612073616e65206e756d626581526020017f725b302c204d41585f50524f4649545d2e00000000000000000000000000000081525060400191505060405180910390fd5b80600081905550505600a165627a7a72305820e75ff8b751ebf1515d57851495a3eb97986cfbf025f492dced6716837819b25200290000000000000000000000006d4fca4dc6c49ce8df30e7b2887a08cd4d5a1451`
+const SeeleDice2Bin = `0x60806040819052635be7bd986000556001805460ff1916600a1790556020806113b4833981016040525160068054600160a060020a03191633179055600160a060020a038116151561004e5750335b60078054600160a060020a031916600160a060020a0383161790556005655af3107a4000046003555061132e806100866000396000f3006080604052600436106100c45763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416634420e48681146100c657806346ec06e5146100e75780636b5c5f39146101125780636bdebcc91461014357806377b7572c146101585780638da5cb5b14610178578063b539cd551461018d578063c1075329146101b4578063cb67284d146101d8578063df88126f146101f6578063e7c25c3514610230578063f8bb201c14610254578063fbd668a914610275575b005b3480156100d257600080fd5b506100c4600160a060020a036004351661028d565b3480156100f357600080fd5b506100fc6105b7565b6040805160ff9092168252519081900360200190f35b34801561011e57600080fd5b506101276105c0565b60408051600160a060020a039092168252519081900360200190f35b34801561014f57600080fd5b506100c46105cf565b6100c460ff600435811690602435906044359060643590608435166106f7565b34801561018457600080fd5b50610127610a56565b34801561019957600080fd5b506101a2610a65565b60408051918252519081900360200190f35b3480156101c057600080fd5b506100c4600160a060020a0360043516602435610a6b565b3480156101e457600080fd5b506101a260043560ff60243516610b7b565b34801561020257600080fd5b5061020b610cc2565b604080516fffffffffffffffffffffffffffffffff9092168252519081900360200190f35b34801561023c57600080fd5b506100c4602460048035828101929101359035610cda565b34801561026057600080fd5b506100c4600160a060020a0360043516611142565b34801561028157600080fd5b506100c46004356111d5565b600754600160a060020a03163314610315576040805160e560020a62461bcd02815260206004820152602c60248201527f4f6e6c7943726f7570696572206d6574686f64732063616c6c6564206279206e60448201527f6f6e2d63726f75706965722e0000000000000000000000000000000000000000606482015290519081900360840190fd5b5b600054620151800142106103415760008054620151800190556001805460ff1916600a179055610316565b600154600060ff909116116103a0576040805160e560020a62461bcd02815260206004820152601b60248201527f526567697374726174696f6e206973206f76657220746f646179210000000000604482015290519081900360640190fd5b600080548152600260209081526040808320600160a060020a038516845290915290205460ff1615610442576040805160e560020a62461bcd02815260206004820152602260248201527f596f75206861766520616c7265616479207265676973746572656420746f646160448201527f792e000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b3031624c4b4011156104c4576040805160e560020a62461bcd02815260206004820152602d60248201527f43616e6e6f74206166666f726420746f206c6f7365207468697320726567697360448201527f74726174696f6e20676966742e00000000000000000000000000000000000000606482015290519081900360840190fd5b604051600160a060020a03821690600090624c4b409082818181858883f1935050505015610571576001805460001960ff808316919091011660ff19918216178255600080548152600260209081526040808320600160a060020a0387168085529083529281902080549094169094179092558251624c4b408152925190927f12d723a84cc4db40e9b2d984a6c142ca55fec1806603f0206da5a54cd38d338492908290030190a26105b4565b60408051624c4b4081529051600160a060020a038316917f42c6470b2367e9f44055af970002eb44cd0809998efd4d40c6b48dcea8a4461e919081900360200190a25b50565b60015460ff1681565b600754600160a060020a031681565b600654600160a060020a03163314610633576040805160e560020a62461bcd02815260206004820152602660248201526000805160206112e383398151915260448201526000805160206112c3833981519152606482015290519081900360840190fd5b6004546fffffffffffffffffffffffffffffffff16156106e9576040805160e560020a62461bcd02815260206004820152604860248201527f416c6c20626574732073686f756c642062652070726f6365737365642028736560448201527f74746c6564206f7220726566756e64656429206265666f72652073656c662d6460648201527f657374727563742e000000000000000000000000000000000000000000000000608482015290519081900360a40190fd5b600654600160a060020a0316ff5b600084815260056020526040812080549091908190819015610789576040805160e560020a62461bcd02815260206004820152602160248201527f4265742073686f756c6420626520696e20612027636c65616e2720737461746560448201527f2e00000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b349250620f424083101580156107a4575064e8d4a510008311155b1515610820576040805160e560020a62461bcd02815260206004820152602d60248201527f4265742073686f756c642062652077697468696e2072616e67655b4d494e5f4260448201527f45542c204d41585f4245545d2e00000000000000000000000000000000000000606482015290519081900360840190fd5b849150600160ff8316116108355784601b0191505b60408051600080825260208083018085528c905260ff861683850152606083018b9052608083018a9052925160019360a0808501949193601f19840193928390039091019190865af115801561088f573d6000803e3d6000fd5b5050604051601f190151600754600160a060020a039081169116149050610900576040805160e560020a62461bcd02815260206004820152601d60248201527f4543445341207369676e6174757265206973206e6f742076616c69642e000000604482015290519081900360640190fd5b61090a838a610b7b565b6003549091508301811115610969576040805160e560020a62461bcd02815260206004820152601a60248201527f6d617850726f666974206c696d69742076696f6c6174696f6e2e000000000000604482015290519081900360640190fd5b600480546fffffffffffffffffffffffffffffffff1981166fffffffffffffffffffffffffffffffff9182168401821617918290553031911611156109f8576040805160e560020a62461bcd02815260206004820152601f60248201527f43616e6e6f74206166666f726420746f206c6f73652074686973206265742e00604482015290519081900360640190fd5b50508155600101805460ff191660ff969096169590951765ffffffffff0019166101004364ffffffffff16021779ffffffffffffffffffffffffffffffffffffffff0000000000001916336601000000000000021790945550505050565b600654600160a060020a031681565b60035481565b600654600160a060020a03163314610acf576040805160e560020a62461bcd02815260206004820152602660248201526000805160206112e383398151915260448201526000805160206112c3833981519152606482015290519081900360840190fd5b60045430316fffffffffffffffffffffffffffffffff90911682011115610b40576040805160e560020a62461bcd02815260206004820152601160248201527f4e6f7420656e6f7567682066756e64732e000000000000000000000000000000604482015290519081900360640190fd5b604051600160a060020a0383169082156108fc029083906000818181858888f19350505050158015610b76573d6000803e3d6000fd5b505050565b600080600560ff841610801590610b965750606060ff841611155b1515610c12576040805160e560020a62461bcd02815260206004820152603b60248201527f57696e2070726f626162696c697479206f7574206f662072616e67655b4d494e60448201527f5f524f4c4c554e4445522c204d41585f524f4c4c554e4445525d2e0000000000606482015290519081900360840190fd5b5060648304620f4240811015610c285750620f42405b83811115610ca6576040805160e560020a62461bcd02815260206004820152602260248201527f42657420646f65736e2774206576656e20636f76657220686f7573652065646760448201527f652e000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b60ff8316818503606402811515610cb957fe5b04949350505050565b6004546fffffffffffffffffffffffffffffffff1681565b60075460009081908190819081908190819081908190600160a060020a03163314610d75576040805160e560020a62461bcd02815260206004820152602c60248201527f4f6e6c7943726f7570696572206d6574686f64732063616c6c6564206279206e60448201527f6f6e2d63726f75706965722e0000000000000000000000000000000000000000606482015290519081900360840190fd5b8b8b604051808383808284376040805191909301819003902060008181526005602052929092206001810154929e509c505064ffffffffff61010090910416995050504388109050610e37576040805160e560020a62461bcd02815260206004820152603360248201527f736574746c6542657420696e207468652073616d6520626c6f636b206173207060448201527f6c6163654265742c206f72206265666f72652e00000000000000000000000000606482015290519081900360840190fd5b60fa8701431115610eb8576040805160e560020a62461bcd02815260206004820152602260248201527f426c6f636b686173682063616e2774206265207175657269656420627920455660448201527f4d2e000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b86408a14610ec557600080fd5b8754600189015460008a5560405191975060ff8116965066010000000000009004600160a060020a031694508c908c908c90602001808484808284379091019283525050604080518083038152602092830191829052805190945090925082918401908083835b60208310610f4b5780518252601f199092019160209182019101610f2c565b5181516020939093036101000a60001901801990911692169190911790526040519201829003909120955060649250859150610f849050565b066001019150610f948686610b7b565b600480546fffffffffffffffffffffffffffffffff808216849003166fffffffffffffffffffffffffffffffff19909116179055905060ff85168210156110e157604051600160a060020a0385169082156108fc029083906000818181858888f193505050501561104357604080518281529051600160a060020a038616917fd4f43975feb89f48dd30cabbb32011045be187d1e11c8ea9faa43efc35282519919081900360200190a2611083565b604080518281529051600160a060020a038616917fac464fe4d3a86b9121261ac0a01dd981bfe0777c7c9d9c8f4473d31a9c0f9d2d919081900360200190a25b60408051600160a060020a038616815260ff87166020820152808201889052606081018490526080810183905290517f5bbb901653d2d40c1d3da70243e850189c93a6b8df13ea4c6358ecb43bcd2f9d9181900360a00190a1611134565b60408051600160a060020a038616815260ff871660208201528082018890526060810184905290517f1dd06eecd9186ada4c96d5c20a65902e11116d813ec37bf3d8162edfba011d459181900360800190a15b505050505050505050505050565b600654600160a060020a031633146111a6576040805160e560020a62461bcd02815260206004820152602660248201526000805160206112e383398151915260448201526000805160206112c3833981519152606482015290519081900360840190fd5b6007805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600654600160a060020a03163314611239576040805160e560020a62461bcd02815260206004820152602660248201526000805160206112e383398151915260448201526000805160206112c3833981519152606482015290519081900360840190fd5b6512309ce540008111156112bd576040805160e560020a62461bcd02815260206004820152603160248201527f6d617850726f6669742073686f756c6420626520612073616e65206e756d626560448201527f725b302c204d41585f50524f4649545d2e000000000000000000000000000000606482015290519081900360840190fd5b60035556006f776e65722e00000000000000000000000000000000000000000000000000004f6e6c794f776e6572206d6574686f64732063616c6c6564206279206e6f6e2da165627a7a7230582008da20529875772aff4e50bc39303291f3850682cc426990cea51b918d6b4da70029`
 
 let client
 if (typeof document !== 'undefined' && document.domain){
@@ -43269,9 +43268,8 @@ class Dice2{
      *     'lockedInBets' : client.sendSync("generatePayload", this.SeelediceABI, "lockedInBets", []),
      * }
      */
-
     constructor(){
-        this.ContractAddress = "0xbc46614da8e742da7c23df823802a55141e20002"
+        this.ContractAddress = "0x528a1f24ac97b124991ef88972187644d6a40012"
         this.SeeleDiceABI = SeeleDice2ABI
         this.SeeleDiceBin = SeeleDice2Bin
         this.Properties = {
@@ -43279,8 +43277,27 @@ class Dice2{
             owner: '0x8da5cb5b',
             maxProfit: '0xb539cd55',
             lockedInBets: '0xdf88126f',
-            destory : '0x6bdebcc9',
+            registrations: '0x46ec06e5',
         }
+        this.MODULO = 100
+        // Register
+        this.REGISTRATION_GIFT = 5000000; // 0.05 Seele
+        // There is minimum and maximum bet.
+        this.MIN_BET = new BigNumber('1000000') // 0.01 Seele
+        this.MAX_BET = new BigNumber('10000').multipliedBy(new BigNumber('100000000')) // 10000 Seele
+        // There is minimum and maximum rollUnder.
+        this.MIN_ROLLUNDER = 5
+        this.MAX_ROLLUNDER = 96
+        // Each bet is deducted 1% in favour of the house, but no less than some minimum.
+        this.HOUSE_EDGE_PERCENT = 1 // %1
+        this.HOUSE_EDGE_MINIMUM_AMOUNT = 1000000 // 0.01 Seele
+        // EVM BLOCKHASH opcode can query no further than 256 blocks into the
+        // past. Given that settleBet uses block hash of placeBet as one of
+        // complementary entropy sources, we cannot process bets older than this
+        // threshold.
+        this.BET_EXPIRATION_BLOCKS = 250
+        // Adjustable max profit for a single bet.
+        // uint constant MAX_PROFIT = MAX_BET * MODULO / MIN_ROLLUNDER;
     }
 
     GetCroupier(){
@@ -43323,6 +43340,16 @@ class Dice2{
         return parseInt(lockedInBets, 16)
     }
 
+    GetRegistrations(){
+        let data = client.sendSync("call", this.ContractAddress, this.Properties.registrations, -1)
+        if (data.failed){
+            throw new Error(data.result)
+        }
+
+        let registrations = data.result
+        return parseInt(registrations, 16)
+    }
+
     GetDiceWinAmount(bet, rollUnder){
         let payload = client.sendSync("generatePayload", this.SeeleDiceABI, "getDiceWinAmount", [bet.toString(), rollUnder.toString()])
         let data = client.sendSync("call", this.ContractAddress, payload, -1)
@@ -43334,13 +43361,25 @@ class Dice2{
         return parseInt(payout, 16)
     }
 
+    GetBalance(account) {
+        return client.sendSync('getBalance', account)
+    }
+
+    GetAccountNonce(account) {
+        return client.sendSync('getAccountNonce', account)
+    }
+
+    GetHeight() {
+        return client.sendSync('getBlockHeight')
+    }
+
     async PlaceBet(keypair, args){
-        let rand = randservice.GetRand(), self = this
+        let rand = await randClient.GetRand(), self = this
         let [payload, nonce] = await Promise.all([
             client.generatePayload(self.SeeleDiceABI, 'placeBet', [args.RollUnder.toString(), rand.commit, rand.r, rand.s, rand.v]),
             client.getAccountNonce(keypair.PublicKey),
         ])
-        
+
         let rawTx = {
             "From" : keypair.PublicKey,
             "To" : self.ContractAddress,
@@ -43359,113 +43398,121 @@ class Dice2{
             return {'commit' : rand.commit, 'txHash' : tx.Hash}
         }
 
-        Promise.resolve(result)
+        throw new Error('add tx result is: ' + result)
     }
 
-    async SettleBet(commit, txHash){
-        let reveal = randservice.bets.get(commit), self = this
-        // let filterTxByHashTxHash = (txHash) => {
-        //     return client.getTransactionByHash(txHash).then(tx =>{
-        //         if (tx.status !== 'block'){
-        //             return filterTxByHashTxHash(txHash)
-        //         }
-        //         return tx
-        //     }).catch(err => {
-        //         console.log("filterTxByHashTxHash err")
-        //         console.log(err)
-        //         try {
-        //             let errmsg = JSON.parse(err.message)
-        //             if (errmsg.includes('leveldb: not found')) {
-        //                 return filterTxByHashTxHash(txHash)
-        //             }
-        //         } catch (err1) {
-        //             console.log(err1)
-        //             Promise.reject(err1)
-        //         }
-        //     })
-        // }
-        let betTx = await this.filterTxByHashTxHash(txHash)
-        // console.log(JSON.stringify(betTx))
-        let [payload, nonce] = await Promise.all([
-            client.generatePayload(self.SeeleDiceABI, 'settleBet', [reveal, betTx.blockHash]),
-            client.getAccountNonce(randservice.publickey),
-        ])
-
-        let rawTx = {
-            "From" : randservice.publickey,
-            "To" : self.ContractAddress,
-            "Amount" : 0,
-            "AccountNonce" : nonce,
-            "GasPrice": 1,
-            "GasLimit": 3000000,
-            "Timestamp":0,
-            "Payload": payload
-        }
-        let tx = await client.generateTx(randservice.privatekey, rawTx)
-        // console.log(JSON.stringify(tx))
-
-        let result = await client.addTx(tx)
-        if (result){
-            return {'txHash':tx.Hash,'bet':betTx.transaction.amount}
-        }
-
-        Promise.resolve(result)
-    }
-
-    async GetReceipt(txHash, bet) {
-        let settleTx = await this.filterTxByHashTxHash(txHash)
+    async GetReceipt(txHash) {
+        let settleTx = await this.filterTxByTxHash(txHash)
         let receipt = await client.getReceiptByTxHash(txHash, this.SeeleDiceABI)
         // console.log(receipt)
         if (receipt.failed){
-            Promise.reject(receipt.result)
+            throw new Error(receipt)
         }
 
         let log, payout
-        // winAction
-        if (receipt.logs.length == 2){
+        if (receipt.logs.length == 2) { // winAction
             log = JSON.parse(receipt.logs[1])
-            payout = log.Args[3]
-        } else {
+            payout = log.Args[4]
+        } else if (receipt.logs.length == 1) { // lossAction
             log = JSON.parse(receipt.logs[0])
+        } else {
+            console.log('other tx function receipt')
+            return
         }
-        
+
         let block = await client.getBlock(settleTx.blockHash, -1, false)
         return {
             "Time":new Date(block.header.CreateTimestamp*1000),
             "Bettor":log.Args[0],
             "RollUnder":log.Args[1],
-            "Bet":bet,
-            "Roll":log.Args[2],
+            "Bet":log.Args[2],
+            "Roll":log.Args[3],
             "Payout":payout,
             "Event":log.Event,
         }
     }
 
+    // const args = {"RollUnder":50, "Payout":111, "Bet": 100000000, "GasPrice":2, "GasLimit":200000}
     async Roll(keypair, args){
+        // RollUnder in [MIN_ROLLUNDER, MAX_ROLLUNDER]
+        if (!args.RollUnder || args.RollUnder < this.MIN_ROLLUNDER || args.RollUnder > this.MAX_ROLLUNDER){
+            Promise.reject('RollUnder[' + args.RollUnder + '] may be out of range [' + this.MIN_ROLLUNDER + ', ' + this.MAX_ROLLUNDER + ']')
+        }
+        // Bet in [MIN_BET, MAX_BET]
+        if (!args.Bet || args.Bet < this.MIN_BET || args.Bet > this.MAX_BET){
+            Promise.reject('Bet[' + args.Bet + '] may be out of range [' + this.MIN_BET + ', ' + this.MAX_BET + ']')
+        }
+
         let betData = await this.PlaceBet(keypair, args)
         // console.log("PlaceBet success!")
-        let settleData = await this.SettleBet(betData.commit, betData.txHash)
+        // console.log("betData:", betData)
+        let settleData = await randClient.SettleBet(betData)
         // console.log("SettleBet success!")
-        return this.GetReceipt(settleData.txHash, settleData.bet)
+        // console.log({'placeTxHash':betData.txHash, 'settleTxHash' : settleTxHash})
+        return this.GetReceipt(settleData.settleTxHash)
     }
 
-    filterTxByHashTxHash(txHash){
-        let self = this
+    Register(){
+        return randClient.Register()
+    }
+
+    filterBlockTx(callbackFunction){
+        let height = this.GetHeight(), startTime = Date.now(), endTime
+        while (true){
+            do{
+                endTime = Date.now()
+            } while (startTime + 500 > endTime)
+            try{
+                let txs = client.filterBlockTx(height, this.ContractAddress, "2")
+                txs.forEach(tx => {
+                    callbackFunction(tx)
+                });
+                height += 1
+            } catch(err) {
+                try {
+                    let errmsg = JSON.stringify(err.message)
+                    if (errmsg.includes('leveldb: not found')) {
+                        startTime = Date.now()
+                        continue
+                    }
+                } catch (err1) {
+                    console.log("filterBlockTx err")
+                    throw err1
+                }
+            }
+        }
+    }
+
+    filterTxByTxHash(txHash){
+        let self = this, endTime
+        do{
+            if (!self.startTime){
+                self.startTime = Date.now()
+            }
+            // if (!self.timeout){
+            //     self.timeout = 2 * 60 * 1000 // 2 min
+            // }
+            endTime = Date.now()
+        } while (self.startTime + 500 > endTime)
         return client.getTransactionByHash(txHash).then(tx =>{
             if (tx.status !== 'block'){
-                return self.filterTxByHashTxHash(txHash)
+                self.startTime = Date.now()
+                return self.filterTxByTxHash(txHash)
             }
+
+            self.startTime = null
             return tx
         }).catch(err => {
-            console.log("filterTxByHashTxHash err")
-            console.log(err)
             try {
-                let errmsg = JSON.parse(err.message)
+                let errmsg = JSON.stringify(err.message)
                 if (errmsg.includes('leveldb: not found')) {
-                    return self.filterTxByHashTxHash(txHash)
+                    self.startTime = Date.now()
+                    return self.filterTxByTxHash(txHash)
                 }
             } catch (err1) {
+                console.log("filterTxByTxHash err")
                 console.log(err1)
+                self.startTime = null
                 Promise.reject(err1)
             }
         })
@@ -43474,5 +43521,4 @@ class Dice2{
 
 module.exports = new Dice2()
 
-}).call(this,require("timers").setImmediate)
-},{"../rand/rand":249,"seele.js":232,"timers":167,"util":173}]},{},[]);
+},{"../rand/randClient":247,"bignumber.js":174,"seele.js":230}]},{},[]);
