@@ -45,8 +45,7 @@ function sendReq(opts, rpcData) {
                     data = JSON.parse(data)
                     return resolve(data)
                 } catch (err) {
-                    console.log(err)
-                    return reject(err)
+                    return reject(err.message+' : '+data)
                 }
             })
         })
