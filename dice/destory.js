@@ -7,7 +7,7 @@ client.getAccountNonce("0x6d4fca4dc6c49ce8df30e7b2887a08cd4d5a1451").then(result
 	var accountNonce = result
 	var rawTx = {
 		"From" : "0x6d4fca4dc6c49ce8df30e7b2887a08cd4d5a1451",
-		"To" : "0xe4dd3e388b2420a452007ab711a0f694133e0012",
+		"To" : "0xb096116719e89b1c042e3797f2bc21296dcb0002",
 		"Amount" : 0,
 		"AccountNonce" : accountNonce,
 		"GasPrice":1,

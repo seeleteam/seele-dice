@@ -175,14 +175,14 @@ contract SeeleDice{
                 emit FailedPayment(gambler, winAmount);
             }
 
-            emit winAction(gambler, rollUnder, randNumber, winAmount, amount);
+            emit winAction(gambler, rollUnder, amount, randNumber, winAmount);
         } else {
-            emit lossAction(gambler, rollUnder, randNumber, amount);
+            emit lossAction(gambler, rollUnder, amount, randNumber);
         }
     }
 
     // Get the expected win amount after house edge is subtracted.
-    function getDiceWinAmount(uint amount, uint8 rollUnder) public pure returns (uint winAmount) {
+    function getDiceWinAmount(uint amount, uint8 rollUnder) public view returns (uint winAmount) {
         require (rollUnder >= MIN_ROLLUNDER && rollUnder <= MAX_ROLLUNDER, "Win probability out of range[MIN_ROLLUNDER, MAX_ROLLUNDER].");
 
         uint houseEdge = amount * HOUSE_EDGE_PERCENT / 100;
@@ -193,6 +193,9 @@ contract SeeleDice{
         
         require (houseEdge <= amount, "Bet doesn't even cover house edge.");
         winAmount = (amount - houseEdge) * MODULO / rollUnder;
+        if (winAmount > address(this).balance / 2){
+            winAmount = address(this).balance / 2;
+        }
     }
 
     function destory() external onlyOwner {

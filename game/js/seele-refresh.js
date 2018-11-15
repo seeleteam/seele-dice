@@ -1,4 +1,5 @@
-let maxPayoutOnWin, userBalance
+const REFRESH_INTERVAL_MILLISECONDS = 1000
+let userBalance
 $(function() {
     // $('#bets').on('change', function() {
     //     console.log('#bets changed')
@@ -34,7 +35,7 @@ $(function() {
     });
 
     dice.GetHeight().then(height => {
-        dice.filterBlockTx(height, '2', dice.ContractAddress, refreshAllBets)
+        dice.filterBlockTx(height, '2', dice.ContractAddress, REFRESH_INTERVAL_MILLISECONDS, refreshAllBets)
     }).catch(err => {console.log(err)})
 })
 
@@ -53,18 +54,17 @@ function refreshBalance() {
                 updateBetAndPayoutOnWin()
             }
         }).catch(err => {console.log(err)})
-    }, 1000)
+    }, REFRESH_INTERVAL_MILLISECONDS)
     
     // contract balance
     setInterval(function () {
         dice.GetBalance(dice.ContractAddress).then(data => {
             $('#poolAmount').text(seeleutil.fromFan(data.Balance))
-            maxPayoutOnWin = seeleutil.toBigNumber(data.Balance).div(2)
-            if (maxPayoutOnWin.lt(seeleutil.toFan($('.winSeele').text()))) {
+            if (seeleutil.toBigNumber(data.Balance).div(2).lt(seeleutil.toFan($('.winSeele').text()))) {
                 updateBetAndPayoutOnWin()
             }
         }).catch(err => {console.log(err)})
-    }, 1000)
+    }, REFRESH_INTERVAL_MILLISECONDS)
 }
 
 function updateBetAndPayoutOnWin() {
@@ -91,11 +91,8 @@ function updateBetAndPayoutOnWin() {
 
     // Payout On Win
     let winSeele = dice.GetDiceWinAmount(newBet, rollUnder)
-    if (maxPayoutOnWin && maxPayoutOnWin.lt(winSeele)) {
-        winSeele = maxPayoutOnWin
-    }
     $('.winSeele').text(seeleutil.fromFan(winSeele))
-    $('#payout').text(seeleutil.toBigNumber(winSeele).div(newBet))
+    $('#payout').text(seeleutil.toBigNumber(winSeele).div(newBet).toFixed(3))
 }
 
 // Get max user bet against contract balance and payout
