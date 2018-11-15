@@ -1,17 +1,5 @@
-const dice = require("../dice/dice")
+const dice = require("../dice/dice2")
 
-dice.FilterBlockTx(6066, function(data){
-    console.log("callback")
-    console.log(data)
-
-    if (data === "end"){
-        console.log("fileter over")
-    }
-
-    if (data instanceof Error){
-        console.log("callback Error")
-        return
-    }
-    
-    console.log("callback Success")
-})
+dice.GetHeight().then(height => {
+    dice.filterBlockTx(height, '2', dice.ContractAddress, console.log)
+}).catch(err => {console.log(err)})
