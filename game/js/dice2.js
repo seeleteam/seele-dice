@@ -40651,10 +40651,11 @@ module.exports = fileter
 
 },{}],233:[function(require,module,exports){
 (function (global,Buffer){
-var api  = require('./commands')
- ,  transaction   = require('./tx')
- ,  filter   = require('./filter')
- ,  Wallet   = require('./wallet')
+const api  = require('./commands')
+const transaction   = require('./tx')
+const filter   = require('./filter')
+const Wallet   = require('./wallet')
+const util   = require('./utils')
 
  // browser
 if (typeof window !== 'undefined' && window.XMLHttpRequest) {
@@ -40681,6 +40682,7 @@ class SeeleWebProvider {
     this.password = password;
     this.timeout = timeout || 30000;
     this.wallet = new Wallet()
+    this.util = util
   }
   
   /**
@@ -40907,7 +40909,7 @@ if(typeof global !== 'undefined') {
 module.exports = SeeleWebProvider;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"./commands":231,"./filter":232,"./tx":234,"./wallet":236,"buffer":52,"xmlhttprequest":246}],234:[function(require,module,exports){
+},{"./commands":231,"./filter":232,"./tx":234,"./utils":235,"./wallet":236,"buffer":52,"xmlhttprequest":246}],234:[function(require,module,exports){
 (function (Buffer){
 const createKeccakHash = require('keccak')
 const secp256k1 = require('secp256k1')
@@ -43243,7 +43245,6 @@ module.exports = new RandClient()
 'use strict'
 const seelejs = require('seele.js')
 const randClient = require('../rand/randClient')
-const BigNumber = require('bignumber.js');
 // const fs = require('fs')
 // SeeleDice2ABI is the input ABI used to generate the binding from.
 const SeeleDice2ABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"destory\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"rollUnder\",\"type\":\"uint8\"},{\"name\":\"commit\",\"type\":\"bytes32\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"},{\"name\":\"v\",\"type\":\"uint8\"}],\"name\":\"placeBet\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"registrant\",\"type\":\"address\"}],\"name\":\"register\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCroupier\",\"type\":\"address\"}],\"name\":\"setCroupier\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_maxProfit\",\"type\":\"uint256\"}],\"name\":\"setMaxProfit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"reveal\",\"type\":\"bytes\"},{\"name\":\"blockHash\",\"type\":\"bytes32\"}],\"name\":\"settleBet\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"beneficiary\",\"type\":\"address\"},{\"name\":\"withdrawAmount\",\"type\":\"uint256\"}],\"name\":\"withdrawFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"c\",\"type\":\"address\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FailedPayment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Payment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"bet\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"}],\"name\":\"lossAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"rollUnder\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"bet\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"randNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"name\":\"winValue\",\"type\":\"uint256\"}],\"name\":\"winAction\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FailedRegisterPayment\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"RegisterPayment\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[],\"name\":\"croupier\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"amount\",\"type\":\"uint256\"},{\"name\":\"rollUnder\",\"type\":\"uint8\"}],\"name\":\"getDiceWinAmount\",\"outputs\":[{\"name\":\"winAmount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lockedInBets\",\"outputs\":[{\"name\":\"\",\"type\":\"uint128\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"maxProfit\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"registrations\",\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]"
@@ -43256,6 +43257,7 @@ if (typeof document !== 'undefined' && document.domain && !document.domain.inclu
 } else{
     client = new seelejs('http://117.50.20.218:8037')
 }
+const util = client.util
 
 class Dice2{
     /** 
@@ -43284,14 +43286,14 @@ class Dice2{
         // Register
         this.REGISTRATION_GIFT = 5000000; // 0.05 Seele
         // There is minimum and maximum bet.
-        this.MIN_BET = new BigNumber('1000000') // 0.01 Seele
-        this.MAX_BET = new BigNumber('10000').multipliedBy(new BigNumber('100000000')) // 10000 Seele
+        this.MIN_BET = util.toBigNumber(1000000) // 0.01 Seele
+        this.MAX_BET = util.toBigNumber('10000').multipliedBy(util.toBigNumber('100000000')) // 10000 Seele
         // There is minimum and maximum rollUnder.
         this.MIN_ROLLUNDER = 5
         this.MAX_ROLLUNDER = 96
         // Each bet is deducted 1% in favour of the house, but no less than some minimum.
         this.HOUSE_EDGE_PERCENT = 1 // %1
-        this.HOUSE_EDGE_MINIMUM_AMOUNT = 500000 // 0.005 Seele
+        this.HOUSE_EDGE_MINIMUM_AMOUNT = util.toBigNumber(500000) // 0.005 Seele
         // EVM BLOCKHASH opcode can query no further than 256 blocks into the
         // past. Given that settleBet uses block hash of placeBet as one of
         // complementary entropy sources, we cannot process bets older than this
@@ -43409,16 +43411,17 @@ class Dice2{
         if (receipt.failed){
             throw new Error(receipt)
         }
-
+        if (!receipt.logs || receipt.logs.length > 2){
+            console.log('other tx function receipt')
+            return
+        }
+        
         let log, payout
         if (receipt.logs.length == 2) { // winAction
             log = JSON.parse(receipt.logs[1])
             payout = log.Args[4]
-        } else if (receipt.logs.length == 1) { // lossAction
+        } else { // lossAction
             log = JSON.parse(receipt.logs[0])
-        } else {
-            console.log('other tx function receipt')
-            return
         }
 
         let block = await client.getBlock(settleTx.blockHash, -1, false)
@@ -43457,31 +43460,39 @@ class Dice2{
         return randClient.Register()
     }
 
-    filterBlockTx(callbackFunction){
-        let height = this.GetHeight(), startTime = Date.now(), endTime
-        while (true){
-            do{
-                endTime = Date.now()
-            } while (startTime + 500 > endTime)
+    filterBlockTx(height, flag, address, callbackFunction){
+        let started = false
+        let stopID = setInterval(async ()=>{
+            if (started){
+                return
+            }
             try{
-                let txs = client.filterBlockTx(height, this.ContractAddress, "2")
-                txs.forEach(tx => {
-                    callbackFunction(tx)
+                started = true
+                let block = await client.getBlock("", height, false)
+                block.transactions.forEach(txHash => {
+                    client.getTransactionByHash(txHash).then(tx => {
+                        if (flag === "1" && tx.transaction.from === address) {
+                            callbackFunction(txHash);
+                        }
+        
+                        if (flag === "2" && tx.transaction.to === address) {
+                            callbackFunction(txHash);
+                        }
+                    }).catch(err => {console.log(err)})
                 });
                 height += 1
             } catch(err) {
-                try {
-                    let errmsg = JSON.stringify(err.message)
-                    if (errmsg.includes('leveldb: not found')) {
-                        startTime = Date.now()
-                        continue
-                    }
-                } catch (err1) {
-                    console.log("filterBlockTx err")
-                    throw err1
+                let errmsg = JSON.stringify(err.message)
+                if (errmsg.includes('leveldb: not found')) {
+                    return
                 }
+                console.log("filterBlockTx err:", err)
+                clearInterval(stopID)
+            } finally {
+                started = false
             }
-        }
+        }, 500)
+        return stopID
     }
 
     filterTxByTxHash(txHash){
@@ -43522,4 +43533,4 @@ class Dice2{
 
 module.exports = new Dice2()
 
-},{"../rand/randClient":247,"bignumber.js":174,"seele.js":230}]},{},[]);
+},{"../rand/randClient":247,"seele.js":230}]},{},[]);
