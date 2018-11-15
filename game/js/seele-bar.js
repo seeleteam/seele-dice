@@ -43,9 +43,7 @@ $(function(){
                 mask.style.width = barleft + 10 + 'px'
                 ptxt.style.left = barleft - 18 + 'px'
                 that.style.left = barleft + 'px'
-                // odds calculation
-                $('.getOdds').text(Number(100).division(currentVal).toFixed(3))
-                payoutOnWinChange()
+                updateBetAndPayoutOnWin()
             }
             ptxt.innerHTML = parseInt(barleft / (scroll.offsetWidth - bar.offsetWidth) * 100)
             // setWin
