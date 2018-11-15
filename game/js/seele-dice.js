@@ -99,7 +99,7 @@ function showBets(obj, data){
         $('.noData').hide()
         $('.noData').after(pushTr)
         usertimes = usertimes.plus(1)
-        userwin = data.Event == 'winAction' ? userwin.plus(seeleutil.fromFan(data.Payout)) : userwin.minus(seeleutil.fromFan(data.Bet))
+        userwin = data.Event == 'winAction' ? userwin.plus(seeleutil.fromFan(seeleutil.toBigNumber(data.Payout).minus(data.Bet))) : userwin.minus(seeleutil.fromFan(data.Bet))
         userwintimes = data.Event == 'winAction' ? userwintimes.plus(1) : userwintimes
         $('.my-number').text(usertimes)
         $('.my-individual').text(userwintimes.div(usertimes).times(100))
@@ -144,12 +144,16 @@ function reRollResult() {
       'GasPrice': Number(gasPrice),
       'GasLimit': Number(gasLimit)
     }
+    $('.result').show()
+    $('.dask').show()
+    $('.result').text('Loading results...')
     dice.Roll(keypair, args).then(data => {
-      $('.result').show()
-      $('.dask').show()
-      $('.result').text('Loading results...')
       showBets('My', data)
-    }).catch(err => {console.log(err)})
+    }).catch(err => {
+      console.log(err)
+      $('.result').hide()
+      $('.dask').hide()
+    })
 }
 
 // get file name

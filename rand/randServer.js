@@ -17,7 +17,8 @@ class RandService{
         let keypair = JSON.parse(file)
         this.privatekey = keypair.PrivateKey
         this.publickey = keypair.PublicKey
-        this.betsPath = 'bets.' + new Date().toLocaleDateString() + '.db'
+        let date = new Date()
+        this.betsPath = 'bets.' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+ '.db'
         if (!fs.existsSync(this.betsPath)) {
             this.bets = {}
             fs.createWriteStream(this.betsPath).end(JSON.stringify(this.bets))
