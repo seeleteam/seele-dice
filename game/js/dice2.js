@@ -43229,8 +43229,7 @@ function sendReq(opts, rpcData) {
                     data = JSON.parse(data)
                     return resolve(data)
                 } catch (err) {
-                    console.log(err)
-                    return reject(err)
+                    return reject(err.message+' : '+data)
                 }
             })
         })
@@ -43408,11 +43407,11 @@ class Dice2{
         let settleTx = await this.filterTxByTxHash(txHash)
         let receipt = await client.getReceiptByTxHash(txHash, this.SeeleDiceABI)
         // console.log(receipt)
-        if (receipt.failed){
-            throw new Error(receipt)
+        if (!receipt || receipt.failed){
+            throw new Error('an error occured in receipt: [' + JSON.stringify(receipt) + ']')
         }
         if (!receipt.logs || receipt.logs.length > 2){
-            console.log('other tx function receipt')
+            // console.log('other tx function receipt')
             return
         }
         

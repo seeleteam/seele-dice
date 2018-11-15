@@ -57,10 +57,14 @@ class RandService{
         }
         let betTx = await dice.filterTxByTxHash(txHash)
         // console.log(JSON.stringify(betTx))
-        let [payload, nonce] = await Promise.all([
+        let [receipt, payload, nonce] = await Promise.all([
+            client.getReceiptByTxHash(betTx.transaction.hash, this.SeeleDiceABI),
             client.generatePayload(dice.SeeleDiceABI, 'settleBet', [reveal, betTx.blockHash]),
             client.getAccountNonce(this.publickey),
         ])
+        if (!receipt || receipt.failed){
+            throw new Error('an error occured in place the bet receipt: [' + JSON.stringify(receipt) + ']')
+        }
 
         let rawTx = {
             "From" : this.publickey,
