@@ -3,14 +3,8 @@ const BigNumber = require('bignumber.js');
 const secp256k1 = require('secp256k1')
 const fs = require('fs')
 const dice = require("../dice/dice2")
-const seelejs = require('seele.js')
-let client
-if (typeof document !== 'undefined' && document.domain){
-    client = new seelejs(document.domain + '/seelens')
-} else{
-    client = new seelejs('http://117.50.20.218:8037')
-}
 
+let client = dice.client
 class RandService{
     constructor(){
         let file = fs.readFileSync('croupier.keypair.cfg').toString()

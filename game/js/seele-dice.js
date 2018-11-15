@@ -4,8 +4,8 @@ time:2018.10.11
 */
 const dice = require('dice2.js')
 const seeleutil = require('seele-util.js')
-
-let alltimes = seeleutil.toBigNumber(0), usertimes = alltimes, allwin = alltimes, userwin = alltimes, allwintimes = alltimes, userwintimes = alltimes
+const LOADING_SECONDS = 60
+let printResultID, resultTimeOutID
 $(document).ready(function ($) {
   // tab
   $('#tab').tabulous({
@@ -81,43 +81,6 @@ $(document).ready(function ($) {
   })
 })
 
-function showBets(obj, data){
-    let pushTr
-    if (data.Event == 'winAction') {
-        pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + seeleutil.fromFan(data.Bet) + ' Seele' + '</td>' + '<td>' + data.Roll + '</td>' + '<td style="color:#d3f709;">' + seeleutil.fromFan(data.Payout) + ' Seele' + '</td>' + '</tr>'
-    } else if (data.Event == 'lossAction') {
-        pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + seeleutil.fromFan(data.Bet)+ ' Seele' + '</td>' + '<td style="color:#f20765;">' + data.Roll + '</td>' + '<td>' + '</td>' + '</tr>'
-    }
-    if (obj == 'All'){ // AllBets
-        $('.dataError').hide()
-        $('.dataError').after(pushTr)
-        alltimes = alltimes.plus(1)
-        allwintimes = data.Event == 'winAction' ? allwintimes.plus(1) : allwintimes
-        $('.all-number').text(alltimes)
-        $('.all-individual').text(allwintimes.div(alltimes).times(100))
-    } else { // MyBets
-        $('.noData').hide()
-        $('.noData').after(pushTr)
-        usertimes = usertimes.plus(1)
-        userwin = data.Event == 'winAction' ? userwin.plus(seeleutil.fromFan(seeleutil.toBigNumber(data.Payout).minus(data.Bet))) : userwin.minus(seeleutil.fromFan(data.Bet))
-        userwintimes = data.Event == 'winAction' ? userwintimes.plus(1) : userwintimes
-        $('.my-number').text(usertimes)
-        $('.my-individual').text(userwintimes.div(usertimes).times(100))
-        $('.profitBalance').text(userwin)
-    }
-    var height = $('#tabs_container').height()
-    var trNumber = $('.showleft').find('tr')
-    if (trNumber.length < 3) {
-        height = height
-    } else {
-        var tableHeight = trNumber.length - 2
-        height = 80 + (42 * tableHeight)
-    }
-    $('#tabs_container').css('min-height', height + 'px')
-    $('.result').hide()
-    $('.dask').hide()
-}
-
 function reRollResult() {
     // get sessionStorage
     var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
@@ -144,16 +107,27 @@ function reRollResult() {
       'GasPrice': Number(gasPrice),
       'GasLimit': Number(gasLimit)
     }
-    $('.result').show()
-    $('.dask').show()
-    $('.result').text('Loading results...')
-    dice.Roll(keypair, args).then(data => {
-      showBets('My', data)
-    }).catch(err => {
-      console.log(err)
-      $('.result').hide()
-      $('.dask').hide()
-    })
+    // dice.Roll(keypair, args).then(data => {
+    //   showBets('My', data)
+    // }).catch(err => {
+    //   console.log(err)
+    //   $('.result').hide()
+    //   $('.dask').hide()
+    // })
+    dice.RollForQuick(keypair, args)
+    let count = LOADING_SECONDS
+    printResultID = setInterval(()=>{
+        $('.result').show()
+        $('.dask').show()
+        $('.result').text('Loading results(' + count + 's)...')
+        count -= 1
+    }, 1000)
+    resultTimeOutID = setTimeout(() => {
+        $('.result').hide()
+        $('.dask').hide()
+        clearInterval(printResultID)
+        clearTimeout(resultTimeOutID)
+    }, LOADING_SECONDS*1000)
 }
 
 // get file name

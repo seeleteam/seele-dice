@@ -18,14 +18,6 @@ $(function() {
         $('.login').show()
         $('.register').hide()
     })
-    $('.register button').click(function () {
-        var public = $('.register-public').text()
-        var private = $('.register-private').text()
-        $('#username').val(public)
-        $('#private').val(private)
-        $('.login').show()
-        $('.register').hide()
-    })
     
     // login close
     $('.close').click(function () {
@@ -69,33 +61,36 @@ $(function() {
 
     // User register
     $('.registerShow').click(function () {
-        let public = $('#username').val()
-        if (public.includes('0x')) {
-            $('.result-register').show()
-            $('.dask').show()
-            $('.register').hide()
-            $('.login').show()
-        } else {
-            $('.register').show()
-            $('.login').hide()
-        }
+        dice.Register().then(keypair => {
+            console.log(keypair)
+            if (keypair) {
+                $('.register-public').text(keypair.publickey)
+                $('.register-private').text(keypair.privatekey)
+                $('.register').show()
+                $('.login').hide()
+                if (keypair.isReceivedGift){
+                    $('.result').show()
+                    $('.dask').show()
+                    $('.result').text('Congratulations, '+ seeleutil.fromFan(dice.REGISTRATION_GIFT)+'seele will send this account in 1 minute, please pay attention to view')
+                }
+            }
+        })
     })
-    $('.result-cancel').click(function () {
-        $('.result-register').hide()
-        $('.dask').hide()
-    })
-    $('.result-ok').click(function () {
-        $('.register').show()
-        $('.login').hide()
-        $('.result-register').hide()
-        $('.dask').hide()
+
+    $('.register button').click(function () {
+        var public = $('.register-public').text()
+        var private = $('.register-private').text()
+        $('#username').val(public)
+        $('#private').val(private)
+        $('.login').show()
+        $('.register').hide()
     })
 
     // login variable
-  $('.loginHeadButton').show()
-  $('.loginButton').show()
-  $('.noData').show()
-  $('.dataError').show()
+    $('.loginHeadButton').show()
+    $('.loginButton').show()
+    $('.noData').show()
+    $('.dataError').show()
 })
 
 // 128-bit key

@@ -19,7 +19,7 @@ contract SeeleDice{
 
     // Each bet is deducted 1% in favour of the house, but no less than some minimum.
     uint8 constant HOUSE_EDGE_PERCENT = 1;
-    uint constant HOUSE_EDGE_MINIMUM_AMOUNT = 500000;     // 0.005 Seele
+    uint constant HOUSE_EDGE_MINIMUM_AMOUNT = 100000;     // 0.001 Seele
 
     // EVM BLOCKHASH opcode can query no further than 256 blocks into the
     // past. Given that settleBet uses block hash of placeBet as one of

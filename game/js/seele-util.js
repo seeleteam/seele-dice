@@ -3305,7 +3305,7 @@ var fromFan = function(number, unit) {
  *
  * @method toFan
  * @param {Number|String|BigNumber} number can be a number, number string or a HEX of a decimal
- * @param {String} unit the unit to convert from, default ether
+ * @param {String} unit the unit to convert from, default seele
  * @return {String|Object} When given a BigNumber object it returns one as well, otherwise a number
 */
 var toFan = function(number, unit) {
