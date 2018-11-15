@@ -3,7 +3,7 @@ const http = require('http');
 class RandClient{
     constructor(){
         this.options = {
-            hostname : '127.0.0.1',
+            hostname : '106.75.87.36',
             port : 8888,
             method : 'POST',
           }
@@ -33,6 +33,15 @@ class RandClient{
 }
 
 function sendReq(opts, rpcData) {
+    if (typeof document !== 'undefined' && document.domain){
+        if (document.domain.includes('seele')){
+            opts.hostname = document.domain + '/randns'
+        } else if (document.domain.includes('localhost') || document.domain.includes('127.0.0.1')){
+            opts.hostname = '127.0.0.1'
+        }
+    } else {
+        opts.hostname = '106.75.87.36'
+    }
     return new Promise((resolve, reject) => {
         const req = http.request(opts, function(res) {
             var data = ''

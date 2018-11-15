@@ -1,5 +1,6 @@
 const REFRESH_INTERVAL_MILLISECONDS = 1000
-let userBalance
+let userBalance, maxWinSeele
+let alltimes = seeleutil.toBigNumber(0), usertimes = alltimes, allwin = alltimes, userwin = alltimes, allwintimes = alltimes, userwintimes = alltimes
 $(function() {
     // $('#bets').on('change', function() {
     //     console.log('#bets changed')
@@ -60,7 +61,8 @@ function refreshBalance() {
     setInterval(function () {
         dice.GetBalance(dice.ContractAddress).then(data => {
             $('#poolAmount').text(seeleutil.fromFan(data.Balance))
-            if (seeleutil.toBigNumber(data.Balance).div(2).lt(seeleutil.toFan($('.winSeele').text()))) {
+            maxWinSeele = seeleutil.toBigNumber(data.Balance).div(2)
+            if (maxWinSeele.lt(seeleutil.toFan($('.winSeele').text()))) {
                 updateBetAndPayoutOnWin()
             }
         }).catch(err => {console.log(err)})
@@ -91,6 +93,9 @@ function updateBetAndPayoutOnWin() {
 
     // Payout On Win
     let winSeele = dice.GetDiceWinAmount(newBet, rollUnder)
+    if (winSeele.gt(maxWinSeele)){
+        winSeele = maxWinSeele
+    }
     $('.winSeele').text(seeleutil.fromFan(winSeele))
     $('#payout').text(seeleutil.toBigNumber(winSeele).div(newBet).toFixed(3))
 }
@@ -108,6 +113,49 @@ function refreshAllBets(txHash){
         if (!data){
             return
         }
-        showBets('All', data)
+        showBets(data)
     }).catch(err => {console.log(err)})
-  }
+}
+
+function showBets(data){
+    // get username
+    let userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
+    let bettor = userJsonStrUser ? userJsonStrUser.username : ''
+    let pushTr
+    if (data.Event == 'winAction') {
+        pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + seeleutil.fromFan(data.Bet) + ' Seele' + '</td>' + '<td>' + data.Roll + '</td>' + '<td style="color:#d3f709;">' + seeleutil.fromFan(data.Payout) + ' Seele' + '</td>' + '</tr>'
+    } else if (data.Event == 'lossAction') {
+        pushTr = '<tr>' + '<td>' + date(data.Time) + '</td>' + '<td>' + data.Bettor + '</td>' + '<td>' + data.RollUnder + '</td>' + '<td>' + seeleutil.fromFan(data.Bet)+ ' Seele' + '</td>' + '<td style="color:#f20765;">' + data.Roll + '</td>' + '<td>' + '</td>' + '</tr>'
+    }
+    // AllBets
+    $('.dataError').hide()
+    $('.dataError').after(pushTr)
+    alltimes = alltimes.plus(1)
+    allwintimes = data.Event == 'winAction' ? allwintimes.plus(1) : allwintimes
+    $('.all-number').text(alltimes)
+    $('.all-individual').text(allwintimes.div(alltimes).times(100))
+     // MyBets
+    if (data.Bettor == bettor){
+        $('.noData').hide()
+        $('.noData').after(pushTr)
+        usertimes = usertimes.plus(1)
+        userwin = data.Event == 'winAction' ? userwin.plus(seeleutil.fromFan(seeleutil.toBigNumber(data.Payout).minus(data.Bet))) : userwin.minus(seeleutil.fromFan(data.Bet))
+        userwintimes = data.Event == 'winAction' ? userwintimes.plus(1) : userwintimes
+        $('.my-number').text(usertimes)
+        $('.my-individual').text(userwintimes.div(usertimes).times(100))
+        $('.profitBalance').text(userwin)
+    }
+    var height = $('#tabs_container').height()
+    var trNumber = $('.showleft').find('tr')
+    if (trNumber.length < 3) {
+        height = height
+    } else {
+        var tableHeight = trNumber.length - 2
+        height = 80 + (42 * tableHeight)
+    }
+    $('#tabs_container').css('min-height', height + 'px')
+    $('.result').hide()
+    $('.dask').hide()
+    clearInterval(printResultID)
+    clearTimeout(resultTimeOutID)
+}
