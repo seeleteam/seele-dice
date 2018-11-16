@@ -11,6 +11,10 @@ $(function() {
     // });
     refreshBalance()
 
+    $('.getVal').keyup(function () {
+        updateBetAndPayoutOnWin()
+    })
+
     // Half button
     $('.halve').click(function() {
         $('#bets').val(seeleutil.toBigNumber($('#bets').val()).div(2))

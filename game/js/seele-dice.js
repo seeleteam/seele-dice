@@ -12,9 +12,6 @@ $(document).ready(function ($) {
     effect: 'slideLeft'
   })
 
-  // Initial bet amount
-  $('.getVal').val(0.5)
-
   // transaction popup
   $('.rollButton button').click(function () {
     // pulic
