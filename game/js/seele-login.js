@@ -1,5 +1,5 @@
 $(function() {
-    sessionStorage.clear()
+    // sessionStorage.clear()
 
     // Start with 0x,English and integer only.     
     jQuery.validator.addMethod('isSpecialChar', function (value, element) {
@@ -46,9 +46,9 @@ $(function() {
     $('.logout').click(function () {
         $('.loginHeadButton,.loginButton').show()
         $('.loginImg,.rollButton,.personalInformation').hide()
-        sessionStorage.clear()
-        $('#username').val('')
-        $('#private').val('')
+        // sessionStorage.clear()
+        // $('#username').val('')
+        // $('#private').val('')
     })
 
     // longinImg,personalInformation mouse
@@ -74,6 +74,11 @@ $(function() {
                     $('.result').text('Congratulations, '+ seeleutil.fromFan(dice.REGISTRATION_GIFT)+'seele will send this account in 1 minute, please pay attention to view')
                 }
             }
+        }).catch(err => {
+            $('.result').show()
+            $('.dask').show()
+            $('.result').text(err)
+            return
         })
     })
 
@@ -152,4 +157,23 @@ function validform() {
             }
         }
     })
+}
+
+function GetUserKeyPair(){
+    let pubkey = $('#username').val()
+    let prikey = $('#private').val()
+    if (!pubkey || ! prikey){
+        let userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
+        if (!userJsonStrUser){
+            return
+        }
+
+        pubkey = userJsonStrUser.username
+        prikey = aesDecrypt(userJsonStrUser.private)
+    }
+
+    return {
+        'PublicKey' : pubkey,
+        'PrivateKey' : prikey
+    }
 }
