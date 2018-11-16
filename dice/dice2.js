@@ -229,17 +229,15 @@ class Dice2{
     RollForQuick(keypair, args){
         // RollUnder in [MIN_ROLLUNDER, MAX_ROLLUNDER]
         if (!args.RollUnder || args.RollUnder < this.MIN_ROLLUNDER || args.RollUnder > this.MAX_ROLLUNDER){
-            return new Error('RollUnder[' + args.RollUnder + '] may be out of range [' + this.MIN_ROLLUNDER + ', ' + this.MAX_ROLLUNDER + ']')
+            throw new Error('RollUnder[' + args.RollUnder + '] may be out of range [' + this.MIN_ROLLUNDER + ', ' + this.MAX_ROLLUNDER + ']')
         }
         // Bet in [MIN_BET, MAX_BET]
         if (!args.Bet || args.Bet < this.MIN_BET || args.Bet > this.MAX_BET){
-            return new Error('Bet[' + args.Bet + '] may be out of range [' + this.MIN_BET + ', ' + this.MAX_BET + ']')
+            throw new Error('Bet[' + args.Bet + '] may be out of range [' + this.MIN_BET + ', ' + this.MAX_BET + ']')
         }
 
-        this.PlaceBet(keypair, args).then(betData => {
-            randClient.SettleBet(betData)
-        }).catch(err => {
-            return err
+        return this.PlaceBet(keypair, args).then(betData => {
+            return randClient.SettleBet(betData)
         })
     }
 

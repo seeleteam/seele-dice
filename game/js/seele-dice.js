@@ -94,13 +94,6 @@ function reRollResult() {
       'GasPrice': Number(gasPrice),
       'GasLimit': Number(gasLimit)
     }
-    let err = dice.RollForQuick(keypair, args)
-    if (err){
-        $('.result').show()
-        $('.dask').show()
-        $('.result').text(err)
-        return
-    }
     let count = LOADING_SECONDS
     printResultID = setInterval(()=>{
         $('.result').show()
@@ -114,6 +107,15 @@ function reRollResult() {
         clearInterval(printResultID)
         clearTimeout(resultTimeOutID)
     }, LOADING_SECONDS*1000)
+
+    dice.RollForQuick(keypair, args).catch(err => {
+        clearInterval(printResultID)
+        clearTimeout(resultTimeOutID)
+        $('.result').hide()
+        $('.dask').hide()
+        alert('Some error occurred. Please try again. [' + err + ']')
+        return
+    })
 }
 
 // get file name
