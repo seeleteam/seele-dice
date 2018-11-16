@@ -35,7 +35,7 @@ class RandClient{
 function sendReq(opts, rpcData) {
     if (typeof document !== 'undefined' && document.domain){
         if (document.domain.includes('seele')){
-            opts.hostname = document.domain + '/randns'
+            opts.hostname = 'dice.seeleapp.com/randns'
         } else if (document.domain.includes('localhost') || document.domain.includes('127.0.0.1')){
             opts.hostname = '127.0.0.1'
         }
