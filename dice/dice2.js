@@ -9,7 +9,7 @@ const SeeleDice2Bin = `0x60806040819052635be700806000556001805460ff1916600a17905
 
 let client
 if (typeof document !== 'undefined' && document.domain && document.domain.includes('seele')){
-    client = new seelejs('dice.seeleapp.com/seelens')
+    client = new seelejs('https://dice.seeleapp.com/seelens')
 } else {
     client = new seelejs('http://117.50.20.218:8037')
 }
