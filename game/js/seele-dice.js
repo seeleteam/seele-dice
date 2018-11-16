@@ -39,8 +39,7 @@ $(document).ready(function ($) {
       return false
     }
     // get username
-    var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
-    var getStorageUsername = userJsonStrUser.username
+    var getStorageUsername = GetUserKeyPair().PublicKey
 
     $('.from').text(getStorageUsername)
     $('.betAmount').text(bet)
@@ -82,39 +81,26 @@ $(document).ready(function ($) {
 })
 
 function reRollResult() {
-    // get sessionStorage
-    var userJsonStrUser = JSON.parse(sessionStorage.getItem('user'))
-    // get private
-    var getStoragePrivate = aesDecrypt(userJsonStrUser.private)
-
     // post data
-    var from = $('.from').text()
-    var betAmount = Math.floor($('.betAmount').text() * 100000000)
-    var rollPayout = Math.floor($('.payOut').text() * 100000000)
     var gasPrice = $('.gasPrice').val()
     var gasLimit = $('.gasLimit').val()
     var rollUnder = $('.rollUnder').text()
 
     // sendTx
-    var keypair = {
-      'PublicKey': from,
-      'PrivateKey': getStoragePrivate
-    }
+    let keypair = GetUserKeyPair()
     var args = {
       'RollUnder': Number(rollUnder),
-      'Payout': Number(rollPayout),
-      'Bet': Number(betAmount),
+      'Bet': Number(seeleutil.toFan($('.betAmount').text())),
       'GasPrice': Number(gasPrice),
       'GasLimit': Number(gasLimit)
     }
-    // dice.Roll(keypair, args).then(data => {
-    //   showBets('My', data)
-    // }).catch(err => {
-    //   console.log(err)
-    //   $('.result').hide()
-    //   $('.dask').hide()
-    // })
-    dice.RollForQuick(keypair, args)
+    let err = dice.RollForQuick(keypair, args)
+    if (err){
+        $('.result').show()
+        $('.dask').show()
+        $('.result').text(err)
+        return
+    }
     let count = LOADING_SECONDS
     printResultID = setInterval(()=>{
         $('.result').show()
@@ -136,21 +122,8 @@ function getFileName(path) {
     var pos2 = path.lastIndexOf('\\')
     var pos = Math.max(pos1, pos2)
     if (pos < 0) {
-    return path
+        return path
     } else {
-    return path.substring(pos + 1)
+        return path.substring(pos + 1)
     }
-}
-
-// date change
-function date() {
-    var date = new Date()
-    var year = date.getFullYear()
-    var month = date.getMonth() + 1
-    var date1 = date.getDate()
-    var hour = date.getHours()
-    var minutes = date.getMinutes()
-    var second = date.getSeconds()
-    var dateNew = year + '-' + month + '-' + date1 + ' ' + hour + ':' + minutes + ':' + second
-    return dateNew
 }

@@ -115,17 +115,6 @@ class Dice2{
         return parseInt(registrations, 16)
     }
 
-    // This is too slow.
-    // GetDiceWinAmount(bet, rollUnder){
-    //     let payload = client.sendSync("generatePayload", this.SeeleDiceABI, "getDiceWinAmount", [bet.toString(), rollUnder.toString()])
-    //     let data = client.sendSync("call", this.ContractAddress, payload, -1)
-    //     if (data.failed){
-    //         throw new Error(data.result)
-    //     }
-
-    //     let payout = data.result
-    //     return parseInt(payout, 16)
-    // }
     GetDiceWinAmount(bet, rollUnder){
         if (!rollUnder || rollUnder < this.MIN_ROLLUNDER || rollUnder > this.MAX_ROLLUNDER){
             console.log('RollUnder[' + rollUnder + '] may be out of range [' + this.MIN_ROLLUNDER + ', ' + this.MAX_ROLLUNDER + ']')
@@ -240,17 +229,16 @@ class Dice2{
     RollForQuick(keypair, args){
         // RollUnder in [MIN_ROLLUNDER, MAX_ROLLUNDER]
         if (!args.RollUnder || args.RollUnder < this.MIN_ROLLUNDER || args.RollUnder > this.MAX_ROLLUNDER){
-            Promise.reject('RollUnder[' + args.RollUnder + '] may be out of range [' + this.MIN_ROLLUNDER + ', ' + this.MAX_ROLLUNDER + ']')
+            return new Error('RollUnder[' + args.RollUnder + '] may be out of range [' + this.MIN_ROLLUNDER + ', ' + this.MAX_ROLLUNDER + ']')
         }
         // Bet in [MIN_BET, MAX_BET]
         if (!args.Bet || args.Bet < this.MIN_BET || args.Bet > this.MAX_BET){
-            Promise.reject('Bet[' + args.Bet + '] may be out of range [' + this.MIN_BET + ', ' + this.MAX_BET + ']')
+            return new Error('Bet[' + args.Bet + '] may be out of range [' + this.MIN_BET + ', ' + this.MAX_BET + ']')
         }
 
         this.PlaceBet(keypair, args).then(betData => {
             randClient.SettleBet(betData)
         }).catch(err => {
-            console.log(err)
             return err
         })
     }
