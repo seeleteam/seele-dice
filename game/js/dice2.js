@@ -43219,7 +43219,7 @@ class RandClient{
 function sendReq(opts, rpcData) {
     if (typeof document !== 'undefined' && document.domain){
         if (document.domain.includes('seele')){
-            opts.hostname = document.domain + '/randns'
+            opts.hostname = 'dice.seeleapp.com/randns'
         } else if (document.domain.includes('localhost') || document.domain.includes('127.0.0.1')){
             opts.hostname = '127.0.0.1'
         }
@@ -43261,12 +43261,7 @@ const SeeleDice2Bin = `0x60806040819052635be700806000556001805460ff1916600a17905
 
 let client
 if (typeof document !== 'undefined' && document.domain && document.domain.includes('seele')){
-    // if (document.domain.includes('seele')){
-        client = new seelejs(document.domain + '/seelens')
-    // } 
-    // else if (document.domain.includes('localhost') || document.domain.includes('127.0.0.1')){
-    //     client = new seelejs('http://127.0.0.1:8037')
-    // }
+    client = new seelejs('dice.seeleapp.com/seelens')
 } else {
     client = new seelejs('http://117.50.20.218:8037')
 }
